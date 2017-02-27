@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+## Debian specific build environment settings
+
+export DEBEMAIL=""
+export DEBFULLNAME=""

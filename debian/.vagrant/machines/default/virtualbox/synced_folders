@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/Users/mjones/Projects/mattyjones/debian_keypassxc/debian","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
