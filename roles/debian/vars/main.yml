@@ -1,0 +1,60 @@
+---
+
+ansible_pkg_mgr: apt
+
+# Packaging required for building the software
+build_pkgs:
+  - libxi-dev
+  - libxtst-dev
+  - qtbase5-dev
+  - libqt5x11extras5-dev
+  - qttools5-dev
+  - qttools5-dev-tools
+  - libgcrypt20-dev
+  - zlib1g-dev
+  - libyubikey-dev
+  - libykpers-1-dev
+
+# Common development packages
+common_dev_pkgs:
+  - git
+  - build-essential
+  - wget
+
+# Common editors
+common_editor_pkgs:
+  - nano
+
+# Common languages
+common_lang_pkgs:
+  - python
+  - python3
+  - perl
+
+# Common shells
+common_shell_pkgs:
+  - bash
+
+# Common shells
+common_troubleshooting_pkgs:
+  - nmap
+  - glances
+  - lnav
+
+# Packages required for creating a debian package
+packaging_pkgs:
+  - autoconf
+  - automake
+  - autotools-dev
+  - cmake
+  - debhelper
+  - dh-make
+  - devscripts
+  - fakeroot
+  - file
+  - gnupg
+  - lintian
+  - patch
+  - patchutils
+  - pbuilder
+  - quilt
