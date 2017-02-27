@@ -1,0 +1,5 @@
+---
+- include: apt.yml
+- include: build.yml
+- include: pkg.yml
+- include: common.yml
