@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+## Common build environment settings
+
+export LATEST_VERSION="2.1.2"
+export CURRENT_VERSION=$LATEST_VERSION
