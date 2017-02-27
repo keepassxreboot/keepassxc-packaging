@@ -2,3 +2,5 @@
 
 .idea
 .vagrant
+
+ansible.cfg
