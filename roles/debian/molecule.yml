@@ -29,3 +29,6 @@ vagrant:
         - group1
 verifier:
   name: testinfra
+  options:
+    verbose: true
+    strict: true
