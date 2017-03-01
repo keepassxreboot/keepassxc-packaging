@@ -29,3 +29,5 @@ vagrant:
         - group1
 verifier:
   name: testinfra
+  options:
+    v: true
