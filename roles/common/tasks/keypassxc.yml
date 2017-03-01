@@ -1,0 +1,9 @@
+---
+
+- name: download a specific version of keypassxc
+  get_url:
+    url: https://github.com/keepassxreboot/keepassxc/archive/2.1.2.tar.gz
+    dest: /home/builder/project/keepassxc-2.1.2.tar.gz
+    checksum: sha256:8cd94a401910ff67cadeed3d7d1b285f1e5d82ac8622a05b5c7eae60f28f1710
+    group: builder
+    owner: builder

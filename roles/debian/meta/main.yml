@@ -32,6 +32,16 @@ galaxy_info:
   # platform on this list, let us know and we'll get it added!
   #
   #platforms:
+  #- name: EL
+  #  versions:
+  #  - all
+  #  - 5
+  #  - 6
+  #  - 7
+  #- name: GenericUNIX
+  #  versions:
+  #  - all
+  #  - any
   #- name: OpenBSD
   #  versions:
   #  - all
@@ -51,14 +61,14 @@ galaxy_info:
   #  - 21
   #  - 22
   #  - 23
-  #  - 24
-  #  - 25
-  #- name: DellOS
+  #- name: opensuse
   #  versions:
   #  - all
-  #  - 10
-  #  - 6
-  #  - 9
+  #  - 12.1
+  #  - 12.2
+  #  - 12.3
+  #  - 13.1
+  #  - 13.2
   #- name: MacOSX
   #  versions:
   #  - all
@@ -68,42 +78,40 @@ galaxy_info:
   #  - 10.7
   #  - 10.8
   #  - 10.9
-  #- name: Synology
-  #  versions:
-  #  - all
-  #  - any
-  #- name: Junos
-  #  versions:
-  #  - all
-  #  - any
-  #- name: GenericBSD
-  #  versions:
-  #  - all
-  #  - any
-  #- name: Void Linux
-  #  versions:
-  #  - all
-  #  - any
-  #- name: GenericLinux
-  #  versions:
-  #  - all
-  #  - any
-  #- name: NXOS
-  #  versions:
-  #  - all
-  #  - any
   #- name: IOS
   #  versions:
   #  - all
   #  - any
+  #- name: Solaris
+  #  versions:
+  #  - all
+  #  - 10
+  #  - 11.0
+  #  - 11.1
+  #  - 11.2
+  #  - 11.3
+  #- name: SmartOS
+  #  versions:
+  #  - all
+  #  - any
+  #- name: eos
+  #  versions:
+  #  - all
+  #  - Any
+  #- name: Windows
+  #  versions:
+  #  - all
+  #  - 2012R2
   #- name: Amazon
   #  versions:
   #  - all
   #  - 2013.03
   #  - 2013.09
-  #  - 2016.03
-  #  - 2016.09
-  #- name: ArchLinux
+  #- name: GenericBSD
+  #  versions:
+  #  - all
+  #  - any
+  #- name: Junos
   #  versions:
   #  - all
   #  - any
@@ -114,7 +122,6 @@ galaxy_info:
   #  - 10.1
   #  - 10.2
   #  - 10.3
-  #  - 11.0
   #  - 8.0
   #  - 8.1
   #  - 8.2
@@ -141,43 +148,6 @@ galaxy_info:
   #  - vivid
   #  - wily
   #  - xenial
-  #  - yakkety
-  #- name: Debian
-  #  versions:
-  #  - all
-  #  - etch
-  #  - jessie
-  #  - lenny
-  #  - sid
-  #  - squeeze
-  #  - stretch
-  #  - wheezy
-  #- name: Alpine
-  #  versions:
-  #  - all
-  #  - any
-  #- name: EL
-  #  versions:
-  #  - all
-  #  - 5
-  #  - 6
-  #  - 7
-  #- name: Windows
-  #  versions:
-  #  - all
-  #  - 2012R2
-  #- name: SmartOS
-  #  versions:
-  #  - all
-  #  - any
-  #- name: opensuse
-  #  versions:
-  #  - all
-  #  - 12.1
-  #  - 12.2
-  #  - 12.3
-  #  - 13.1
-  #  - 13.2
   #- name: SLES
   #  versions:
   #  - all
@@ -190,22 +160,24 @@ galaxy_info:
   #  - 11SP4
   #  - 12
   #  - 12SP1
-  #- name: GenericUNIX
+  #- name: GenericLinux
   #  versions:
   #  - all
   #  - any
-  #- name: Solaris
+  #- name: NXOS
   #  versions:
   #  - all
-  #  - 10
-  #  - 11.0
-  #  - 11.1
-  #  - 11.2
-  #  - 11.3
-  #- name: eos
+  #  - any
+  #- name: Debian
   #  versions:
   #  - all
-  #  - Any
+  #  - etch
+  #  - jessie
+  #  - lenny
+  #  - sid
+  #  - squeeze
+  #  - stretch
+  #  - wheezy
 
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is

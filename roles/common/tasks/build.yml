@@ -1,0 +1,18 @@
+---
+
+# Configure the build environment and user
+
+- name: Create the group used for building artifacts
+  group:
+    name: builder
+    state: present
+
+- name: Create the user that will be building artifacts
+  user:
+    name: builder
+    shell: /bin/bash
+    groups: builder
+    append: yes
+
+- name: Create the directory to drop the source tarball into that we will be building
+  file: path=/home/builder/project state=directory group=builder owner=builder

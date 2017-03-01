@@ -1,0 +1,31 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+molecule:
+  test:
+    sequence:
+      - destroy
+      - syntax
+      - create
+      - converge
+      - idempotence
+      - verify
+vagrant:
+  platforms:
+    - name: jessie64
+      box: debian/jessie64
+      box_url: https://vagrantcloud.com/debian/boxes/jessie64
+  providers:
+    - name: virtualbox
+      type: virtualbox
+      options:
+        memory: 1024
+        cpus: 2
+  instances:
+    - name: common
+      ansible_groups:
+        - group1
+verifier:
+  name: testinfra
