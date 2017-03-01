@@ -1,2 +1,4 @@
 ---
-# tasks file for common
+
+- include: build.yml
+- include: keypassxc.yml
