@@ -30,4 +30,5 @@ vagrant:
 verifier:
   name: testinfra
   options:
-    v: true
+    verbose: true
+    strict: true
