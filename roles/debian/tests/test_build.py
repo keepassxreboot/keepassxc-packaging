@@ -1,4 +1,5 @@
 import testinfra.utils.ansible_runner
+from ansible.vars import VariableManager
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     '.molecule/ansible_inventory').get_hosts('all')
@@ -12,13 +13,16 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 #     assert f.group == 'root'
 
 
-def test_builder_group(Group):
-    g = Group('builder')
-
-    assert g.exists
-
-
-def test_builder_user(User):
-    u = User('builder')
-
-    assert u.exists
+# def test_build_pkgs(Package):
+#     variable_manager = VariableManager()
+#     j = variable_manager.get_vars
+#
+#     for i in j:
+#         print i
+#
+#     print variable_manager.get_vars
+#
+#     # for i in build_pkgs
+#     g = Package('devscripts')
+#
+#     assert g.is_installed

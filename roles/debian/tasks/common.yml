@@ -1,2 +1,38 @@
 ---
 # Tasks needed fopr all of Debian
+
+- name: Install common development packages
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ common_dev_pkgs }}"
+
+- name: Install common editors
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ common_editor_pkgs }}"
+
+- name: Install common languages
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ common_lang_pkgs }}"
+
+- name: Install common shells
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ common_shell_pkgs }}"

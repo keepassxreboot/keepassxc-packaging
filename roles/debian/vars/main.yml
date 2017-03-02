@@ -34,6 +34,7 @@ common_lang_pkgs:
 # Common shells
 common_shell_pkgs:
   - bash
+  - zsh
 
 # Common shells
 common_troubleshooting_pkgs:
@@ -46,6 +47,7 @@ packaging_pkgs:
   - autoconf
   - automake
   - autotools-dev
+  - build-essential
   - cmake
   - debhelper
   - dh-make
