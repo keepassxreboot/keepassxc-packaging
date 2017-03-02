@@ -1,2 +1,11 @@
 ---
 # Tasks for packaging the software on debian
+
+- name: Install packages necessary to build a debian release
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ packaging_pkgs }}"

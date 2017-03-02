@@ -1,2 +1,11 @@
 ---
 # Tasks for building the software on debian
+
+- name: Install packages necessary to build the software on debian
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ build_pkgs }}"
