@@ -9,3 +9,4 @@
     state: present
   with_items:
     - "{{ packaging_pkgs }}"
+  become: true

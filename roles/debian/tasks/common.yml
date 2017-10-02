@@ -9,6 +9,7 @@
     state: present
   with_items:
     - "{{ common_dev_pkgs }}"
+  become: true
 
 - name: Install common editors
   apt:
@@ -18,6 +19,7 @@
     state: present
   with_items:
     - "{{ common_editor_pkgs }}"
+  become: true
 
 - name: Install common languages
   apt:
@@ -27,6 +29,7 @@
     state: present
   with_items:
     - "{{ common_lang_pkgs }}"
+  become: true
 
 - name: Install common shells
   apt:
@@ -36,3 +39,4 @@
     state: present
   with_items:
     - "{{ common_shell_pkgs }}"
+  become: true

@@ -1,26 +1,9 @@
 ---
-
-# Common Role
-#
-# - define user for building and packaging
-# - download desired version of keypassxc
-# - create build directory structure
-- name: Common platform independent tasks
-  hosts: all
-  roles:
-    - common
-
-
-#
-# Platform Specific
-#
-
-# Debian Role
-#
-# - install necessary build packages
-# - install common editors, shells
-# - install packages necessary to create debian packages
-- name: Common platform independent tasks
-  hosts: all
-  roles:
-    - debian
+- hosts: all
+  tasks:
+    - name: Common platform independent tasks
+      include_role:
+        name: "./roles/common"
+    - name: Common platform independent tasks
+      include_role:
+        name: "./roles/debian"

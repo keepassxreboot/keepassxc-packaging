@@ -7,3 +7,13 @@
     checksum: sha256:8cd94a401910ff67cadeed3d7d1b285f1e5d82ac8622a05b5c7eae60f28f1710
     group: builder
     owner: builder
+  become: true
+
+- name: download a specific version of keypassxc
+  get_url:
+    url: https://github.com/keepassxreboot/keepassxc/archive/2.2.0.tar.gz
+    dest: /home/builder/project/keepassxc-2.2.0.tar.gz
+    checksum: sha256:9d9d39b9c056955fe5d7a5212efe1703be02fa4731c36e2b1e06a78174b0a7b8
+    group: builder
+    owner: builder
+  become: true
