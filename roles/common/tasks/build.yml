@@ -6,13 +6,15 @@
   group:
     name: builder
     state: present
+  become: true
 
 - name: Create the user that will be building artifacts
   user:
     name: builder
     shell: /bin/bash
     groups: builder
-    append: yes
+  become: true
 
 - name: Create the directory to drop the source tarball into that we will be building
-  file: path=/home/builder/project state=directory group=builder owner=builder
+  file: path=/home/builder/project/ state=directory group=users owner=builder
+  become: true

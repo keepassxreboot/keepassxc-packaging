@@ -9,3 +9,4 @@
     state: present
   with_items:
     - "{{ build_pkgs }}"
+  become: true
