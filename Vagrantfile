@@ -66,7 +66,6 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "ansible" do |ansible|
     ansible.verbose = "v"
-    ansible.playbook = "./site.yml"
-#    ansible.playbook = "./roles/common/playbook.yml"
+    ansible.playbook = "site.yml"
   end
 end
