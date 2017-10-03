@@ -16,5 +16,6 @@
   become: true
 
 - name: Create the directory to drop the source tarball into that we will be building
-  file: path=/home/builder/project/ state=directory group=users owner=builder
+  file: path=/home/builder/project/ state=directory group=users owner=builder mode=0775
   become: true
+  become_user: builder

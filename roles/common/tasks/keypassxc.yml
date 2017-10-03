@@ -3,17 +3,44 @@
 - name: download a specific version of keypassxc
   get_url:
     url: https://github.com/keepassxreboot/keepassxc/archive/2.1.2.tar.gz
-    dest: /home/builder/project/keepassxc-2.1.2.tar.gz
+    dest: /home/builder/project/keepassxc_2.1.2.orig.tar.gz
     checksum: sha256:8cd94a401910ff67cadeed3d7d1b285f1e5d82ac8622a05b5c7eae60f28f1710
     group: builder
     owner: builder
   become: true
+  become_user: builder
+
+# - name: Create the directory to drop the source tarball into that we will be building
+#   file: path=/home/builder/project/keepassxc-2.1.2 state=directory group=users owner=builder
+#   become: true
+
+- name: unpack the archive
+  unarchive:
+    src: /home/builder/project/keepassxc_2.1.2.orig.tar.gz
+    dest: /home/builder/project
+    remote_src: yes
+  become: true
+  become_user: builder
 
 - name: download a specific version of keypassxc
   get_url:
     url: https://github.com/keepassxreboot/keepassxc/archive/2.2.0.tar.gz
-    dest: /home/builder/project/keepassxc-2.2.0.tar.gz
+    dest: /home/builder/project/keepassxc_2.2.0.orig.tar.gz
     checksum: sha256:9d9d39b9c056955fe5d7a5212efe1703be02fa4731c36e2b1e06a78174b0a7b8
     group: builder
     owner: builder
   become: true
+  become_user: builder
+
+# - name: Create the directory to drop the source tarball into that we will be building
+#   file: path=/home/builder/project/keepassxc-2.2.0 state=directory group=users owner=builder
+#   become: true
+
+- name: unpack the archive
+  unarchive:
+    src: /home/builder/project/keepassxc_2.2.0.orig.tar.gz
+    dest: /home/builder/project
+    remote_src: yes
+  become: true
+  become_user: builder
+
