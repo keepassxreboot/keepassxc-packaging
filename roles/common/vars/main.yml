@@ -1,2 +1,14 @@
 ---
 # vars file for common
+
+# versions to build against
+versions:
+  2.1.2:
+    package: 2.1.2.tar.gz
+    sha256: 8cd94a401910ff67cadeed3d7d1b285f1e5d82ac8622a05b5c7eae60f28f1710
+  2.2.0:
+    package: 2.2.0.tar.gz
+    sha256: 9d9d39b9c056955fe5d7a5212efe1703be02fa4731c36e2b1e06a78174b0a7b8
+  2.2.1:
+    package: 2.2.1.tar.gz
+    sha256: 184663e8b08e081dedf4c9dbdd68bf86ed0f5e32388b4781b7afcf89ef5c8e4d
