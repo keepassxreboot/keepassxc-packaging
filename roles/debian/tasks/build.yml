@@ -1,12 +1,10 @@
 ---
 # Tasks for building the software on debian
 
-- name: Install packages necessary to build the software on debian
-  apt:
-    allow_unauthenticated: no
-    install_recommends: no
-    pkg: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ build_pkgs }}"
+- name: Create the directory to drop the source tarball into that we will be building
+  file: path=/home/{{ build_user }}/{{ project_root }}/keepassxc-{{ item.key }}/debian state=directory group={{ build_group }} owner={{ build_user }} mode=0775
   become: true
+  become_user: "{{ build_user }}"
+  with_dict: "{{ versions }}"
+
+

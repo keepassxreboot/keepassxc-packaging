@@ -3,25 +3,19 @@
 - name: download keypassxc
   get_url:
     url: https://github.com/keepassxreboot/keepassxc/archive/{{ item.value.package }}
-    dest: /home/builder/project/keepassxc_{{ item.key }}.orig.tar.gz
+    dest: /home/{{ build_user }}/{{ project_root }}/keepassxc_{{ item.key }}.tar.gz
     checksum: sha256:{{ item.value.sha256 }}
-    group: builder
-    owner: builder
+    group: "{{ build_group }}"
+    owner: "{{ build_user }}"
   become: true
-  become_user: builder
+  become_user: "{{ build_user }}"
   with_dict: "{{ versions }}"
 
 - name: unpack the archive
   unarchive:
-    src: /home/builder/project/keepassxc_{{ item.key }}.orig.tar.gz
-    dest: /home/builder/project
+    src: /home/{{ build_user }}/{{ project_root }}/keepassxc_{{ item.key }}.tar.gz
+    dest: /home/{{ build_user }}/{{ project_root }}
     remote_src: yes
   become: true
-  become_user: builder
-  with_dict: "{{ versions }}"
-
-- name: Create the directory to drop the source tarball into that we will be building
-  file: path=/home/builder/project/keepassxc-{{ item.key }}/debian state=directory group=users owner=builder mode=0775
-  become: true
-  become_user: builder
+  become_user: "{{ build_user }}"
   with_dict: "{{ versions }}"

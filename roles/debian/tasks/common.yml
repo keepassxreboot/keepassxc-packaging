@@ -1,15 +1,5 @@
 ---
-# Tasks needed fopr all of Debian
-
-- name: Install common development packages
-  apt:
-    allow_unauthenticated: no
-    install_recommends: no
-    pkg: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ common_dev_pkgs }}"
-  become: true
+# Tasks needed for all of Debian
 
 - name: Install common editors
   apt:

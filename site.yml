@@ -1,6 +1,12 @@
 ---
 - hosts: all
   tasks:
+    - name: Include all yaml files
+      include_vars:
+        dir: './group_var'
+        extensions:
+            - yml
+            - yaml
     - name: Common platform independent tasks
       include_role:
         name: "./roles/common"

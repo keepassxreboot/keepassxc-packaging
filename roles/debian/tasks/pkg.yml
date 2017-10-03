@@ -10,3 +10,23 @@
   with_items:
     - "{{ packaging_pkgs }}"
   become: true
+
+- name: Install packages necessary to build the software on debian
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ build_pkgs }}"
+  become: true
+
+- name: Install common development packages
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ common_dev_pkgs }}"
+  become: true

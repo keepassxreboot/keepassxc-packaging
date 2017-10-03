@@ -4,18 +4,18 @@
 
 - name: Create the group used for building artifacts
   group:
-    name: builder
+    name: "{{ build_user }}"
     state: present
   become: true
 
 - name: Create the user that will be building artifacts
   user:
-    name: builder
+    name: "{{ build_user }}"
     shell: /bin/bash
-    groups: builder
+    groups: "{{ build_group }}"
   become: true
 
 - name: Create the directory to drop the source tarball into that we will be building
-  file: path=/home/builder/project/ state=directory group=users owner=builder mode=0775
+  file: path=/home/{{ build_user }}/{{ project_root }}/ state=directory group={{ build_group }} owner={{ build_user }} mode=0775
   become: true
-  become_user: builder
+  become_user: "{{ build_user }}"
