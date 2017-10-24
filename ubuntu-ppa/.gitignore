@@ -1,0 +1,7 @@
+*.build
+*.changes
+*.upload
+*.gz
+*.xz
+.bz2
+*.dsc
