@@ -9,8 +9,8 @@ Build and publish Ubuntu PPA source packages
 Options:
   -s, --series        Ubuntu release series to build (required)
   -p, --package       Package name to build (required, default: 'keepassxc')
-  -c, --changelog     CHANGELOG file (required)
   -d, --docker-img    Ubuntu Docker image to use (required)
+  -c, --changelog     CHANGELOG file
   -g, --pkg-version   Package build version (default: '0')
   -v, --ppa-version   PPA package version (default: '1')
   -u, --urgency       Package urgency (default: 'medium')
@@ -56,12 +56,12 @@ while [ $# -ge 1 ]; do
             PACKAGE="$2"
             shift ;;
 
-        -c|--changelog)
-            CHANGELOG_FILE="$2"
-            shift ;;
-
         -d|--docker-img)
             DOCKER_IMG="$2"
+            shift ;;
+
+        -c|--changelog)
+            CHANGELOG_FILE="$2"
             shift ;;
 
         -g|--pkg-version)
@@ -88,16 +88,40 @@ while [ $# -ge 1 ]; do
     shift
 done
 
-if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ] || [ "$CHANGELOG_FILE" == "" ] || [ "$DOCKER_IMG" == "" ]; then
+if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ] || [ "$DOCKER_IMG" == "" ]; then
     printUsage >&2
     exit 1
 fi
 
+CL_FILE_IS_TMP=false
+if [ "$CHANGELOG_FILE" == "" ]; then
+    CHANGELOG_FILE="/tmp/builddebpkg_${PACKAGE}~${SERIES}_${RANDOM}"
+    CL_FILE_IS_TMP=true
+    echo "VERSION ($(date +%Y-%m-%d))
+=========================
+
+- " > "$CHANGELOG_FILE"
+    CHECKSUM=$(sha1sum "$CHANGELOG_FILE")
+    if [ "$EDITOR" == "" ]; then
+        EDITOR=vim
+    fi
+    $EDITOR "$CHANGELOG_FILE"
+
+    if [ "$(sha1sum "$CHANGELOG_FILE")" == "$CHECKSUM" ]; then
+        printError "No changes made to temporary changelog."
+        rm "$CHANGELOG_FILE"
+        exit 1
+    fi
+fi
+
 FULL_CL="$(grep -Pzo "^\d+\.\d+\.\d+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
+CHANGELOG="$(echo "$FULL_CL" | grep -Pzo "(?s)(?<====\n\n).+" | tr -d '\0' | sed 's/^\s*- \?/  * /')"
 VERSION="$(echo "$FULL_CL" | grep -Pzo "\d+\.\d+\.\d+" | tr -d '\0')"
-CHANGELOG="$(echo "$FULL_CL" | grep -Pzo "(?s)(?<====\n\n).+" | tr -d '\0' | sed 's/^\s*- /  * /')"
 DATE="$(date -R)"
 
+if $CL_FILE_IS_TMP; then
+    rm "$CHANGELOG_FILE"
+fi
 
 if [ ! -d "./${SERIES}/${PACKAGE}/debian" ]; then
     printError "No source folder for package '${PACKAGE}~${SERIES}'!"
