@@ -62,7 +62,7 @@ Build source packages which can be uploaded as PPA to Launchpad
 
 Options:
   -s, --series           Ubuntu release series to build (required)
-  -p, --package          Package name to build (required, default: 'keepassxc')
+  -p, --package          Package name to build (required, default: '${PACKAGE}')
   -d, --docker-img       Ubuntu Docker image to use (required)
       --upstream-version Upstream package version, overrides version from CHANGELOG
   -c, --changelog        CHANGELOG file
@@ -182,6 +182,10 @@ build() {
 
             -v|--ppa-version)
                 PPA_VERSION="$2"
+                shift ;;
+
+            -r|--series-version)
+                SERIES_VERSION="$2"
                 shift ;;
 
             -u|--urgency)
