@@ -137,6 +137,11 @@ upload() {
         exit 1
     fi
 
+    if [ ! -f "${SERIES}/${PACKAGE}_${VERSION}_source.changes" ]; then
+        printError "No source package for package ${PACKAGE}~${SERIES} found!"
+        exit 1
+    fi
+
     cd "${SERIES}/${PACKAGE}"
     printStatus "Uploading package..."
     runDockerCmd "cd .. && dput -u ppa:phoerious/keepassxc \"${PACKAGE}_${VERSION}_source.changes\"" "dput" "dput"
@@ -332,11 +337,11 @@ clean() {
     fi
 
     printStatus "Cleaning up packaging mess..."
-    find . -name "*_source.build" -exec echo rm -rf {} \; -exec rm -rf {} \;
-    find . -name "*_source.changes" -exec echo rm -rf {} \; -exec rm -rf {} \;
-    find . -name "*.debian.tar.gz" -exec echo rm -rf {} \; -exec rm -rf {} \;
-    find . -name "*.dsc" -exec echo rm -rf {} \; -exec rm -rf {} \;
-    find . -name "*.orig.tar.*" -exec echo rm -rf {} \; -exec rm -rf {} \;
+    find . -name "*_source.build" -exec rm -rfv {} \;
+    find . -name "*_source.changes" -exec rm -rfv {} \;
+    find . -name "*.debian.tar.gz" -exec rm -rfv {} \;
+    find . -name "*.dsc" -exec rm -rfv {} \;
+    find . -name "*.orig.tar.*" -exec rm -rfv {} \;
 }
 
 
