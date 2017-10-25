@@ -19,6 +19,13 @@
 printf "\e[1m\e[32mKeePassXC\e[0m PPA Build Helper\n"
 printf "Copyright (C) 2017 KeePassXC Team <https://keepassxc.org/>\n\n"
 
+# variable defaults
+PPA_VERSION="0~ppa1"
+SERIES_VERSION="1"
+PACKAGE="keepassxc"
+URGENCY="medium"
+GPG_KEY="BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2"
+
 printStatus() {
     printf "\e[1m\e[34m${1}\e[0m\n"
 }
@@ -59,10 +66,10 @@ Options:
   -d, --docker-img       Ubuntu Docker image to use (required)
       --upstream-version Upstream package version, overrides version from CHANGELOG
   -c, --changelog        CHANGELOG file
-  -g, --pkg-version      Package build version (default: '0')
-  -v, --ppa-version      PPA package version (default: '1')
-  -u, --urgency          Package urgency (default: 'medium')
-  -k, --gpg-key          GPG key used to sign package (default: 'BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2')
+  -v, --ppa-version      PPA package version (default: '${PPA_VERSION}')
+  -r, --series-version   PPA series package version (default: '${SERIES_VERSION}')
+  -u, --urgency          Package urgency (default: '${URGENCY}')
+  -k, --gpg-key          GPG key used to sign package (default: '${GPG_KEY}')
       --upload           Immediately upload package
 EOF
     elif [ "upload" == "$cmd" ]; then
@@ -94,13 +101,6 @@ runDockerCmd() {
                      useradd -u $(id -u) ${tmpuser} && cd /debuild/${PACKAGE} && \
                      su ${tmpuser} -c '${1}'"
 }
-
-PKG_VERSION="0"
-PPA_VERSION="1"
-PACKAGE="keepassxc"
-URGENCY="medium"
-GPG_KEY="BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2"
-
 
 # -----------------------------------------------------------------------
 #                            upload command
@@ -180,10 +180,6 @@ build() {
                 UPSTREAM_VERSION="$2"
                 shift ;;
 
-            -g|--pkg-version)
-                PKG_VERSION="$2"
-                shift ;;
-
             -v|--ppa-version)
                 PPA_VERSION="$2"
                 shift ;;
@@ -239,10 +235,10 @@ build() {
         fi
     fi
 
-    FULL_CL="$(grep -Pzo "^\d+\.\d+\.\d+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
+    FULL_CL="$(grep -Pzo "^[\d\.~\-a-z]+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
     CHANGELOG="$(echo "$FULL_CL" | grep -Pzo "(?s)(?<====\n\n).+" | tr -d '\0' | sed 's/^\s*- \?/  * /')"
     if [ "$UPSTREAM_VERSION" != "" ]; then
-        VERSION="$(echo "$FULL_CL" | grep -Pzo "\d+\.\d+\.\d+" | tr -d '\0')"
+        VERSION="$(echo "$FULL_CL" | grep -Pzo "^[\d\.~\-a-z]+" | tr -d '\0')"
     fi
     DATE="$(date -R)"
 
@@ -289,7 +285,7 @@ build() {
 
     printStatus "Creating source package for '${SERIES}'..."
 
-    FULL_VERSION="${VERSION}-${PKG_VERSION}~${SERIES}${PPA_VERSION}"
+    FULL_VERSION="${VERSION}-${PPA_VERSION}~${SERIES}${SERIES_VERSION}"
 
     if $(grep -q "^${PACKAGE} (${FULL_VERSION})" debian/changelog); then
         printError "Changelog entry for '${FULL_VERSION}' already exists!"
