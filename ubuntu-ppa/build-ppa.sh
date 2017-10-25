@@ -54,15 +54,16 @@ EOF
 Build source packages which can be uploaded as PPA to Launchpad
 
 Options:
-  -s, --series        Ubuntu release series to build (required)
-  -p, --package       Package name to build (required, default: 'keepassxc')
-  -d, --docker-img    Ubuntu Docker image to use (required)
-  -c, --changelog     CHANGELOG file
-  -g, --pkg-version   Package build version (default: '0')
-  -v, --ppa-version   PPA package version (default: '1')
-  -u, --urgency       Package urgency (default: 'medium')
-  -k, --gpg-key       GPG key used to sign package (default: 'BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2')
-      --upload        Immediately upload package
+  -s, --series           Ubuntu release series to build (required)
+  -p, --package          Package name to build (required, default: 'keepassxc')
+  -d, --docker-img       Ubuntu Docker image to use (required)
+      --upstream-version Upstream package version, overrides version from CHANGELOG
+  -c, --changelog        CHANGELOG file
+  -g, --pkg-version      Package build version (default: '0')
+  -v, --ppa-version      PPA package version (default: '1')
+  -u, --urgency          Package urgency (default: 'medium')
+  -k, --gpg-key          GPG key used to sign package (default: 'BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2')
+      --upload           Immediately upload package
 EOF
     elif [ "upload" == "$cmd" ]; then
         cat << EOF
@@ -126,7 +127,7 @@ upload() {
 
             *)
                 printError "ERROR: Unknown option '$ARG'\n"
-                printUsage >&2
+                printUsage upload >&2
                 exit 1 ;;
         esac
         shift
@@ -157,6 +158,7 @@ build() {
 
     while [ $# -ge 1 ]; do
         ARG="$1"
+
         case "$ARG" in
             -s|--series)
                 SERIES="$2"
@@ -172,6 +174,10 @@ build() {
 
             -c|--changelog)
                 CHANGELOG_FILE="$2"
+                shift ;;
+
+             --upstream-version)
+                UPSTREAM_VERSION="$2"
                 shift ;;
 
             -g|--pkg-version)
@@ -191,12 +197,11 @@ build() {
                 shift ;;
 
             --upload)
-                IMMEDIATE_UPLOAD=true
-                shift ;;
+                IMMEDIATE_UPLOAD=true ;;
 
             *)
                 printError "ERROR: Unknown option '$ARG'\n"
-                printUsage >&2
+                printUsage build >&2
                 exit 1 ;;
         esac
         shift
@@ -207,11 +212,17 @@ build() {
         exit 1
     fi
 
+    if [ "$UPSTREAM_VERSION" != "" ]; then
+        VERSION="$UPSTREAM_VERSION"
+    else
+        VERSION="VERSION"
+    fi
+
     CL_FILE_IS_TMP=false
     if [ "$CHANGELOG_FILE" == "" ]; then
         CHANGELOG_FILE="/tmp/builddebpkg_${PACKAGE}~${SERIES}_${RANDOM}"
         CL_FILE_IS_TMP=true
-        echo "VERSION ($(date +%Y-%m-%d))
+        echo "${VERSION} ($(date +%Y-%m-%d))
 =========================
 
 - " > "$CHANGELOG_FILE"
@@ -230,7 +241,9 @@ build() {
 
     FULL_CL="$(grep -Pzo "^\d+\.\d+\.\d+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
     CHANGELOG="$(echo "$FULL_CL" | grep -Pzo "(?s)(?<====\n\n).+" | tr -d '\0' | sed 's/^\s*- \?/  * /')"
-    VERSION="$(echo "$FULL_CL" | grep -Pzo "\d+\.\d+\.\d+" | tr -d '\0')"
+    if [ "$UPSTREAM_VERSION" != "" ]; then
+        VERSION="$(echo "$FULL_CL" | grep -Pzo "\d+\.\d+\.\d+" | tr -d '\0')"
+    fi
     DATE="$(date -R)"
 
     if $CL_FILE_IS_TMP; then
@@ -332,7 +345,7 @@ build() {
 clean() {
     if [ "$1" != "" ]; then
         printError "ERROR: Unknown option '${1}'\n"
-        printUsage >&2
+        printUsage clean >&2
         exit 1
     fi
 
