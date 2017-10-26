@@ -1,0 +1,4 @@
+usr/lib/*/libykpers-1.so
+usr/lib/*/libykpers-1.a
+usr/lib/*/pkgconfig
+usr/include/ykpers-1

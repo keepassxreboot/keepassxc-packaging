@@ -1,0 +1,229 @@
+yubikey-personalization (1.18.0-0~ppa1~trusty1) trusty; urgency=medium
+
+  * New upstream version
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 26 Oct 2017 02:30:11 +0200
+
+yubikey-personalization (1.14.1-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Simon Josefsson <simon@yubico.com>  Mon, 16 Sep 2013 11:47:17 +0200
+
+yubikey-personalization (1.14.0-2) unstable; urgency=low
+
+  * Loosen udev filename regex.  Closes: #717490.
+
+ -- Simon Josefsson <simon@yubico.com>  Wed, 24 Jul 2013 01:29:28 +0200
+
+yubikey-personalization (1.14.0-1) unstable; urgency=low
+
+  * New upstream version.
+  * Updated symbols file.
+  * Change Homepage to point at github page.
+  * Change libusb build-depend to make sure we never get libusb 0.1
+    on non-hurd.
+
+ -- Simon Josefsson <simon@yubico.com>  Fri, 12 Jul 2013 11:36:42 +0200
+
+yubikey-personalization (1.13.0-2) unstable; urgency=low
+
+  * Update watch file (moved from google code to github).
+
+ -- Simon Josefsson <simon@yubico.com>  Mon, 22 Apr 2013 14:15:12 +0200
+
+yubikey-personalization (1.13.0-1) unstable; urgency=low
+
+  * New upstream version.
+  * Depend on libjson0-dev for new YCFG functionality.
+  * Updated symbols file.
+  * Update debian/source/options for files not in tarball.
+
+ -- Simon Josefsson <simon@yubico.com>  Mon, 22 Apr 2013 13:50:12 +0200
+
+yubikey-personalization (1.12.0-5) unstable; urgency=low
+
+  * Build-depend on either libusb1 or libusb,
+    for wider architecture support (e.g., hurd-i386).
+  * Add Replaces/Break on libykpers-1-1 since a file was moved
+    between packages. Closes: #704852.
+
+ -- Simon Josefsson <simon@yubico.com>  Mon, 08 Apr 2013 12:25:21 +0200
+
+yubikey-personalization (1.12.0-4) unstable; urgency=low
+
+  * Move udev file to libykpers package.  Closes: #692967.
+
+ -- Simon Josefsson <simon@yubico.com>  Thu, 04 Apr 2013 15:07:36 +0200
+
+yubikey-personalization (1.12.0-3) unstable; urgency=low
+
+  * Moved from experimental to unstable after testing.  Closes: #697138.
+  * Disable silent rules (W-compiler-flags-hidden).
+  * Use machine readable copyright file.
+
+ -- Simon Josefsson <simon@yubico.com>  Thu, 04 Apr 2013 12:13:40 +0200
+
+yubikey-personalization (1.12.0-2) experimental; urgency=low
+
+  * Fix .symbols file for 1.7 release (lintian
+    symbols-file-contains-debian-revision).
+  * Drop duplicate Homepage: fields in control file (lintian
+    binary-control-field-duplicates-source).
+  * Add watch file (lintian debian-watch-file-is-missing).
+  * Update standards version to 3.9.4.
+  * Use "3.0 (quilt)" in new source/format file.
+  * Bump debhelper version requirement (lintian
+    package-needs-versioned-debhelper-build-depends).
+  * Improve package descriptions (lintian duplicate-short-description).
+  * Drop Fredrik as uploader, add Klas and Dain.
+  * Remove obsolete 'DM-Upload-Allowed'.
+  * Add debian/source/options for files that are in git but not in tarball.
+
+ -- Simon Josefsson <simon@yubico.com>  Thu, 04 Apr 2013 09:11:36 +0200
+
+yubikey-personalization (1.12.0-1) experimental; urgency=low
+
+  * New upstream version.
+  * Update .symbols file for new symbols.
+
+ -- Simon Josefsson <simon@josefsson.org>  Wed, 03 Apr 2013 21:36:32 +0200
+
+yubikey-personalization (1.7.0-1) unstable; urgency=low
+
+  * New upstream version
+  * Add Fredrik and Simon to uploaders as well as DM-Upload-Allowed: yes
+  * Update .symbols file for new symbols
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Fri, 29 Jun 2012 08:30:35 +0200
+
+yubikey-personalization (1.6.4-1) unstable; urgency=low
+
+  * New upstream version.
+  * Make sure we actually install udev rules file, thanks to Fredrik
+    Thulin for the patch.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Thu, 31 May 2012 23:19:29 +0200
+
+yubikey-personalization (1.6.3-1) unstable; urgency=low
+
+  * New upstream release, this fixes #636190 for real.
+  * Add link to git tree
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Wed, 21 Dec 2011 16:19:59 +0100
+
+yubikey-personalization (1.6.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Fri, 09 Dec 2011 23:01:28 +0100
+
+yubikey-personalization (1.6.1-1) unstable; urgency=low
+
+  * New upstream release, hopefully fixing FTBFS-es.  Closes: #636190
+  * Drop docs no longer present in upstream tarball.
+  * Update symbols file for new symbols upstream.
+  * Multiarchify, bumping debhelper compat level and adjusting paths in
+    install files.
+  * Use find rather than plain rm to nuke .la files.
+  * Fix up dh_install call, --builddirectory is not a valid parameter.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Fri, 26 Aug 2011 08:13:24 +0200
+
+yubikey-personalization (1.5.1-1) unstable; urgency=low
+
+  * New upstream version.
+  * Add udev rules to grant the console user access to the usbdevfs device
+    node in order to both program USB tokens and use the
+    challenge/response functionality.
+  * Change build system to dh.
+  * Make libykpers-1-dev depend on libykpers-1-1 of the same version.
+    Thanks to Fredrik Thulin at Yubico for spotting this.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Thu, 28 Apr 2011 22:41:02 +0200
+
+yubikey-personalization (1.5.0-1) unstable; urgency=low
+
+  * New upstream release
+  * Adjust install rules for new binary, ykchalresp.
+  * Update symbols file for new symbols
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Wed, 09 Mar 2011 20:06:30 +0100
+
+yubikey-personalization (1.4.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Update debian/docs to accomodate new paths
+  * Update symbols file for new symbols.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Tue, 18 Jan 2011 19:43:15 +0100
+
+yubikey-personalization (1.3.5-1) unstable; urgency=low
+
+  * New upstream release
+    - Fix salt in AES key generation Closes: #608443
+  * Update link to Yubikey manual
+  * Document modhex.  Closes: #593937.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Fri, 31 Dec 2010 09:16:31 +0100
+
+yubikey-personalization (1.3.2-1) unstable; urgency=low
+
+  * New upstream release:
+    - Fix typo in output
+    - Mark 0.9.9 keys as supported.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Tue, 23 Mar 2010 22:19:12 +0100
+
+yubikey-personalization (1.3.1-1) unstable; urgency=low
+
+  * New upstream release with OATH-HOTP support.  Also supports newer
+    firmwares.  Closes: #565150.
+  * Update symbols file with new symbols.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Sat, 30 Jan 2010 12:53:08 +0100
+
+yubikey-personalization (1.1-1) unstable; urgency=low
+
+  * New upstream release, minor fixes.
+  * Add some more docs to the installed package.  Closes: #548238
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Sat, 03 Oct 2009 21:45:59 +0200
+
+yubikey-personalization (1.0-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Fri, 18 Sep 2009 09:16:02 +0200
+
+yubikey-personalization (0.99-1) unstable; urgency=low
+
+  * New upstream release
+    - Exit with non-0 return code when yubikey is not present.
+    - ykpersonalize.1: Keep in sync with tool.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Sun, 13 Sep 2009 09:14:55 +0200
+
+yubikey-personalization (0.97-1) unstable; urgency=low
+
+  * New upstream version
+    - Limit the amount of symbols exported.
+    - Make -h work when there's no yubikey plugged in too
+    - Add link to reference manual for explanation of options
+  * Bump build-depends for libyubikey-dev to 1.5 or higher.
+  * Add some missing copyrights to debian/copyright, thanks to Chris Lamb
+    for noticing.
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Sat, 05 Sep 2009 11:43:54 +0200
+
+yubikey-personalization (0.96-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Sat, 29 Aug 2009 11:20:27 +0200
+
+yubikey-personalization (0.95-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Tollef Fog Heen <tfheen@debian.org>  Fri, 21 Aug 2009 18:39:57 +0200
