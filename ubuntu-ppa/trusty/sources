@@ -1,1 +1,2 @@
 keepassxc https://github.com/keepassxreboot/keepassxc/releases/download/${VERSION}/keepassxc-${VERSION}-src.tar.xz
+libyubikey https://developers.yubico.com/yubico-c/Releases/libyubikey-${VERSION}.tar.gz
