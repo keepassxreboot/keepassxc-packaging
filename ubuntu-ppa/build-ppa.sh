@@ -257,7 +257,7 @@ build() {
 
     cd "./${SERIES}/${PACKAGE}"
 
-    SOURCE=$(grep -oP "(?<=^keepassxc )https?://.*" ../sources | sed "s/\${VERSION}/${VERSION}/g")
+    SOURCE=$(grep -oP "(?<=^${PACKAGE} )https?://.*" ../sources | sed "s/\${VERSION}/${VERSION}/g")
     SOURCE_EXT=$(basename "$SOURCE" | grep -oP "(xz|bz2|gz)\$")
     if [ "" == "${SOURCE}" ]; then
         printError "No source URL given for package ${PACKAGE}!"
