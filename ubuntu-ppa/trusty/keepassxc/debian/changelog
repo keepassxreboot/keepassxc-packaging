@@ -1,3 +1,9 @@
+keepassxc (2.2.2-1~trusty3) trusty; urgency=medium
+
+  * Depend on newer YubiKey libraries.
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 26 Oct 2017 02:34:20 +0200
+
 keepassxc (2.2.2-1~trusty2) trusty; urgency=medium
 
   * Fixed entries with empty URLs being reported to KeePassHTTP clients [#1031]

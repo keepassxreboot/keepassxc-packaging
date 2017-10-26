@@ -12,8 +12,8 @@ Build-Depends: debhelper (>= 9),
                zlib1g-dev,
                libxi-dev,
                libxtst-dev,
-               libyubikey-dev,
-               libykpers-1-dev
+               libyubikey-dev (>= 1.13),
+               libykpers-1-dev (>= 1.18.0)
 Standards-Version: 3.9.8
 Homepage: https://keepassxc.org/
 Vcs-Git: https://github.com/keepassxreboot/keepassxc.git
