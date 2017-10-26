@@ -307,7 +307,7 @@ build() {
         echo "$TMP_CL" >> debian/changelog
     fi
 
-    runDockerCmd "debuild -us -uc -S" "debuild" "devscripts build-essential fakeroot dh-make"
+    runDockerCmd "debuild -us -uc -S" "debuild" "devscripts build-essential dh-autoreconf fakeroot dh-make"
 
     # reproduce what debsign would do, so we can sign on non-Debian based systems
     printStatus "Signing DSC file..."
