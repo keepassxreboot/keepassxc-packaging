@@ -20,7 +20,7 @@ printf "\e[1m\e[32mKeePassXC\e[0m PPA Build Helper\n"
 printf "Copyright (C) 2017 KeePassXC Team <https://keepassxc.org/>\n\n"
 
 # variable defaults
-PPA_VERSION="0~ppa1"
+PPA_VERSION="1~ppa1"
 SERIES_VERSION="1"
 PACKAGE="keepassxc"
 URGENCY="medium"
