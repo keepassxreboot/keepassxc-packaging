@@ -1,8 +1,8 @@
-libyubikey (1.13-0~ppa1~trusty1) trusty; urgency=medium
+libyubikey (1.13-1~ppa1~trusty1) trusty; urgency=medium
 
-  * New upstream version
+  * New upstream version.
 
- -- KeePassXC Team <team@keepassxc.org>  Thu, 26 Oct 2017 02:21:48 +0200
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 26 Oct 2017 03:15:06 +0200
 
 libyubikey (1.10-1) unstable; urgency=low
 

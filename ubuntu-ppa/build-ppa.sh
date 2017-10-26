@@ -355,6 +355,7 @@ clean() {
     find . -name "*.debian.tar.gz" -exec rm -rfv {} \;
     find . -name "*.dsc" -exec rm -rfv {} \;
     find . -name "*.orig.tar.*" -exec rm -rfv {} \;
+    find . -name "*_source.ppa.upload" -exec rm -rfv {} \;
 }
 
 
