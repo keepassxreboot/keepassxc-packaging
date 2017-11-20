@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+
+export CPPFLAGS := $(shell dpkg-buildflags --get CPPFLAGS)
+export CFLAGS   := $(shell dpkg-buildflags --get CFLAGS)
+export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS)
+export LDFLAGS  := $(shell dpkg-buildflags --get LDFLAGS)
+
+export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+%:
+	dh $@ --with autoreconf --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	    --enable-static \
+	    --disable-rpath \
+	    --prefix=/opt/gpg-error \
+	    --infodir=/opt/gpg-error/share/info \
+	    --libdir=/opt/gpg-error/lib
+
+override_dh_installchangelogs:
+	dh_installchangelogs -A NEWS
+
+override_dh_installdocs:
+	dh_installdocs -A README
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V --add-udeb=libgpg-error0-udeb
+
+override_dh_link:
+	dh_link -plibgpg-error-dev lib/libgpg-error.so.0 usr/lib/libgpg-error.so

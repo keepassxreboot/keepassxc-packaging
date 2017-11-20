@@ -1,0 +1,36 @@
+.TH LIBGPG-ERROR 1 "23 June 2003"
+.SH NAME
+libgpg-error-config - script to get information about the installed version of libgpg-error
+.SH SYNOPSIS
+.B  libgpg-error-config [\-\-prefix\fI[=DIR]\fP] [\-\-exec\-prefix\fI[=DIR]\fP] [\-\-version] [\-\-libs] [\-\-cflags]
+.SH DESCRIPTION
+.PP
+\fIlibgpg-error-config\fP is a tool that is used to configure to determine
+the compiler and linker flags that should be used to compile
+and link programs that use \fIlibgpg-error\fP. It is also used internally
+to the .m4 macros for GNU autoconf that are included with \fIlibgpg-error\fP.
+.
+.SH OPTIONS
+\fIlibgpg-error-config\fP accepts the following options:
+.TP 8
+.B  \-\-version
+Print the currently installed version of \fIlibgpg-error\fP on the standard output.
+.TP 8
+.B  \-\-libs
+Print the linker flags that are necessary to link a \fIlibgpg-error\fP program.
+.TP 8
+.B  \-\-cflags
+Print the compiler flags that are necessary to compile a \fIlibgpg-error\fP program.
+.TP 8
+.B  \-\-prefix=PREFIX
+If specified, use PREFIX instead of the installation prefix that \fIlibgpg-error\fP
+was built with when computing the output for the \-\-cflags and
+\-\-libs options. This option is also used for the exec prefix
+if \-\-exec\-prefix was not specified. This option must be specified
+before any \-\-libs or \-\-cflags options.
+.TP 8
+.B  \-\-exec\-prefix=PREFIX
+If specified, use PREFIX instead of the installation exec prefix that
+\fIlibgpg-error\fP was built with when computing the output for the \-\-cflags
+and \-\-libs options.  This option must be specified before any
+\-\-libs or \-\-cflags options.

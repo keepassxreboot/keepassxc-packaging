@@ -3,5 +3,6 @@
 *.upload
 *.gz
 *.xz
-.bz2
+*.bz2
 *.dsc
+*.log

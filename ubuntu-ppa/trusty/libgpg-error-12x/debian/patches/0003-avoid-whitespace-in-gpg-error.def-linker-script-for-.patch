@@ -1,0 +1,41 @@
+From: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+Date: Mon, 8 Feb 2016 23:30:22 -0500
+Subject: avoid whitespace in gpg-error.def linker script for mingw32
+
+When cross-building for Windows with ./configure --host
+i686-w64-mingw32 on recent versions of debian, the library doesn't get
+built properly because of a difference in the whitespace produced in
+the library's .def linker script.
+
+The errors look like:
+
+/bin/bash ../libtool  --tag=CC   --mode=link i686-w64-mingw32-gcc  -g -Os -Wall -Wpointer-arith -Wno-psabi -no-undefined -export-symbols gpg-error.def  -XCClinker -static-libgcc -version-info 17:0:17 -Xlinker --no-insert-timestamp -o libgpg-error.la -rpath /usr/share/win32/lib libgpg_error_la-w32-gettext.lo libgpg_error_la-w32-lock.lo libgpg_error_la-w32-thread.lo libgpg_error_la-init.lo libgpg_error_la-version.lo libgpg_error_la-estream.lo libgpg_error_la-estream-printf.lo libgpg_error_la-strsource.lo libgpg_error_la-strerror.lo libgpg_error_la-code-to-errno.lo libgpg_error_la-code-from-errno.lo libgpg_error_la-visibility.lo  versioninfo.lo
+libtool: link: /usr/bin/i686-w64-mingw32-nm -B  .libs/libgpg_error_la-w32-gettext.o .libs/libgpg_error_la-w32-lock.o .libs/libgpg_error_la-w32-thread.o .libs/libgpg_error_la-init.o .libs/libgpg_error_la-version.o .libs/libgpg_error_la-estream.o .libs/libgpg_error_la-estream-printf.o .libs/libgpg_error_la-strsource.o .libs/libgpg_error_la-strerror.o .libs/libgpg_error_la-code-to-errno.o .libs/libgpg_error_la-code-from-errno.o .libs/libgpg_error_la-visibility.o .libs/versioninfo.o   | sed -n -e 's/^.*[	 ]\([ABCDGIRSTW][ABCDGIRSTW]*\)[	 ][	 ]*_\([_A-Za-z][_A-Za-z0-9]*\)$/\1 _\2 \2/p' | sed '/ __gnu_lto/d' | /bin/sed -e '/^[BCDGRS][ ]/s/.*[ ]\([^ ]*\)/\1 DATA/;s/^.*[ ]__nm__\([^ ]*\)[ ][^ ]*/\1 DATA/;/^I[ ]/d;/^[AITW][ ]/s/.* //' | sort | uniq > .libs/libgpg-error.exp
+libtool: link: if test "x`/bin/sed 1q .libs/libgpg-error.def`" = xEXPORTS; then cp .libs/libgpg-error.def .libs/libgpg-error-0.dll.def; else echo EXPORTS > .libs/libgpg-error-0.dll.def; cat .libs/libgpg-error.def >> .libs/libgpg-error-0.dll.def; fi
+libtool: link:  i686-w64-mingw32-gcc -shared .libs/libgpg-error-0.dll.def  .libs/libgpg_error_la-w32-gettext.o .libs/libgpg_error_la-w32-lock.o .libs/libgpg_error_la-w32-thread.o .libs/libgpg_error_la-init.o .libs/libgpg_error_la-version.o .libs/libgpg_error_la-estream.o .libs/libgpg_error_la-estream-printf.o .libs/libgpg_error_la-strsource.o .libs/libgpg_error_la-strerror.o .libs/libgpg_error_la-code-to-errno.o .libs/libgpg_error_la-code-from-errno.o .libs/libgpg_error_la-visibility.o .libs/versioninfo.o    -Os -static-libgcc -Wl,--no-insert-timestamp   -o .libs/libgpg-error-0.dll -Wl,--enable-auto-image-base -Xlinker --out-implib -Xlinker .libs/libgpg-error.dll.a
+/usr/bin/i686-w64-mingw32-ld: .libs/libgpg-error-0.dll.def:4: syntax error
+/usr/bin/i686-w64-mingw32-ld:.libs/libgpg-error-0.dll.def: file format not recognized; treating as linker script
+/usr/bin/i686-w64-mingw32-ld:.libs/libgpg-error-0.dll.def:3: syntax error
+collect2: error: ld returned 1 exit status
+Makefile:654: recipe for target 'libgpg-error.la' failed
+make[5]: *** [libgpg-error.la] Error 1
+make[5]: Leaving directory '/home/dkg/src/pkg-gnupg/libgpg-error/build-win32/src'
+
+With this patch, the "/usr/bin/sed 1q" line recognizes that the file
+is already a valid linker script and doesn't try to tweak it further.
+---
+ src/gpg-error.def.in | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/src/gpg-error.def.in b/src/gpg-error.def.in
+index 19e87fa..f80db78 100644
+--- a/src/gpg-error.def.in
++++ b/src/gpg-error.def.in
+@@ -23,7 +23,6 @@
+  */
+ 
+ #include <config.h>
+-
+ EXPORTS
+  gpg_strerror                 @1
+  gpg_strerror_r               @2

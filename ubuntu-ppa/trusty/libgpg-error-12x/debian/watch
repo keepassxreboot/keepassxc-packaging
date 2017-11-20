@@ -1,0 +1,2 @@
+version=3
+opts=pasv ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-([\d.]+)\.tar\.(?:bz2|gz)

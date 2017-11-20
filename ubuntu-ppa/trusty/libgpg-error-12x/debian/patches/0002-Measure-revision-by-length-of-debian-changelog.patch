@@ -1,0 +1,31 @@
+From: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+Date: Tue, 9 Feb 2016 01:09:26 -0500
+Subject: Measure revision by length of debian/changelog
+
+Upstream libgpg-error's autoreconf step derives the package "revision"
+number from the first couple octets of the git commit ID.
+
+But Debian doesn't build packages from git, and we autoreconf the
+package before building.  So we need to figure out a different value
+for the package revision.
+
+This patch makes the package revision reflect the number of lines in
+debian/changelog instead of trying to derive a revision number from
+the git ID.
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 3efcd1c..37881ab 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -35,7 +35,7 @@ m4_define([mym4_version_minor], [26])
+ # processing is done by autoconf and not during the configure run.
+ m4_define([mym4_version], [mym4_version_major.mym4_version_minor])
+ m4_define([mym4_revision],
+-          m4_esyscmd([git rev-parse --short HEAD | tr -d '\n\r']))
++          m4_esyscmd([printf %x $(wc -l < debian/changelog)]))
+ m4_define([mym4_revision_dec],
+           m4_esyscmd_s([echo $((0x$(echo ]mym4_revision[|head -c 4)))]))
+ m4_define([mym4_betastring],

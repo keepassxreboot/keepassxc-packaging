@@ -12,8 +12,8 @@ override_dh_auto_configure:
 	dh_auto_configure --verbose --builddirectory=build -- \
 		--enable-noexecstack \
 		--enable-ld-version-script --enable-static \
-		--libdir=/opt/lib/$(DEB_HOST_MULTIARCH) \
-		--prefix=/opt
+		--libdir=/opt/grcypt/lib/$(DEB_HOST_MULTIARCH) \
+		--prefix=/opt/grcypt
 
 override_dh_makeshlibs:
 	dh_makeshlibs -V 'libgcrypt20-17 (>=1.7.0-0)' \
