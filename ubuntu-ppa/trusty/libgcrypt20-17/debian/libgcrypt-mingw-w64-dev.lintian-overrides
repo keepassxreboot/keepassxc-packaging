@@ -1,0 +1,13 @@
+# libgcrypt-mingw-w64-dev is "arch-independent" from debian's perspective,
+# since it ships binaries that are only used during cross-building
+# windows software.
+libgcrypt-mingw-w64-dev: arch-independent-package-contains-binary-or-object
+
+# The location of these cross-building tools is the result of
+# discussion with mingw maintainers:
+# https://lists.alioth.debian.org/pipermail/pkg-gnupg-maint/2016-February/003281.html
+libgcrypt-mingw-w64-dev: file-in-unusual-dir
+libgcrypt-mingw-w64-dev: non-standard-dir-in-usr
+
+# DLLs exported via Samba need to be executable (see #796224)
+libgcrypt-mingw-w64-dev: executable-not-elf-or-script

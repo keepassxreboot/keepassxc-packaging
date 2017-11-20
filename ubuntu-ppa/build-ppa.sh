@@ -20,7 +20,8 @@ printf "\e[1m\e[32mKeePassXC\e[0m PPA Build Helper\n"
 printf "Copyright (C) 2017 KeePassXC Team <https://keepassxc.org/>\n\n"
 
 # variable defaults
-PPA_VERSION="1~ppa1"
+UBUNTU_VERSION="1"
+PPA_VERSION="ppa1"
 SERIES_VERSION="1"
 PACKAGE="keepassxc"
 URGENCY="medium"
@@ -64,10 +65,11 @@ Options:
   -s, --series           Ubuntu release series to build (required)
   -p, --package          Package name to build (required, default: '${PACKAGE}')
   -d, --docker-img       Ubuntu Docker image to use (required)
-      --upstream-version Upstream package version, overrides version from CHANGELOG
-  -c, --changelog        CHANGELOG file
+  -V, --upstream-version Upstream package version (required)
+  -x, --ubuntu-version   Ubuntu package version (required, default: '${UBUNTU_VERSION}')
   -v, --ppa-version      PPA package version (default: '${PPA_VERSION}')
   -r, --series-version   PPA series package version (default: '${SERIES_VERSION}')
+  -c, --changelog        CHANGELOG file
   -u, --urgency          Package urgency (default: '${URGENCY}')
   -k, --gpg-key          GPG key used to sign package (default: '${GPG_KEY}')
       --upload           Immediately upload package
@@ -134,7 +136,7 @@ upload() {
     done
 
     if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ] || [ "$DOCKER_IMG" == "" ]; then
-        printUsage >&2
+        printUsage upload >&2
         exit 1
     fi
 
@@ -176,8 +178,12 @@ build() {
                 CHANGELOG_FILE="$2"
                 shift ;;
 
-             --upstream-version)
+            -V|--upstream-version)
                 UPSTREAM_VERSION="$2"
+                shift ;;
+
+            -x|--ubuntu-version)
+                UBUNTU_VERSION="$2"
                 shift ;;
 
             -v|--ppa-version)
@@ -207,22 +213,18 @@ build() {
         shift
     done
 
-    if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ] || [ "$DOCKER_IMG" == "" ]; then
-        printUsage >&2
+    if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ] || [ "$DOCKER_IMG" == "" ] || \
+       [ "$UPSTREAM_VERSION" == "" ] || [ "$UBUNTU_VERSION" == "" ]; then
+        printUsage build >&2
         exit 1
     fi
 
-    if [ "$UPSTREAM_VERSION" != "" ]; then
-        VERSION="$UPSTREAM_VERSION"
-    else
-        VERSION="VERSION"
-    fi
-
     CL_FILE_IS_TMP=false
+    FULL_VERSION="${UPSTREAM_VERSION}-${UBUNTU_VERSION}${PPA_VERSION}~${SERIES}${SERIES_VERSION}"
     if [ "$CHANGELOG_FILE" == "" ]; then
         CHANGELOG_FILE="/tmp/builddebpkg_${PACKAGE}~${SERIES}_${RANDOM}"
         CL_FILE_IS_TMP=true
-        echo "${VERSION} ($(date +%Y-%m-%d))
+        echo "${FULL_VERSION} ($(date +%Y-%m-%d))
 =========================
 
 - " > "$CHANGELOG_FILE"
@@ -241,9 +243,8 @@ build() {
 
     FULL_CL="$(grep -Pzo "^[\d\.~\-a-z]+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
     CHANGELOG="$(echo "$FULL_CL" | grep -Pzo "(?s)(?<====\n\n).+" | tr -d '\0' | sed 's/^\s*- \?/  * /')"
-    if [ "$UPSTREAM_VERSION" != "" ]; then
-        VERSION="$(echo "$FULL_CL" | grep -Pzo "^[\d\.~\-a-z]+" | tr -d '\0')"
-    fi
+    FULL_VERSION="$(echo "$FULL_CL" | grep -Pzo "^[\d\.~\-a-z]+" | tr -d '\0')"
+
     DATE="$(date -R)"
 
     if $CL_FILE_IS_TMP; then
@@ -257,16 +258,16 @@ build() {
 
     cd "./${SERIES}/${PACKAGE}"
 
-    SOURCE=$(grep -oP "(?<=^${PACKAGE} )https?://.*" ../sources | sed "s/\${VERSION}/${VERSION}/g")
+    SOURCE=$(grep -oP "(?<=^${PACKAGE} )(https?|ftps?)://.*" ../sources | sed "s/\${VERSION}/${UPSTREAM_VERSION}/g")
     SOURCE_EXT=$(basename "$SOURCE" | grep -oP "(xz|bz2|gz)\$")
     if [ "" == "${SOURCE}" ]; then
         printError "No source URL given for package ${PACKAGE}!"
         cd ../..
         exit 1
     fi
-    if [ ! -f "../${PACKAGE}_${VERSION}.orig.tar.xz" ]; then
-        printStatus "Downloading sources for version ${PACKAGE}-${VERSION}..."
-        curl -L "${SOURCE}" > "../${PACKAGE}_${VERSION}.orig.tar.${SOURCE_EXT}"
+    if [ ! -f "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.xz" ]; then
+        printStatus "Downloading sources for version ${PACKAGE}-${UPSTREAM_VERSION}..."
+        wget "${SOURCE}" -O "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
         if [ $? -ne 0 ]; then
             printError "Download failed! Process aborted."
             exit 1
@@ -277,8 +278,8 @@ build() {
 
     if [ "${PACKAGE}" == "keepassxc" ]; then
         printStatus "Verifying sources..."
-        curl -L "https://github.com/keepassxreboot/keepassxc/releases/download/${VERSION}/keepassxc-${VERSION}-src.tar.xz.sig" | \
-            gpg --verify - "../${PACKAGE}_${VERSION}.orig.tar.${SOURCE_EXT}"
+        curl -L "https://github.com/keepassxreboot/keepassxc/releases/download/${UPSTREAM_VERSION}/keepassxc-${UPSTREAM_VERSION}-src.tar.xz.sig" | \
+            gpg --verify - "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
 
         if [ $? -ne 0 ]; then
             printError "Signature verification failed! Process aborted."
@@ -288,8 +289,6 @@ build() {
 
 
     printStatus "Creating source package for '${SERIES}'..."
-
-    FULL_VERSION="${VERSION}-${PPA_VERSION}~${SERIES}${SERIES_VERSION}"
 
     if $(grep -q "^${PACKAGE} (${FULL_VERSION})" debian/changelog); then
         printError "Changelog entry for '${FULL_VERSION}' already exists!"

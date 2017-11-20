@@ -1,0 +1,43 @@
+#! /usr/bin/make -f
+# Build the libgcrypt package for Debian.
+
+DEBVERSION := $(shell dpkg-parsechangelog | \
+	sed -n '/^Version: /s/^Version: //p')
+
+export DEB_BUILD_MAINT_OPTIONS := hardening=+bindnow
+
+WIN_FLAGS=LDFLAGS="-Xlinker --no-insert-timestamp" CFLAGS="-g -Os" CPPFLAGS=
+
+override_dh_auto_configure:
+	dh_auto_configure --verbose --builddirectory=build -- \
+		--enable-noexecstack \
+		--enable-ld-version-script --enable-static \
+		--libdir=/opt/lib/$(DEB_HOST_MULTIARCH) \
+		--prefix=/opt
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V 'libgcrypt20-17 (>=1.7.0-0)' \
+		--add-udeb=libgcrypt20-17-udeb -- -c4
+
+override_dh_auto_install-arch:
+	dh_auto_install --verbose --builddirectory=build
+	mkdir -p -m755 debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)
+	cd debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH) \
+		&& ln -v -s /opt/lib/$(DEB_HOST_MULTIARCH)/`readlink ../../../lib/*/*.so` libgcrypt.so
+	rm -v debian/tmp/lib/$(DEB_HOST_MULTIARCH)/*.so
+	mv -v debian/tmp/lib/$(DEB_HOST_MULTIARCH)/*.a \
+		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/
+
+override_dh_installinfo:
+	dh_installinfo
+	if test -e debian/libgcrypt20-17-doc ; then \
+		cd debian/libgcrypt20-17-doc/usr/share/info && \
+		sed -i -e 's:image src="\([^"]*.png"\):image src="/usr/share/doc/libgcrypt20-17-doc/html/\1:g' *.info* ; \
+	fi
+
+override_dh_link:
+	rm -rf debian/libgcrypt20-17-dbg/usr/share/doc/libgcrypt20-17-dbg
+	dh_link
+
+%:
+	dh $@ --parallel --builddirectory=build --with autoreconf

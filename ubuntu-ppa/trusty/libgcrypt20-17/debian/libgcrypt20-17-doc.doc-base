@@ -1,0 +1,16 @@
+Document: gcrypt
+Title: The Libgcrypt Reference Manual
+Author: Werner Koch, Moritz Schulte
+Abstract: gcrypt library manual
+Section: Programming/C
+
+Format: HTML
+Index: /usr/share/doc/libgcrypt20-17-doc/html/index.html
+Files: /usr/share/doc/libgcrypt20-17-doc/html/*
+
+Format: PDF
+Files: /usr/share/doc/libgcrypt20-17-doc/gcrypt.pdf*
+
+Format: Info
+Index: /usr/share/info/gcrypt.info.gz
+Files: /usr/share/info/gcrypt.info*

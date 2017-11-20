@@ -1,0 +1,5 @@
+12_lessdeps_libgcrypt-config.diff
+15_multiarchpath_in_-L.diff
+25_norevisionfromgit.diff
+30_mpi-Fix-mpi_set_secure.patch
+CVE-2017-0379.patch

@@ -1,0 +1,43 @@
+From a195d7346a8006f3b6fb77ccd6df8e91833d2b5a Mon Sep 17 00:00:00 2001
+From: NIIBE Yutaka <gniibe@fsij.org>
+Date: Tue, 4 Jul 2017 09:33:46 +0900
+Subject: [PATCH] mpi: Fix mpi_set_secure.
+
+* mpi/mpiutil.c (mpi_set_secure): Allocate by ->alloced.
+
+--
+
+The code was simply wrong.  The question is if (1) it allocates
+(possibly) more or (2) modifi ->alloced.  The choice is (1).
+
+Because we have routines of mpi_set_cond and mpi_swap_cond which
+assume no change for the allocated length of limbs, no surprise is
+better.  See _gcry_mpi_ec_mul_point for concrete example for those
+routines.  That's for constant-time computation.
+
+Debian-bug-id: 866964
+Suggested-by: Mark Wooding <mdw@distorted.org.uk>
+Signed-off-by: NIIBE Yutaka <gniibe@fsij.org>
+
+(backport from master commit:
+5feaf1cc8f22c1f8d19a34850d86fe190f1432e2)
+---
+ mpi/mpiutil.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mpi/mpiutil.c b/mpi/mpiutil.c
+index 6dee0b90..3ae84c30 100644
+--- a/mpi/mpiutil.c
++++ b/mpi/mpiutil.c
+@@ -256,7 +256,7 @@ mpi_set_secure( gcry_mpi_t a )
+       gcry_assert (!ap);
+       return;
+     }
+-  bp = mpi_alloc_limb_space (a->nlimbs, 1);
++  bp = mpi_alloc_limb_space (a->alloced, 1);
+   MPN_COPY( bp, ap, a->nlimbs );
+   a->d = bp;
+   _gcry_mpi_free_limb_space (ap, a->alloced);
+-- 
+2.13.2
+
