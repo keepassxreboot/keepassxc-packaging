@@ -1,3 +1,9 @@
+keepassxc (2.2.4-0ppa1~trusty1) trusty; urgency=medium
+
+  * New upstream release
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 14 Dec 2017 09:42:55 +0100
+
 keepassxc (2.2.2-1~trusty3) trusty; urgency=medium
 
   * Depend on newer YubiKey libraries.
