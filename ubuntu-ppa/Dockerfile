@@ -25,6 +25,7 @@ RUN set -x \
         dh-autoreconf \
         dh-make \
         dput \
+        pkg-config \
         texlive-latex-base \
         texlive-generic-recommended \
         texinfo

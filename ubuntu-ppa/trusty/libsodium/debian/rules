@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --with autoreconf -Bbuild --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure --builddirectory=build -- \
+	    --prefix=/opt/libsodium \
+	    --libdir=/opt/libsodium/lib/$(DEB_HOST_MULTIARCH) \
+	    --datarootdir=/opt/libsodium/share
+
+.PHONY: override_dh_strip

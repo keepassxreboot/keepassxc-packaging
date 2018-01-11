@@ -3,3 +3,4 @@ libyubikey https://developers.yubico.com/yubico-c/Releases/libyubikey-${VERSION}
 yubikey-personalization https://developers.yubico.com/yubikey-personalization/Releases/ykpers-${VERSION}.tar.gz
 libgcrypt20-18 ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-${VERSION}.tar.bz2
 libgpg-error-127 ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-${VERSION}.tar.bz2
+libsodium https://download.libsodium.org/libsodium/releases/libsodium-${VERSION}.tar.gz

@@ -1,0 +1,4 @@
+opt/libsodium/include
+opt/libsodium/lib/*/libsodium*.so
+opt/libsodium/lib/*/*.a
+opt/libsodium/lib/*/pkgconfig/libsodium.pc
