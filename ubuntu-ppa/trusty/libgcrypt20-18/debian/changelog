@@ -1,5 +1,5 @@
-libgcrypt20-18 (1.8.1-4) unstable; urgency=low
+libgcrypt20-18 (1.8.1-0ppa1~trusty1) trusty; urgency=medium
 
-  * Upload to unstable.
+  * Initial package
 
- -- Andreas Metzler <ametzler@debian.org>  Wed, 15 Nov 2017 18:52:21 +0100
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 11 Jan 2018 23:03:09 +0100
