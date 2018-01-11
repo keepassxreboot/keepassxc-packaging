@@ -1,5 +1,5 @@
-libgpg-error-127 (1.27-0ppa1~trusty2) trusty; urgency=medium
+libgpg-error-127 (1.27-0ppa1~trusty3) trusty; urgency=medium
 
   * Initial package
 
- -- KeePassXC Team <team@keepassxc.org>  Thu, 11 Jan 2018 21:26:06 +0100
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 11 Jan 2018 21:51:37 +0100
