@@ -1,8 +1,11 @@
 *.build
 *.changes
 *.upload
+*.dsc
 *.gz
 *.xz
 *.bz2
-*.dsc
 *.log
+*.dsc
+*.deb
+*.udeb
