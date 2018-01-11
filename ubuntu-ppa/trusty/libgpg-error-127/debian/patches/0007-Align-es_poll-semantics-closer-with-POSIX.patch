@@ -1,0 +1,33 @@
+From: Justus Winter <justus@g10code.com>
+Date: Wed, 17 May 2017 15:42:34 +0200
+Subject: Align 'es_poll' semantics closer with POSIX.
+
+* src/estream.c (_gpgrt_poll): Do not return early if some streams are
+found to be ready before even polling the others.
+--
+
+POSIX mandates that all streams are examined and returning early
+violates that.  It also imposes an order on how the callee serves the
+streams, which might be incompatible with the order the callee wants
+to serve them, leading to deadlocks.
+
+Signed-off-by: Justus Winter <justus@g10code.com>
+(cherry picked from commit 4a9857a2b6d8a8e847638416d35398508b3291fd)
+---
+ src/estream.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/src/estream.c b/src/estream.c
+index cae0a69..2f29cdb 100644
+--- a/src/estream.c
++++ b/src/estream.c
+@@ -4857,9 +4857,6 @@ _gpgrt_poll (gpgrt_poll_t *fds, unsigned int nfds, int timeout)
+       /* FIXME */
+     }
+ 
+-  if (count)
+-    goto leave;  /* Early return without waiting.  */
+-
+   /* Now do the real select.  */
+ #ifdef HAVE_W32_SYSTEM
+ 

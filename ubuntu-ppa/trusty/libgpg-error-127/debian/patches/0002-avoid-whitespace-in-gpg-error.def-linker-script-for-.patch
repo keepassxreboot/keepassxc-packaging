@@ -28,7 +28,7 @@ is already a valid linker script and doesn't try to tweak it further.
  1 file changed, 1 deletion(-)
 
 diff --git a/src/gpg-error.def.in b/src/gpg-error.def.in
-index 19e87fa..f80db78 100644
+index ad65f8c..51ad46c 100644
 --- a/src/gpg-error.def.in
 +++ b/src/gpg-error.def.in
 @@ -23,7 +23,6 @@

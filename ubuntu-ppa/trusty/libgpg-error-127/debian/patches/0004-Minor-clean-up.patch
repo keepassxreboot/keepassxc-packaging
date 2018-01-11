@@ -1,0 +1,72 @@
+From: NIIBE Yutaka <gniibe@fsij.org>
+Date: Wed, 19 Apr 2017 13:32:36 +0900
+Subject: Minor clean up.
+
+* src/b64dec.c (_gpgrt_b64dec_proc): Add a comment.
+* src/estream.c (_gpgrt_fread, _gpgrt_fwrite): Use &&.
+* src/mkheader.c (xstrdup): Use memcpy as we know length.
+
+Signed-off-by: NIIBE Yutaka <gniibe@fsij.org>
+(cherry picked from commit a8d267a7220399f7acf69723fe1d31efd2160319)
+---
+ src/b64dec.c   | 1 +
+ src/estream.c  | 4 ++--
+ src/mkheader.c | 5 +++--
+ 3 files changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/src/b64dec.c b/src/b64dec.c
+index d846a6a..a8a8351 100644
+--- a/src/b64dec.c
++++ b/src/b64dec.c
+@@ -140,6 +140,7 @@ _gpgrt_b64dec_proc (gpgrt_b64state_t state, void *buffer, size_t length,
+           break;
+         case s_init:
+           ds = s_lfseen;
++          /* Fall through */
+         case s_lfseen:
+           if (*s != "-----BEGIN "[pos])
+             {
+diff --git a/src/estream.c b/src/estream.c
+index 9f227a6..066fe02 100644
+--- a/src/estream.c
++++ b/src/estream.c
+@@ -4179,7 +4179,7 @@ _gpgrt_fread (void *_GPGRT__RESTRICT ptr, size_t size, size_t nitems,
+ {
+   size_t ret, bytes;
+ 
+-  if (size * nitems)
++  if (size && nitems)
+     {
+       lock_stream (stream);
+       es_readn (stream, ptr, size * nitems, &bytes);
+@@ -4200,7 +4200,7 @@ _gpgrt_fwrite (const void *_GPGRT__RESTRICT ptr, size_t size, size_t nitems,
+ {
+   size_t ret, bytes;
+ 
+-  if (size * nitems)
++  if (size && nitems)
+     {
+       lock_stream (stream);
+       es_writen (stream, ptr, size * nitems, &bytes);
+diff --git a/src/mkheader.c b/src/mkheader.c
+index 5aeb1e7..997cab5 100644
+--- a/src/mkheader.c
++++ b/src/mkheader.c
+@@ -52,14 +52,15 @@ static char *
+ xstrdup (const char *string)
+ {
+   char *p;
++  size_t len = strlen (string) + 1;
+ 
+-  p = malloc (strlen (string)+1);
++  p = malloc (len);
+   if (!p)
+     {
+       fputs (PGM ": out of core\n", stderr);
+       exit (1);
+     }
+-  strcpy (p, string);
++  memcpy (p, string, len);
+   return p;
+ }
+ 

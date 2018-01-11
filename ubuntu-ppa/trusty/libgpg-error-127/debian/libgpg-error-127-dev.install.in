@@ -1,0 +1,6 @@
+opt/gpg-error/bin/*
+opt/gpg-error/include/*
+opt/gpg-error/lib/@DEB_HOST_MULTIARCH@/libgpg-error.a
+opt/gpg-error/lib/@DEB_HOST_MULTIARCH@/libgpg-error.so
+opt/gpg-error/lib/@DEB_HOST_MULTIARCH@/libgpg-error.la
+opt/gpg-error/share/aclocal/*.m4

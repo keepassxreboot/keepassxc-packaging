@@ -1,6 +1,0 @@
-usr/bin/*
-usr/include/*
-usr/lib/*/libgpg-error.a
-usr/lib/*/libgpg-error.so
-usr/lib/*/libgpg-error.la
-usr/share/aclocal/*.m4

@@ -1,0 +1,4 @@
+# this is an ongoing discussion with upstream, with little likely to change any time soon:
+# see: https://bugs.debian.org/643341
+# and: http://lists.gnupg.org/pipermail/gnupg-devel/2014-May/028473.html
+libgpg-error-127-dev: old-style-config-script opt/gpg-error/bin/gpg-error-config
