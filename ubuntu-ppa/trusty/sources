@@ -2,4 +2,4 @@ keepassxc https://github.com/keepassxreboot/keepassxc/releases/download/${VERSIO
 libyubikey https://developers.yubico.com/yubico-c/Releases/libyubikey-${VERSION}.tar.gz
 yubikey-personalization https://developers.yubico.com/yubikey-personalization/Releases/ykpers-${VERSION}.tar.gz
 libgcrypt20-17 ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-${VERSION}.tar.bz2
-libgpg-error-12x ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-${VERSION}.tar.bz2
+libgpg-error-127 ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-${VERSION}.tar.bz2
