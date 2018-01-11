@@ -11,8 +11,9 @@ override_dh_auto_configure:
 	dh_auto_configure --builddirectory=build -- \
 	    --enable-static \
 	    --disable-rpath \
-	    --prefix=/opt/gpg-error \
-	    --docdir=/opt/gpg-error
+	    --prefix=/opt/gpg-error-127 \
+	    --libdir=/opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH) \
+	    --datadir=/opt/gpg-error-127
 
 override_dh_auto_build-arch:
 	dh_auto_build --parallel --builddirectory=build
@@ -24,12 +25,6 @@ override_dh_auto_install-arch:
 	dh_auto_install --parallel --builddirectory=build
 
 override_dh_install:
-	sed -e"s,@DEB_HOST_MULTIARCH@,${DEB_HOST_MULTIARCH},g" \
-	    debian/libgpg-error-127.install.in > debian/libgpg-error-127.install
-	sed -e"s,@DEB_HOST_MULTIARCH@,${DEB_HOST_MULTIARCH},g" \
-	    debian/libgpg-error-127-dev.install.in > debian/libgpg-error-127-dev.install
-	sed -e"s,@DEB_HOST_MULTIARCH@,${DEB_HOST_MULTIARCH},g" \
-	    debian/libgpg-error-127-udeb.install.in > debian/libgpg-error-127-udeb.install
 	dh_install --list-missing
 
 override_dh_installchangelogs:
@@ -42,7 +37,7 @@ override_dh_makeshlibs:
 	dh_makeshlibs -V --add-udeb=libgpg-error-127-udeb
 
 override_dh_link:
-	dh_link -plibgpg-error-127-dev opt/gpg-error/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so.0 opt/gpg-error/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so
+	dh_link -plibgpg-error-127-dev opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so.0 opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so
 
 ### "arch-independent" Windows builds: ###
 
