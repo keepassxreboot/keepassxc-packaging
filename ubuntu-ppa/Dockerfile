@@ -24,7 +24,10 @@ RUN set -x \
         devscripts \
         dh-autoreconf \
         dh-make \
-        dput
+        dput \
+        texlive-latex-base \
+        texlive-generic-recommended \
+        texinfo
 
 RUN set -x \
     && apt-get autoremove --purge \

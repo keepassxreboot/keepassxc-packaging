@@ -1,3 +1,0 @@
-build/doc/gcrypt.pdf usr/share/doc/libgcrypt20-17-doc
-build/doc/gcrypt.html/* usr/share/doc/libgcrypt20-17-doc/html
-doc/*.png usr/share/doc/libgcrypt20-17-doc/html

@@ -1,0 +1,5 @@
+12_lessdeps_libgcrypt-config.diff
+15_multiarchpath_in_-L.diff
+25_norevisionfromgit.diff
+30_Fix-secmem-test-for-machine-with-larger-page.patch
+31_tests-Add-HAVE_MMAP-check-for-MinGW.patch

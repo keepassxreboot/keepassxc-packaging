@@ -1,0 +1,37 @@
+From 334e1a1cfc8f59db765a0bff0ca29090aa11b0f6 Mon Sep 17 00:00:00 2001
+From: NIIBE Yutaka <gniibe@fsij.org>
+Date: Tue, 14 Nov 2017 09:01:50 +0900
+Subject: [PATCH 2/2] tests: Add HAVE_MMAP check for MinGW.
+
+* tests/t-secmem.c (main): Conditionalize with HAVE_MMAP.
+
+--
+
+Thanks to: Andreas Metzler <ametzler@bebt.de>
+
+Signed-off-by: NIIBE Yutaka <gniibe@fsij.org>
+---
+ tests/t-secmem.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/tests/t-secmem.c b/tests/t-secmem.c
+index ecbc55a9..baf013d3 100644
+--- a/tests/t-secmem.c
++++ b/tests/t-secmem.c
+@@ -120,11 +120,13 @@ main (int argc, char **argv)
+   long int pgsize_val = -1;
+   size_t pgsize;
+ 
++#if HAVE_MMAP
+ # if defined(HAVE_SYSCONF) && defined(_SC_PAGESIZE)
+   pgsize_val = sysconf (_SC_PAGESIZE);
+ # elif defined(HAVE_GETPAGESIZE)
+   pgsize_val = getpagesize ();
+ # endif
++#endif
+   pgsize = (pgsize_val > 0)? pgsize_val : DEFAULT_PAGE_SIZE;
+ 
+   pool_size = (MINIMUM_POOL_SIZE + pgsize - 1) & ~(pgsize - 1);
+-- 
+2.15.0
+

@@ -1,3 +1,0 @@
-version=3
-opts=pasv,uversionmangle=s/[_-]/\~/g,pgpsigurlmangle=s/$/.sig/ \
-ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-(.*)\.tar\.bz2 debian uupdate

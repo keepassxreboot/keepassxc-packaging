@@ -1,5 +1,1 @@
-debian/libgpg-error0.install
-debian/libgpg-error-dev.install
-po/*.gmo
-po/stamp-po
 build/
