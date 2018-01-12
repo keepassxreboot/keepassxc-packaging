@@ -1,7 +1,7 @@
 Source: libsodium
 Section: libs
 Priority: optional
-Build-Depends: debhelper ( >= 9), pkg-config
+Build-Depends: dh-autoreconf, automake, debhelper ( >= 9), pkg-config
 Maintainer: KeePassXC <team@keepassxc.org>
 Uploaders: Laszlo Boszormenyi (GCS) <gcs@debian.org>
 Standards-Version: 4.1.0

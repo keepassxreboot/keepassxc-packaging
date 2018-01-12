@@ -2,7 +2,7 @@ Source: argon2
 Priority: optional
 Maintainer: KeePassXC Team <team@keepassxc.org>
 Uploaders: Luca Bruno <lucab@debian.org>
-Build-Depends: debhelper (>= 9)
+Build-Depends: dh-autoreconf, automake, debhelper (>= 9)
 Standards-Version: 3.9.8
 Section: libs
 Homepage: https://github.com/P-H-C/phc-winner-argon2

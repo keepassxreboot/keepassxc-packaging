@@ -6,6 +6,7 @@ Uploaders:
  Daniel Kahn Gillmor <dkg@fifthhorseman.net>,
 Priority: standard
 Build-Depends:
+ dh-autoreconf,
  automake (>= 1.14),
  debhelper (>= 9~),
  gettext (>= 0.18.3),
