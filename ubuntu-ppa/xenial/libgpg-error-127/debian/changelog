@@ -1,0 +1,5 @@
+libgpg-error-127 (1.27-0ppa1~xenial1) xenial; urgency=medium
+
+  * Initial package
+
+ -- KeePassXC Team <team@keepassxc.org>  Fri, 12 Jan 2018 21:30:48 +0100

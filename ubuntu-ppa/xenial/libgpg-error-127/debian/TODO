@@ -1,0 +1,4 @@
+TODO for debian packaging of libgpg-error
+
+ * install gpg-error lisp package (usr/share/common-lisp/source/gpg-error/*)
+ * move gpg-error.1 man page upstream

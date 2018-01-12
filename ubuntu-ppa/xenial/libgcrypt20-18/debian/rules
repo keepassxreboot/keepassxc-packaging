@@ -1,0 +1,24 @@
+#! /usr/bin/make -f
+# Build the libgcrypt package for Debian.
+
+export DEB_BUILD_MAINT_OPTIONS := hardening=+bindnow
+
+include /usr/share/dpkg/pkg-info.mk
+
+WIN_FLAGS=LDFLAGS="-Xlinker --no-insert-timestamp" CFLAGS="-g -Os" CPPFLAGS=
+
+%:
+	dh $@ --parallel --builddirectory=build --with autoreconf
+
+override_dh_auto_configure:
+	dh_auto_configure --verbose --builddirectory=build -- \
+		--enable-noexecstack \
+		--enable-ld-version-script --enable-static \
+		--prefix=/opt/libgcrypt20-18 \
+		--libdir=/opt/libgcrypt20-18/lib/$(DEB_HOST_MULTIARCH) \
+		--datadir=/opt/libgcrypt20-18 \
+		--with-libgpg-error-prefix=/opt/gpg-error-127
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V 'libgcrypt20-18 (>=1.8.0-0)' \
+		--add-udeb=libgcrypt20-18-udeb -- -c4

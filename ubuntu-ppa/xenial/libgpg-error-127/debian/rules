@@ -1,0 +1,44 @@
+#!/usr/bin/make -f
+export DEB_BUILD_MULTIARCH ?= $(shell dpkg-architecture -qDEB_BUILD_MULTIARCH)
+export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --with autoreconf --parallel
+
+override_dh_auto_configure:
+	touch po/libgpg-error.pot
+	dh_auto_configure --builddirectory=build -- \
+	    --enable-static \
+	    --disable-rpath \
+	    --prefix=/opt/gpg-error-127 \
+	    --libdir=/opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH) \
+	    --datadir=/opt/gpg-error-127
+
+override_dh_auto_build-arch:
+	dh_auto_build --parallel --builddirectory=build
+ifeq ($(DEB_HOST_MULTIARCH),$(DEB_BUILD_MULTIARCH))
+	tail -vn+0 build/src/lock-obj-pub.native.h
+endif
+
+override_dh_auto_install-arch:
+	dh_auto_install --parallel --builddirectory=build
+
+override_dh_install:
+	dh_install --list-missing
+
+override_dh_installchangelogs:
+	dh_installchangelogs -A NEWS
+
+override_dh_installdocs:
+	dh_installdocs -A README
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V --add-udeb=libgpg-error-127-udeb
+
+override_dh_link:
+	dh_link -plibgpg-error-127-dev opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so.0 opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so
+
+### "arch-independent" Windows builds: ###
+
+WIN_FLAGS=LDFLAGS="-Xlinker --no-insert-timestamp" CFLAGS="-g -Os -fdebug-prefix-map=$(shell pwd)=." CPPFLAGS=

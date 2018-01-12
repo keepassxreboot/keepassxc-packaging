@@ -1,0 +1,22 @@
+Description: Do not print standard multiarch path
+ {/usr,}/lib/i386-linux-gnu are in the standard search path, there is no
+ need to explicitely point gcc there with a -L argument.
+ Also we are installing the actual library and the so-symlink in different
+ locations which makes this incorrect no matter which one we choose.
+Origin: vendor
+Forwarded: not-needed
+
+--- a/src/libgcrypt-config.in
++++ b/src/libgcrypt-config.in
+@@ -152,9 +152,10 @@ fi
+ if test "$echo_libs" = "yes"; then
+     libdirs=""
+     libs_final="$libs"
++    debianmultiarch=`if which dpkg-architecture > /dev/null ; then dpkg-architecture -qDEB_HOST_MULTIARCH ; fi`
+ 
+     # Set up `libdirs'.
+-    if test "x$libdir" != "x/usr/lib" -a "x$libdir" != "x/lib"; then
++    if test "x$libdir" != "x/usr/lib" -a "x$libdir" != "x/lib" -a "x$libdir" != "x/lib/${debianmultiarch}" ; then
+ 	libdirs="-L$libdir"
+     fi
+ 

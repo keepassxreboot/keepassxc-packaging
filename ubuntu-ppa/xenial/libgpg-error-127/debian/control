@@ -1,0 +1,56 @@
+Source: libgpg-error-127
+Section: libs
+Maintainer: KeePassXC Team <team@keepassxc.org>
+Uploaders:
+ Debian GnuPG Maintainers <pkg-gnupg-maint@lists.alioth.debian.org>,
+ Daniel Kahn Gillmor <dkg@fifthhorseman.net>,
+Priority: standard
+Build-Depends:
+ dh-autoreconf,
+ automake (>= 1.14),
+ debhelper (>= 9~),
+ gettext (>= 0.18.3),
+Standards-Version: 4.1.1
+Homepage: https://www.gnupg.org/related_software/libgpg-error/
+
+Package: libgpg-error-127-dev
+Priority: optional
+Section: libdevel
+Architecture: any
+Depends:
+ libgpg-error-127 (= ${binary:Version}),
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: library for common error values and messages in GnuPG components (development)
+ Library that defines common error values for all GnuPG
+ components.  Among these are GPG, GPGSM, GPGME, GPG-Agent, libgcrypt,
+ pinentry, SmartCard Daemon and possibly more in the future.
+ .
+ This package contains the headers and other files needed to compile
+ against this library.
+
+Package: libgpg-error-127
+Architecture: any
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Pre-Depends:
+ ${misc:Pre-Depends},
+Description: library for common error values and messages in GnuPG components
+ Library that defines common error values for all GnuPG
+ components.  Among these are GPG, GPGSM, GPGME, GPG-Agent, libgcrypt,
+ pinentry, SmartCard Daemon and possibly more in the future.
+
+Package: libgpg-error-127-udeb
+Priority: optional
+Section: debian-installer
+Package-Type: udeb
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Description: library for common error values and messages in GnuPG components
+ Library that defines common error values for all GnuPG
+ components.  Among these are GPG, GPGSM, GPGME, GPG-Agent, libgcrypt,
+ pinentry, SmartCard Daemon and possibly more in the future.

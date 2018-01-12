@@ -1,0 +1,97 @@
+From: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+Date: Sun, 5 Mar 2017 01:23:51 +0100
+Subject: Remove upstream git fanciness
+
+Debian needs to be able to build libgpg-error while using git for
+tracking the debian packaging itself.  Debian also wants to autoreconf
+this stuff.  However, Debian does *not* need to conform exactly to
+upstream's git configurations.
+
+This avoids mistakes like accidentally identifying running code as a
+beta.
+---
+ autogen.sh | 64 +++++---------------------------------------------------------
+ 1 file changed, 5 insertions(+), 59 deletions(-)
+
+diff --git a/autogen.sh b/autogen.sh
+index e5ba5bf..96a1222 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -229,27 +229,11 @@ if [ "$myhost" = "find-version" ]; then
+     esac
+ 
+     beta=no
+-    if [ -e .git ]; then
+-      ingit=yes
+-      tmp=$(git describe --match "${matchstr1}" --long 2>/dev/null)
+-      tmp=$(echo "$tmp" | sed s/^"$package"//)
+-      if [ -n "$tmp" ]; then
+-          tmp=$(echo "$tmp" | sed s/^"$package"//  \
+-                | awk -F- '$3!=0 && $3 !~ /^beta/ {print"-beta"$3}')
+-      else
+-          tmp=$(git describe --match "${matchstr2}" --long 2>/dev/null \
+-                | awk -F- '$4!=0{print"-beta"$4}')
+-      fi
+-      [ -n "$tmp" ] && beta=yes
+-      rev=$(git rev-parse --short HEAD | tr -d '\n\r')
+-      rvd=$((0x$(echo ${rev} | dd bs=1 count=4 2>/dev/null)))
+-    else
+-      ingit=no
+-      beta=yes
+-      tmp="-unknown"
+-      rev="0000000"
+-      rvd="0"
+-    fi
++    ingit=no
++    beta=no
++    tmp="-unknown"
++    rvd="$(wc -l < debian/changelog)"
++    rev="$(printf %07x $rvd)"
+ 
+     echo "$package-$vers$tmp:$beta:$ingit:$vers$tmp:$vers:$tmp:$rev:$rvd:"
+     exit 0
+@@ -432,44 +416,6 @@ EOF
+     die_p
+ fi
+ 
+-# Check the git setup.
+-if [ -d .git ]; then
+-  CP="cp -p"
+-  # If we have a GNU cp we can add -v
+-  if cp --version >/dev/null 2>/dev/null; then
+-    [ -z "${SILENT}" ] && CP="$CP -v"
+-  fi
+-  if [ -f .git/hooks/pre-commit.sample -a ! -f .git/hooks/pre-commit ] ; then
+-    [ -z "${SILENT}" ] && cat <<EOF
+-*** Activating trailing whitespace git pre-commit hook. ***
+-    For more information see this thread:
+-      https://mail.gnome.org/archives/desktop-devel-list/2009-May/msg00084.html
+-    To deactivate this pre-commit hook again move .git/hooks/pre-commit
+-    and .git/hooks/pre-commit.sample out of the way.
+-EOF
+-      $CP .git/hooks/pre-commit.sample .git/hooks/pre-commit
+-      chmod +x  .git/hooks/pre-commit
+-  fi
+-
+-  if [ "$gettext_vers" != "n/a" ]; then
+-    tmp=$(git config --get filter.cleanpo.clean)
+-    if [ "$tmp" != \
+-          "awk '/^\"POT-Creation-Date:/&&!s{s=1;next};!/^#: /{print}'" ]
+-    then
+-      info "*** Adding GIT filter.cleanpo.clean configuration."
+-      git config --add filter.cleanpo.clean \
+-        "awk '/^\"POT-Creation-Date:/&&!s{s=1;next};!/^#: /{print}'"
+-    fi
+-  fi
+-  if [ -f build-aux/git-hooks/commit-msg -a ! -f .git/hooks/commit-msg ] ; then
+-      [ -z "${SILENT}" ] && cat <<EOF
+-*** Activating commit log message check hook. ***
+-EOF
+-      $CP build-aux/git-hooks/commit-msg .git/hooks/commit-msg
+-      chmod +x  .git/hooks/commit-msg
+-  fi
+-fi
+-
+ aclocal_flags="-I m4"
+ if [ -n "${extra_aclocal_flags}" ]; then
+   aclocal_flags="${aclocal_flags} ${extra_aclocal_flags}"

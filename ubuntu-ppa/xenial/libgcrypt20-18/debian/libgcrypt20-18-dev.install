@@ -1,0 +1,4 @@
+debian/tmp/opt/libgcrypt20-18/include/*
+debian/tmp/opt/libgcrypt20-18/lib/*/lib*.a
+debian/tmp/opt/libgcrypt20-18/lib/*/lib*.so
+debian/tmp/opt/libgcrypt20-18/bin/*

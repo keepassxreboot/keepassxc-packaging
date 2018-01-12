@@ -1,0 +1,5 @@
+opt/gpg-error-127/bin/*
+opt/gpg-error-127/include/*
+opt/gpg-error-127/lib/*/libgpg-error.a
+opt/gpg-error-127/lib/*/libgpg-error.so
+opt/gpg-error-127/lib/*/libgpg-error.la
