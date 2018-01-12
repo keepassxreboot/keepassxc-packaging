@@ -18,7 +18,7 @@ export OPTTARGET=$(DEB_TARGET_GNU_CPU)
 	dh $@
 
 override_dh_install:
-	mv debian/tmp/usr/lib/libargon2.so debian/tmp/usr/lib/libargon2.so.0
+	cp -L debian/tmp/usr/lib/libargon2.so debian/tmp/usr/lib/libargon2.so.1
 	sed -i s/@HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g debian/libargon2-0.install
 	sed -i s/@HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g debian/libargon2-0-dev.install
 	sed -i s/@HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g debian/libargon2-0-dev.links
