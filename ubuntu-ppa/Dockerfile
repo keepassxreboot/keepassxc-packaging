@@ -20,6 +20,7 @@ RUN set -x \
     && apt-get update -y \
     && apt-get install --no-install-recommends -y \
         build-essential \
+        automake \
         fakeroot \
         devscripts \
         dh-autoreconf \

@@ -1,3 +1,2 @@
-opt/argon2/include/*
-opt/argon2/lib/*.a
-opt/argon2/lib/*.so
+usr/include/*
+usr/lib/*.a usr/lib/@HOST_MULTIARCH@
