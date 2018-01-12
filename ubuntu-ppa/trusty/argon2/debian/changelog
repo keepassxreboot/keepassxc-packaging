@@ -1,0 +1,5 @@
+argon2 (20171227-0ppa1~trusty1) trusty; urgency=medium
+
+  * Initial package
+
+ -- KeePassXC Team <team@keepassxc.org>  Fri, 12 Jan 2018 01:42:51 +0100

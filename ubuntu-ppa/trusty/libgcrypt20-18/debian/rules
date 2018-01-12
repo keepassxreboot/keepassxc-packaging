@@ -22,13 +22,3 @@ override_dh_auto_configure:
 override_dh_makeshlibs:
 	dh_makeshlibs -V 'libgcrypt20-18 (>=1.8.0-0)' \
 		--add-udeb=libgcrypt20-18-udeb -- -c4
-
-#override_dh_auto_install-arch:
-#	dh_auto_install --verbose --builddirectory=build
-#	mkdir -p -m755 debian/tmp/opt/libgcrypt20-18/lib/$(DEB_HOST_MULTIARCH)
-#	cd debian/tmp/opt/libgcrypt20-18/lib/$(DEB_HOST_MULTIARCH) \
-#		&& ln -v -s /lib/$(DEB_HOST_MULTIARCH)/`readlink ../../../lib/*/*.so` libgcrypt.so
-#
-#	rm -v debian/tmp/lib/$(DEB_HOST_MULTIARCH)/*.so
-#	mv -v debian/tmp/lib/$(DEB_HOST_MULTIARCH)/*.a \
-#		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/

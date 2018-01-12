@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DPKG_EXPORT_BUILDFLAGS = 1
+#include /usr/share/dpkg/architecture.mk
+#include /usr/share/dpkg/buildflags.mk
+#include /usr/share/dpkg/default.mk
+
+export SOVER=0
+export SONAME=libargon2.so.$(SOVER)
+export SOPKG=libargon2-$(SOVER)
+export OPTTARGET=$(DEB_TARGET_GNU_CPU)
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install -- PREFIX=/opt/argon2
+
+override_dh_auto_test:
+	-$(MAKE) -j1 test

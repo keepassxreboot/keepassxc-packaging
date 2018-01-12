@@ -4,3 +4,4 @@ yubikey-personalization https://developers.yubico.com/yubikey-personalization/Re
 libgcrypt20-18 ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-${VERSION}.tar.bz2
 libgpg-error-127 ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-${VERSION}.tar.bz2
 libsodium https://launchpad.net/ubuntu/+archive/primary/+files/libsodium_${VERSION}.orig.tar.gz
+argon2 https://github.com/P-H-C/phc-winner-argon2/archive/${VERSION}.tar.gz
