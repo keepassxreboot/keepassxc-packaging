@@ -11,3 +11,4 @@
 0011-yat2m-Take-care-of-SOURCE_DATE_EPOCH.patch
 0012-syscfg-Add-lock-obj-pub-file-for-ia64-unknown-linux-.patch
 1000-gettext.patch
+1001-lsan.patch

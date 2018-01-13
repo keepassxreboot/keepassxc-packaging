@@ -1,3 +1,9 @@
+libgpg-error-127 (1.27-1ppa1~trusty6) trusty; urgency=medium
+
+  * Fix LSAN compilation error with GCC < 4.9
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 13 Jan 2018 14:43:05 +0100
+
 libgpg-error-127 (1.27-0ppa1~trusty5) trusty; urgency=medium
 
   * Initial package

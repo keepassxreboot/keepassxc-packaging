@@ -1,0 +1,14 @@
+Author: KeePassXC Team <team@keepassxc.org>
+Subject: Fix LSAN compilation error with GCC < 4.9
+
+--- libgpg-error-127-1.27.orig/src/gpg-error.h.in
++++ libgpg-error-127-1.27/src/gpg-error.h.in
+@@ -253,7 +253,7 @@ typedef unsigned int gpg_error_t;
+  * Note that -fsanitize=leak just affect the linker options which
+  * cannot be detected here.  In that case you have to define the
+  * GPGRT_HAVE_LEAK_SANITIZER macro manually.  */
+-#ifdef __GNUC__
++#if __GNUC__ >= 4 && __GNUC_MINOR__ >= 9
+ # ifdef __SANITIZE_ADDRESS__
+ #  define GPGRT_HAVE_LEAK_SANITIZER
+ # elif defined(__has_feature)
