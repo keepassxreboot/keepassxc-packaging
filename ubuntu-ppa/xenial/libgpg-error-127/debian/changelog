@@ -1,3 +1,9 @@
+libgpg-error-127 (1.27-0ppa1~xenial2) xenial; urgency=medium
+
+  * Do not backport to gettext version 0.19 on Xenial
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 13 Jan 2018 14:48:38 +0100
+
 libgpg-error-127 (1.27-0ppa1~xenial1) xenial; urgency=medium
 
   * Initial package
