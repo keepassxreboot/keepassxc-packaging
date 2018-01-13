@@ -1,5 +1,5 @@
-libgcrypt20-18 (1.8.1-0ppa1~trusty2) trusty; urgency=medium
+libgcrypt20-18 (1.8.1-0ppa1~trusty3) trusty; urgency=medium
 
   * Initial package
 
- -- KeePassXC Team <team@keepassxc.org>  Fri, 12 Jan 2018 20:22:40 +0100
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 13 Jan 2018 01:59:15 +0100

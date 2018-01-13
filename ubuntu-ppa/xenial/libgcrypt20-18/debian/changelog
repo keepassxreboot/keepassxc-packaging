@@ -1,5 +1,5 @@
-libgcrypt20-18 (1.8.1-0ppa1~xenial1) xenial; urgency=medium
+libgcrypt20-18 (1.8.1-0ppa1~xenial2) xenial; urgency=medium
 
   * Initial package
 
- -- KeePassXC Team <team@keepassxc.org>  Fri, 12 Jan 2018 21:32:34 +0100
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 13 Jan 2018 02:00:42 +0100
