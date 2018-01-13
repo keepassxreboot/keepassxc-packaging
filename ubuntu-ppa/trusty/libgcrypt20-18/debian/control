@@ -17,7 +17,7 @@ Package: libgcrypt20-18-dev
 Section: libdevel
 Architecture: any
 Depends: libgcrypt20-18 (= ${binary:Version}), libc6-dev | libc-dev,
- libgpg-error-dev, ${misc:Depends}
+ libgpg-error-127-dev, ${misc:Depends}
 Description: LGPL Crypto library - development files
  libgcrypt contains cryptographic functions.  Many important free
  ciphers, hash algorithms and public key signing algorithms have been
