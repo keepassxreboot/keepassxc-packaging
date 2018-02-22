@@ -1,0 +1,5 @@
+libsodium (1.0.16-0ppa1~xenial1) xenial; urgency=medium
+
+  * Initial package
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 03:28:16 +0100

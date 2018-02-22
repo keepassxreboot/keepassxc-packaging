@@ -1,0 +1,5 @@
+argon2 (20171227-0ppa1~xenial1) xenial; urgency=medium
+
+  * Initial package
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 03:26:34 +0100

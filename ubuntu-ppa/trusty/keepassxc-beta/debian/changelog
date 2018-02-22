@@ -3,9 +3,3 @@ keepassxc-beta (2.3.0-beta1-0ppa1~trusty2) trusty; urgency=medium
   * First beta release
 
  -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 03:16:04 +0100
-
-keepassxc-beta (2.3.0-beta1-0ppa1~trusty1) trusty; urgency=medium
-
-  * First beta release
-
- -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 03:00:37 +0100

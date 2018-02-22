@@ -1,0 +1,3 @@
+version=3
+opts=uversionmangle=s|^|0~|,filenamemangle=s|.+/(\d+)\.tar\.gz|argon2-$1\.tar\.gz|\
+     https://github.com/p-h-c/phc-winner-argon2/tags .*/(\d+)\.tar\.gz

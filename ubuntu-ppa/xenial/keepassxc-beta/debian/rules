@@ -1,0 +1,51 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+export LC_ALL = C.UTF-8
+
+export PREFIX=/opt/keepassxc-beta
+export DESTROOT=$(CURDIR)/debian/keepassxc-beta
+export DEST_APP=$(DESTROOT)$(PREFIX)/share/applications/org.keepassxc.KeePassXC.desktop
+
+export GCRY=/opt/libgcrypt20-18/include
+export LGCRY=/opt/libgcrypt20-18/lib/$(DEB_HOST_MULTIARCH)
+
+export GPGERR=/opt/gpg-error-127/include
+export LGPGERR=/opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH)
+
+%:
+	dh $@ --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DWITH_TESTS=ON \
+		-DWITH_GUI_TESTS=OFF  \
+		-DWITH_XC_ALL=ON \
+		-DCMAKE_INSTALL_PREFIX=$(PREFIX) \
+		-DCMAKE_CXX_FLAGS="-I$(GCRY) -I$(GPGERR)" \
+		-DCMAKE_EXE_LINKER_FLAGS="-L$(LGCRY) -Wl,-rpath,$(LGCRY) -L$(LGPGERR) -Wl,-rpath,$(LGPGERR)" \
+		-DCMAKE_INCLUDE_PATH="$(GCRY):$(GPGERR)" \
+		-DCMAKE_LIBRARY_PATH="$(LGCRY):$(LGPGERR)"
+
+override_dh_auto_test:
+	dh_auto_test -- \
+	ARGS+="-E testgui"
+#	xvfb-run -a --server-args="-screen 0 800x600x24" dh_auto_test -- \
+#	ARGS+="-R testgui"
+
+override_dh_auto_install:
+	dh_auto_install
+
+	sed -i "s#Exec=keepassxc#Exec=$(PREFIX)/bin/keepassxc#" $(DEST_APP)
+	sed -i "s#Name=KeePassXC#Name=KeePassXC (Beta)#" $(DEST_APP)
+	sed -i "s#Icon=keepassxc#Icon=$(PREFIX)/share/icons/hicolor/256x256/apps/keepassxc.png#" $(DEST_APP)
+
+	install -p -D $(DEST_APP) $(DESTROOT)/usr/share/applications/org.keepassxc.KeePassXC-Beta.desktop
