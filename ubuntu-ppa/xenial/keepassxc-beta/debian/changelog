@@ -1,3 +1,9 @@
+keepassxc-beta (2.3.0-beta1-0ppa2~xenial1) xenial; urgency=medium
+
+  * Build with debug symbols
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 21:13:20 +0100
+
 keepassxc-beta (2.3.0-beta1-0ppa1~xenial6) xenial; urgency=medium
 
   * dfgs

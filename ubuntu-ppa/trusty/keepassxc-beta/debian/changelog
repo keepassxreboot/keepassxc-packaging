@@ -1,3 +1,9 @@
+keepassxc-beta (2.3.0-beta1-0ppa2~trusty1) trusty; urgency=medium
+
+  * Build with debug symbols
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 21:13:55 +0100
+
 keepassxc-beta (2.3.0-beta1-0ppa1~trusty2) trusty; urgency=medium
 
   * First beta release
