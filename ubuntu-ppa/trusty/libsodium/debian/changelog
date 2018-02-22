@@ -1,3 +1,9 @@
+libsodium (1.0.16-0ppa2~trusty1) trusty; urgency=medium
+
+  * Adjust binary package name to SO version
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 20:21:14 +0100
+
 libsodium (1.0.16-0ppa1~trusty3) trusty; urgency=medium
 
   * Initial package

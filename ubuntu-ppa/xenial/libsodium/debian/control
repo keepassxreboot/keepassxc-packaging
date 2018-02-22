@@ -9,7 +9,7 @@ Vcs-Git: git://github.com/gcsideal/debian-libsodium
 Vcs-Browser: https://github.com/gcsideal/debian-libsodium
 Homepage: http://www.libsodium.org/
 
-Package: libsodium18
+Package: libsodium23
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Architecture: any
