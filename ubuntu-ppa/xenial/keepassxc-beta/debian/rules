@@ -29,11 +29,11 @@ override_dh_auto_configure:
 		-DWITH_TESTS=ON \
 		-DWITH_GUI_TESTS=OFF  \
 		-DWITH_XC_ALL=ON \
-		-DCMAKE_INSTALL_PREFIX=$(PREFIX) \
+		-DCMAKE_INSTALL_PREFIX="$(PREFIX)" \
 		-DCMAKE_CXX_FLAGS="-I$(GCRY) -I$(GPGERR)" \
 		-DCMAKE_EXE_LINKER_FLAGS="-L$(LGCRY) -Wl,-rpath,$(LGCRY) -L$(LGPGERR) -Wl,-rpath,$(LGPGERR)" \
-		-DCMAKE_INCLUDE_PATH="$(GCRY):$(GPGERR)" \
-		-DCMAKE_LIBRARY_PATH="$(LGCRY):$(LGPGERR)"
+		-DCMAKE_INCLUDE_PATH="$(GCRY);$(GPGERR)" \
+		-DCMAKE_LIBRARY_PATH="$(LGCRY);$(LGPGERR)"
 
 override_dh_auto_test:
 	dh_auto_test -- \
