@@ -1,11 +1,5 @@
-keepassxc-beta (2.3.0-beta1-0ppa1~bionic1) bionic; urgency=medium
+keepassxc-beta (2.3.0-beta1-0ppa1~bionic2) bionic; urgency=medium
 
   * First beta release
 
- -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 03:46:30 +0100
-
-keepassxc-beta (2.3.0-beta1-0ppa1~artful1) artful; urgency=medium
-
-  * First beta release
-
- -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 03:42:04 +0100
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 04:12:12 +0100
