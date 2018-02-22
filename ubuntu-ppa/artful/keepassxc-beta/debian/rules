@@ -19,7 +19,8 @@ export DEST_APP=$(DESTROOT)$(PREFIX)/share/applications/org.keepassxc.KeePassXC.
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+		-DKEEPASSXC_BUILD_TYPE=PreRelease \
 		-DWITH_TESTS=ON \
 		-DWITH_GUI_TESTS=OFF  \
 		-DWITH_XC_ALL=ON \
