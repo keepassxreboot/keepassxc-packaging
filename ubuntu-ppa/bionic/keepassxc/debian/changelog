@@ -1,0 +1,5 @@
+keepassxc (2.2.4-1ppa1~bionic1) bionic; urgency=medium
+
+  * Initial Bionic release
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 03:45:22 +0100
