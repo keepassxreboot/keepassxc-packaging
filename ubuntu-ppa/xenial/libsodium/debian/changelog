@@ -1,3 +1,9 @@
+libsodium (1.0.16-0ppa3~xenial1) xenial; urgency=medium
+
+  * Fix dependency issues
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 24 Feb 2018 22:48:42 +0100
+
 libsodium (1.0.16-0ppa2~xenial1) xenial; urgency=medium
 
   * Adjust binary package name to SO version

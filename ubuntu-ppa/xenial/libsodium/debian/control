@@ -26,7 +26,7 @@ Description: Network communication, cryptography and signaturing library
 
 Package: libsodium-dev
 Section: libdevel
-Depends: ${misc:Depends}, libsodium18 (= ${binary:Version})
+Depends: ${misc:Depends}, libsodium23 (= ${binary:Version})
 Architecture: any
 Multi-Arch: same
 Description: Network communication, cryptography and signaturing library - headers
