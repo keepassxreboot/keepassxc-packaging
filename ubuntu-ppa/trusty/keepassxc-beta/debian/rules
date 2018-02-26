@@ -11,14 +11,9 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 export LC_ALL = C.UTF-8
 
 export PREFIX=/opt/keepassxc-beta
+export LIB_PREFIX=/opt/keepassxc-libs
 export DESTROOT=$(CURDIR)/debian/keepassxc-beta
 export DEST_APP=$(DESTROOT)$(PREFIX)/share/applications/org.keepassxc.KeePassXC.desktop
-
-export GCRY=/opt/libgcrypt20-18/include
-export LGCRY=/opt/libgcrypt20-18/lib/$(DEB_HOST_MULTIARCH)
-
-export GPGERR=/opt/gpg-error-127/include
-export LGPGERR=/opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH)
 
 %:
 	dh $@ --parallel
@@ -36,10 +31,11 @@ override_dh_auto_configure:
 		-DWITH_XC_SSHAGENT=ON \
 		-DWITH_XC_YUBIKEY=ON \
 		-DCMAKE_INSTALL_PREFIX="$(PREFIX)" \
-		-DCMAKE_CXX_FLAGS="-I$(GCRY) -I$(GPGERR)" \
-		-DCMAKE_EXE_LINKER_FLAGS="-L$(LGCRY) -Wl,-rpath,$(LGCRY) -L$(LGPGERR) -Wl,-rpath,$(LGPGERR)" \
-		-DCMAKE_INCLUDE_PATH="$(GCRY);$(GPGERR)" \
-		-DCMAKE_LIBRARY_PATH="$(LGCRY);$(LGPGERR)"
+		-DCMAKE_CXX_FLAGS="-I$(LIB_PREFIX)/include" \
+		-DCMAKE_EXE_LINKER_FLAGS="-L$(LIB_PREFIX)/lib/$(DEB_HOST_MULTIARCH) \
+			-Wl,-rpath,$(LIB_PREFIX)/lib/$(DEB_HOST_MULTIARCH)" \
+		-DCMAKE_INCLUDE_PATH="$(LIB_PREFIX)/include" \
+		-DCMAKE_LIBRARY_PATH="$(LIB_PREFIX)/lib/$(DEB_HOST_MULTIARCH)"
 
 override_dh_auto_test:
 	dh_auto_test -- \

@@ -11,9 +11,9 @@ override_dh_auto_configure:
 	dh_auto_configure --builddirectory=build -- \
 	    --enable-static \
 	    --disable-rpath \
-	    --prefix=/opt/gpg-error-127 \
-	    --libdir=/opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH) \
-	    --datadir=/opt/gpg-error-127
+	    --prefix=/opt/keepassxc-libs \
+	    --libdir=/opt/keepassxc-libs/lib/$(DEB_HOST_MULTIARCH) \
+	    --datadir=/opt/keepassxc-libs
 
 override_dh_auto_build-arch:
 	dh_auto_build --parallel --builddirectory=build
@@ -37,7 +37,7 @@ override_dh_makeshlibs:
 	dh_makeshlibs -V --add-udeb=libgpg-error-127-udeb
 
 override_dh_link:
-	dh_link -plibgpg-error-127-dev opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so.0 opt/gpg-error-127/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so
+	dh_link -plibgpg-error-127-dev opt/keepassxc-libs/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so.0 opt/keepassxc-libs/lib/$(DEB_HOST_MULTIARCH)/libgpg-error.so
 
 ### "arch-independent" Windows builds: ###
 

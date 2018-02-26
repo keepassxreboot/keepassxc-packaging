@@ -1,6 +1,6 @@
-opt/libcurl-no-gcrypt/bin/curl-config
-opt/libcurl-no-gcrypt/lib/*/libcurl-nss.a
-opt/libcurl-no-gcrypt/lib/*/libcurl-nss.la
-opt/libcurl-no-gcrypt/lib/*/libcurl-nss.so
-opt/libcurl-no-gcrypt/lib/*/pkgconfig/libcurl.pc
-opt/libcurl-no-gcrypt/include
+opt/keepassxc-libs/bin/curl-config
+opt/keepassxc-libs/lib/*/libcurl-nss.a
+opt/keepassxc-libs/lib/*/libcurl-nss.la
+opt/keepassxc-libs/lib/*/libcurl-nss.so
+opt/keepassxc-libs/lib/*/pkgconfig/libcurl.pc
+opt/keepassxc-libs/include

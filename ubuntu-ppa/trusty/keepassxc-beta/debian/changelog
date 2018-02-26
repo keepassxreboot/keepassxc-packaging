@@ -1,3 +1,9 @@
+keepassxc-beta (2.3.0-beta1-0ppa3~trusty1) trusty; urgency=medium
+
+  * Move dependencies to /opt/keepassxc-libs
+
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 26 Feb 2018 23:42:54 +0100
+
 keepassxc-beta (2.3.0-beta1-0ppa2~trusty2) trusty; urgency=medium
 
   * Rebuild to update dependencies

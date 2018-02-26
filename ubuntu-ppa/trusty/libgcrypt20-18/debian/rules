@@ -14,10 +14,10 @@ override_dh_auto_configure:
 	dh_auto_configure --verbose --builddirectory=build -- \
 		--enable-noexecstack \
 		--enable-ld-version-script --enable-static \
-		--prefix=/opt/libgcrypt20-18 \
-		--libdir=/opt/libgcrypt20-18/lib/$(DEB_HOST_MULTIARCH) \
-		--datadir=/opt/libgcrypt20-18 \
-		--with-libgpg-error-prefix=/opt/gpg-error-127
+		--prefix=/opt/keepassxc-libs \
+		--libdir=/opt/keepassxc-libs/lib/$(DEB_HOST_MULTIARCH) \
+		--datadir=/opt/keepassxc-libs \
+		--with-libgpg-error-prefix=/opt/keepassxc-libs
 
 override_dh_makeshlibs:
 	dh_makeshlibs -V 'libgcrypt20-18 (>=1.8.0-0)' \

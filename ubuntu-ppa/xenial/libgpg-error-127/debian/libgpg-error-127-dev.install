@@ -1,5 +1,5 @@
-opt/gpg-error-127/bin/*
-opt/gpg-error-127/include/*
-opt/gpg-error-127/lib/*/libgpg-error.a
-opt/gpg-error-127/lib/*/libgpg-error.so
-opt/gpg-error-127/lib/*/libgpg-error.la
+opt/keepassxc-libs/bin/*
+opt/keepassxc-libs/include/*
+opt/keepassxc-libs/lib/*/libgpg-error.a
+opt/keepassxc-libs/lib/*/libgpg-error.so
+opt/keepassxc-libs/lib/*/libgpg-error.la

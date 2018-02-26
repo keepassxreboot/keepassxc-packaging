@@ -1,4 +1,4 @@
-debian/tmp/opt/libgcrypt20-18/include/*
-debian/tmp/opt/libgcrypt20-18/lib/*/lib*.a
-debian/tmp/opt/libgcrypt20-18/lib/*/lib*.so
-debian/tmp/opt/libgcrypt20-18/bin/*
+debian/tmp/opt/keepassxc-libs/include/*
+debian/tmp/opt/keepassxc-libs/lib/*/lib*.a
+debian/tmp/opt/keepassxc-libs/lib/*/lib*.so
+debian/tmp/opt/keepassxc-libs/bin/*

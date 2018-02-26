@@ -15,7 +15,7 @@ export DEB_BUILD_MAINT_OPTIONS := hardening=+all
 override_dh_auto_configure:
 	./buildconf
 	dh_auto_configure -- \
-		--prefix=/opt/libcurl-no-gcrypt \
+		--prefix=/opt/keepassxc-libs \
 		--disable-dependency-tracking \
 		--disable-symbol-hiding --enable-versioned-symbols \
 		--enable-threaded-resolver --with-lber-lib=lber \
