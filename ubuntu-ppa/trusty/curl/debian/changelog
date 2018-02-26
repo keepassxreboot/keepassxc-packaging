@@ -1,0 +1,5 @@
+curl (7.47.0-0ppa1~trusty1) trusty; urgency=medium
+
+  * Initial package upload
+
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 26 Feb 2018 22:18:50 +0100

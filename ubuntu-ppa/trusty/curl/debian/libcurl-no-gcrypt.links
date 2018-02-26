@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo opt/libcurl-no-gcrypt/lib/$DEB_HOST_MULTIARCH/libcurl-nss.so.4 opt/libcurl-no-gcrypt/lib/$DEB_HOST_MULTIARCH/libcurl-nss.so.3

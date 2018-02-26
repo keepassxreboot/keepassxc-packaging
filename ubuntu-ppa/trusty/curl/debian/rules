@@ -1,0 +1,38 @@
+#! /usr/bin/make -f
+
+# this will avoid unneded dependencies
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+# this will catch miss-linking. (e.g. undefined symbols)
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs
+
+# enable all hardening options (see #763372)
+export DEB_BUILD_MAINT_OPTIONS := hardening=+all
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	./buildconf
+	dh_auto_configure -- \
+		--prefix=/opt/libcurl-no-gcrypt \
+		--disable-dependency-tracking \
+		--disable-symbol-hiding --enable-versioned-symbols \
+		--enable-threaded-resolver --with-lber-lib=lber \
+		--with-gssapi=/usr \
+		--with-zsh-functions-dir=/usr/share/zsh/vendor-completions \
+		--without-librtmp \
+		--with-ca-bundle=/etc/ssl/certs/ca-certificates.crt \
+		--without-ssl --with-nss
+
+override_dh_install:
+	dh_install -plibcurl-no-gcrypt -plibcurl-no-gcrypt-dev
+	sed -i "/dependency_libs/ s/'.*'/''/" `find . -name '*.la'`
+
+override_dh_strip:
+	dh_strip -plibcurl-no-gcrypt
+	dh_strip --remaining-packages
+
+override_dh_auto_clean:
+	$(RM) -r debian/build* debian/tmp*
+	dh_auto_clean
