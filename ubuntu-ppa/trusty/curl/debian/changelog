@@ -1,3 +1,9 @@
+curl (7.47.0-0ppa4~trusty1) trusty; urgency=medium
+
+  * Disable ldap
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 27 Feb 2018 02:29:01 +0100
+
 curl (7.47.0-0ppa3~trusty1) trusty; urgency=medium
 
   * Switch to OpenSSL

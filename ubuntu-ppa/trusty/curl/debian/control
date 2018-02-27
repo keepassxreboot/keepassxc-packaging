@@ -11,7 +11,6 @@ Build-Depends: debhelper (>= 9),
  ca-certificates,
  libidn11-dev,
  libkrb5-dev,
- libldap2-dev,
  libssl-dev,
  libtool,
  zlib1g-dev
@@ -29,9 +28,7 @@ Recommends: ca-certificates
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: easy-to-use client-side URL transfer library (NSS flavour)
- libcurl is an easy-to-use client-side URL transfer library, supporting DICT,
- FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S,
- RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, TELNET and TFTP.
+ libcurl is an easy-to-use client-side URL transfer library.
  .
  libcurl supports SSL certificates, HTTP POST, HTTP PUT, FTP uploading, HTTP
  form based upload, proxies, cookies, user+password authentication (Basic,
@@ -44,21 +41,23 @@ Description: easy-to-use client-side URL transfer library (NSS flavour)
  .
  SSL support is provided by NSS.
  .
- This package was built without librtmp and therefore does not depend on libgcrypt.
+ This package was built without librtmp and ldap and therefore does not
+ depend on libgcrypt.
 
 Package: curl-no-gcrypt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libcurl-no-gcrypt (= ${binary:Version})
 Multi-Arch: foreign
 Description: command line tool for transferring data with URL syntax
- curl is a command line tool for transferring data with URL syntax, supporting
- DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3,
- POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, TELNET and TFTP.
+ curl is a command line tool for transferring data with URL syntax.
  .
  curl supports SSL certificates, HTTP POST, HTTP PUT, FTP uploading, HTTP form
  based upload, proxies, cookies, user+password authentication (Basic, Digest,
  NTLM, Negotiate, kerberos...), file transfer resume, proxy tunneling and a
  busload of other useful tricks.
+ .
+ This package was built without librtmp and ldap and therefore does not
+ depend on libgcrypt.
 
 Package: libcurl-no-gcrypt-dev
 Architecture: any
@@ -71,9 +70,7 @@ Suggests: libidn11-dev,
  zlib1g-dev
 Multi-Arch: same
 Description: development files and documentation for libcurl (NSS flavour)
- libcurl is an easy-to-use client-side URL transfer library, supporting DICT,
- FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S,
- RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, TELNET and TFTP.
+ libcurl is an easy-to-use client-side URL transfer library.
  .
  libcurl supports SSL certificates, HTTP POST, HTTP PUT, FTP uploading, HTTP
  form based upload, proxies, cookies, user+password authentication (Basic,
@@ -89,4 +86,5 @@ Description: development files and documentation for libcurl (NSS flavour)
  .
  SSL support is provided by NSS.
  .
- This package was built without librtmp and therefore does not depend on libgcrypt.
+ This package was built without librtmp and ldap and therefore does not
+ depend on libgcrypt.

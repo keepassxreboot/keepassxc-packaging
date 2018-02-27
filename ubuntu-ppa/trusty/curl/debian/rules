@@ -21,7 +21,7 @@ override_dh_auto_configure:
 		--enable-threaded-resolver --with-lber-lib=lber \
 		--with-gssapi=/usr \
 		--with-zsh-functions-dir=/usr/share/zsh/vendor-completions \
-		--without-librtmp \
+		--without-librtmp --disable-ldap --disable-ldaps \
 		--with-ssl \
 		--with-ca-path=/etc/ssl/certs \
 		--with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
