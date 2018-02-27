@@ -1,3 +1,9 @@
+argon2 (20171227-2+really20161029-0ppa1~trusty1) trusty; urgency=medium
+
+  * Downgrade to 20161029 to keep SO version 0
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 27 Feb 2018 23:25:50 +0100
+
 argon2 (20171227-0ppa1~trusty6) trusty; urgency=medium
 
   * Initial package

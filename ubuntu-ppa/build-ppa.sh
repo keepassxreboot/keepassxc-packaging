@@ -241,9 +241,9 @@ build() {
         fi
     fi
 
-    FULL_CL="$(grep -Pzo "^[\d\.~\-a-z]+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
+    FULL_CL="$(grep -Pzo "^[\d\.~\-\+a-z]+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
     CHANGELOG="$(echo "$FULL_CL" | grep -Pzo "(?s)(?<====\n\n).+" | tr -d '\0' | sed 's/^\s*- \?/  * /')"
-    FULL_VERSION="$(echo "$FULL_CL" | grep -Pzo "^[\d\.~\-a-z]+" | tr -d '\0')"
+    FULL_VERSION="$(echo "$FULL_CL" | grep -Pzo "^[\d\.~\-\+a-z]+" | tr -d '\0')"
 
     DATE="$(date -R)"
 
@@ -258,7 +258,14 @@ build() {
 
     cd "./${SERIES}/${PACKAGE}"
 
-    SOURCE=$(grep -oP "(?<=^${PACKAGE} )(https?|ftps?)://.*" ../sources | sed "s/\${VERSION}/${UPSTREAM_VERSION}/g")
+    STRIPPED_UPSTREAM_VERSION=$(echo -n "$UPSTREAM_VERSION" | cut -d"+" -f1)
+    STRIPPED_UPSTREAM_VERSION2=$(echo -n "$UPSTREAM_VERSION" | cut -d"+" -f2)
+    if [ "" != "$STRIPPED_UPSTREAM_VERSION2" ]; then
+        DOWNLOAD_VERSION="$(echo -n "$STRIPPED_UPSTREAM_VERSION2" | sed 's/^really//')"
+    else
+        DOWNLOAD_VERSION="$STRIPPED_UPSTREAM_VERSION"
+    fi
+    SOURCE=$(grep -oP "(?<=^${PACKAGE} )(https?|ftps?)://.*" ../sources | sed "s/\${VERSION}/${DOWNLOAD_VERSION}/g")
     SOURCE_EXT=$(basename "$SOURCE" | grep -oP "(xz|bz2|gz)\$")
     if [ "" == "${SOURCE}" ]; then
         printError "No source URL given for package ${PACKAGE}!"
@@ -278,7 +285,7 @@ build() {
 
     if [ "${PACKAGE}" == "keepassxc" ]; then
         printStatus "Verifying sources..."
-        curl -L "https://github.com/keepassxreboot/keepassxc/releases/download/${UPSTREAM_VERSION}/keepassxc-${UPSTREAM_VERSION}-src.tar.xz.sig" | \
+        curl -L "https://github.com/keepassxreboot/keepassxc/releases/download/${STRIPPED_UPSTREAM_VERSION}/keepassxc-${STRIPPED_UPSTREAM_VERSION}-src.tar.xz.sig" | \
             gpg --verify - "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
 
         if [ $? -ne 0 ]; then
