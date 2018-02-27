@@ -1,1 +1,1 @@
-libcurl3-nss: package-name-doesnt-match-sonames libcurl-nss4
+libcurl3: package-name-doesnt-match-sonames libcurl4

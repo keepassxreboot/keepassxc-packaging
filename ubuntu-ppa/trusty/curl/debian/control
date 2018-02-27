@@ -9,11 +9,10 @@ Build-Depends: debhelper (>= 9),
  autoconf,
  automake,
  ca-certificates,
- groff-base,
  libidn11-dev,
  libkrb5-dev,
  libldap2-dev,
- libnss3-dev,
+ libssl-dev,
  libtool,
  zlib1g-dev
 Build-Conflicts: autoconf2.13, automake1.4
@@ -47,6 +46,20 @@ Description: easy-to-use client-side URL transfer library (NSS flavour)
  .
  This package was built without librtmp and therefore does not depend on libgcrypt.
 
+Package: curl-no-gcrypt
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libcurl-no-gcrypt (= ${binary:Version})
+Multi-Arch: foreign
+Description: command line tool for transferring data with URL syntax
+ curl is a command line tool for transferring data with URL syntax, supporting
+ DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3,
+ POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, TELNET and TFTP.
+ .
+ curl supports SSL certificates, HTTP POST, HTTP PUT, FTP uploading, HTTP form
+ based upload, proxies, cookies, user+password authentication (Basic, Digest,
+ NTLM, Negotiate, kerberos...), file transfer resume, proxy tunneling and a
+ busload of other useful tricks.
+
 Package: libcurl-no-gcrypt-dev
 Architecture: any
 Section: libdevel
@@ -54,7 +67,6 @@ Depends: ${misc:Depends}, libcurl-no-gcrypt (= ${binary:Version})
 Suggests: libidn11-dev,
  libkrb5-dev,
  libldap2-dev,
- libnss3-dev,
  pkg-config,
  zlib1g-dev
 Multi-Arch: same

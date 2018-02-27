@@ -22,15 +22,16 @@ override_dh_auto_configure:
 		--with-gssapi=/usr \
 		--with-zsh-functions-dir=/usr/share/zsh/vendor-completions \
 		--without-librtmp \
-		--with-ca-bundle=/etc/ssl/certs/ca-certificates.crt \
-		--without-ssl --with-nss
+		--with-ssl \
+		--with-ca-path=/etc/ssl/certs \
+		--with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
 
 override_dh_install:
-	dh_install -plibcurl-no-gcrypt -plibcurl-no-gcrypt-dev
+	dh_install -pcurl-no-gcrypt -plibcurl-no-gcrypt -plibcurl-no-gcrypt-dev
 	sed -i "/dependency_libs/ s/'.*'/''/" `find . -name '*.la'`
 
 override_dh_strip:
-	dh_strip -plibcurl-no-gcrypt
+	dh_strip -pcurl-no-gcrypt -plibcurl-no-gcrypt
 	dh_strip --remaining-packages
 
 override_dh_auto_clean:

@@ -1,5 +1,0 @@
-#!/bin/sh
-
-echo /opt/keepassxc-libs/lib/$DEB_HOST_MULTIARCH/libcurl-nss.a /opt/keepassxc-libs/lib/$DEB_HOST_MULTIARCH/libcurl.a
-echo /opt/keepassxc-libs/lib/$DEB_HOST_MULTIARCH/libcurl-nss.la /opt/keepassxc-libs/lib/$DEB_HOST_MULTIARCH/libcurl.la
-echo /opt/keepassxc-libs/lib/$DEB_HOST_MULTIARCH/libcurl-nss.so /opt/keepassxc-libs/lib/$DEB_HOST_MULTIARCH/libcurl.so

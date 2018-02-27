@@ -1,3 +1,9 @@
+curl (7.47.0-0ppa3~trusty1) trusty; urgency=medium
+
+  * Switch to OpenSSL
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 27 Feb 2018 01:08:25 +0100
+
 curl (7.47.0-0ppa2~trusty1) trusty; urgency=medium
 
   * Move to /opt/keepassxc-libs
