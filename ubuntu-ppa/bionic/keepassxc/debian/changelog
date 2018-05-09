@@ -1,3 +1,9 @@
+keepassxc (2.3.3-1ppa1~bionic1) bionic; urgency=medium
+
+  * Fix crash when browser integration is enabled [#1923]
+
+ -- KeePassXC Team <team@keepassxc.org>  Wed, 09 May 2018 19:57:41 +0200
+
 keepassxc (2.3.2-1ppa1~bionic1) bionic; urgency=medium
 
   * Enable high entropy ASLR on Windows [#1747]

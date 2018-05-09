@@ -1,3 +1,9 @@
+keepassxc (2.3.3-0ppa1~xenial1) xenial; urgency=medium
+
+  * Fix crash when browser integration is enabled [#1923]
+
+ -- KeePassXC Team <team@keepassxc.org>  Wed, 09 May 2018 19:56:51 +0200
+
 keepassxc (2.3.2-0ppa1~xenial1) xenial; urgency=medium
 
   * Enable high entropy ASLR on Windows [#1747]
