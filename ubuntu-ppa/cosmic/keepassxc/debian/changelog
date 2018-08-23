@@ -1,10 +1,27 @@
-keepassxc (2.3.3-0ppa1~artful1) artful; urgency=medium
+keepassxc (2.3.4-1ppa1~cosmic1) cosmic; urgency=medium
+
+  * Show all URL schemes in entry view [#1768]
+  * Disable merge when database is locked [#1975]
+  * Fix intermittent crashes with favorite icon downloads [#1980]
+  * Provide potential crash warning to Qt 5.5.x users [#2211]
+  * Disable apply button when creating new entry/group to prevent data loss [#2204]
+  * Allow for 12 hour timeout to lock idle database [#2173]
+  * Multiple SSH Agent fixes [#1981, #2117]
+  * Multiple Browser Integration enhancements [#1993, #2003, #2055, #2116, #2159, #2174, #2185]
+  * Fix browser proxy application not closing properly [#2142]
+  * Add real names and Patreon supporters to about dialog [#2214]
+  * Add settings button to toolbar, Donate button, and Report a Bug button to help menu [#2214]
+  * Enhancements to release-tool to appsign intermediate build products [#2101]
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 23 Aug 2018 19:42:26 +0200
+
+keepassxc (2.3.3-1ppa1~bionic1) bionic; urgency=medium
 
   * Fix crash when browser integration is enabled [#1923]
 
- -- KeePassXC Team <team@keepassxc.org>  Wed, 09 May 2018 19:57:10 +0200
+ -- KeePassXC Team <team@keepassxc.org>  Wed, 09 May 2018 19:57:41 +0200
 
-keepassxc (2.3.2-0ppa1~artful1) artful; urgency=medium
+keepassxc (2.3.2-1ppa1~bionic1) bionic; urgency=medium
 
   * Enable high entropy ASLR on Windows [#1747]
   * Enhance favicon fetching [#1786]
@@ -19,9 +36,15 @@ keepassxc (2.3.2-0ppa1~artful1) artful; urgency=medium
   * SSH Agent: Parse aes-256-cbc/ctr keys [#1682]
   * SSH Agent: Enhance usability and functionality [#1677, #1679, #1681, #1787]
 
- -- KeePassXC Team <team@keepassxc.org>  Tue, 08 May 2018 19:41:44 +0200
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 08 May 2018 19:41:12 +0200
 
-keepassxc (2.3.1-0ppa1~artful1) artful; urgency=medium
+keepassxc (2.3.1-1ppa1~bionic2) bionic; urgency=medium
+
+  * Rebuild to update dependencies
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 10 Mar 2018 18:54:38 +0100
+
+keepassxc (2.3.1-1ppa1~bionic1) bionic; urgency=medium
 
   * Fix unnecessary automatic upgrade to KDBX 4.0 and prevent challenge-response key being stripped [#1568]
   * Abort saving and show an error message when challenge-response fails [#1659]
@@ -43,9 +66,9 @@ keepassxc (2.3.1-0ppa1~artful1) artful; urgency=medium
   * Fix inconsistent toolbar icon sizes and provide higher-quality icons [#1616]
   * Improve preview panel geometry [#1609]
 
- -- KeePassXC Team <team@keepassxc.org>  Tue, 06 Mar 2018 23:30:10 +0100
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 06 Mar 2018 23:30:35 +0100
 
-keepassxc (2.3.0-0ppa1~artful1) artful; urgency=medium
+keepassxc (2.3.0-1ppa1~bionic1) bionic; urgency=medium
 
   * Add support for KDBX 4.0, Argon2 and ChaCha20 [#148, #1179, #1230, #1494]
   * Add SSH Agent feature [#1098, #1450, #1463]
@@ -96,28 +119,10 @@ keepassxc (2.3.0-0ppa1~artful1) artful; urgency=medium
   * Use system's zxcvbn library if available [#701]
   * Implement various i18n improvements [#690, #875, #1436]
 
- -- KeePassXC Team <team@keepassxc.org>  Wed, 28 Feb 2018 00:03:11 +0100
+ -- KeePassXC Team <team@keepassxc.org>  Wed, 28 Feb 2018 00:03:38 +0100
 
-keepassxc (2.2.4-0ppa1~artful1) artful; urgency=medium
+keepassxc (2.2.4-1ppa1~bionic1) bionic; urgency=medium
 
-  * New upstream release
+  * Initial Bionic release
 
- -- KeePassXC Team <team@keepassxc.org>  Thu, 14 Dec 2017 09:45:56 +0100
-
-keepassxc (2.2.2-1~artful2) artful; urgency=medium
-
-  * Fixed entries with empty URLs being reported to KeePassHTTP clients [#1031]
-  * Fixed YubiKey detection and enabled CLI tool for AppImage binary [#1100]
-  * Added AppStream description [#1082]
-  * Improved TOTP compatibility and added new Base32 implementation [#1069]
-  * Fixed error handling when processing invalid cipher stream [#1099]
-  * Fixed double warning display when opening a database [#1037]
-  * Fixed unlocking databases with --pw-stdin [#1087]
-  * Added ability to override QT_PLUGIN_PATH environment variable for AppImages [#1079]
-  * Fixed transform seed not being regenerated when saving the database [#1068]
-  * Fixed only one YubiKey slot being polled [#1048]
-  * Corrected an issue with entry icons while merging [#1008]
-  * Corrected desktop and tray icons in Snap package [#1030]
-  * Fixed screen lock and Google fallback settings [#1029]
-
- -- KeePassXC Team <team@keepassxc.org>  Wed, 25 Oct 2017 04:13:13 +0200
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 03:45:22 +0100

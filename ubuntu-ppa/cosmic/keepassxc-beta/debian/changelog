@@ -1,0 +1,11 @@
+keepassxc-beta (2.3.0-beta1-0ppa2~bionic1) bionic; urgency=medium
+
+  * Build with debug symbols
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 21:14:42 +0100
+
+keepassxc-beta (2.3.0-beta1-0ppa1~bionic2) bionic; urgency=medium
+
+  * First beta release
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Feb 2018 04:12:12 +0100
