@@ -22,6 +22,7 @@ override_dh_auto_configure:
 		-DWITH_TESTS=ON \
 		-DWITH_GUI_TESTS=OFF  \
 		-DWITH_XC_ALL=ON \
+		-DWITH_XC_KEESHARE_SECURE=ON \
 		-DCMAKE_CXX_FLAGS="-I$(LIB_PREFIX)/include" \
 		-DCMAKE_EXE_LINKER_FLAGS="-L$(LIB_PREFIX)/lib/$(DEB_HOST_MULTIARCH) \
 			-Wl,-rpath,$(LIB_PREFIX)/lib/$(DEB_HOST_MULTIARCH)" \
