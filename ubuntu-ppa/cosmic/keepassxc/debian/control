@@ -2,21 +2,28 @@ Source: keepassxc
 Section: utils
 Priority: optional
 Maintainer: KeePassXC Team <team@keepassxc.org>
-Build-Depends: debhelper (>= 9),
-               cmake (>= 3.1),
-               libgcrypt20-dev (>= 1.7),
-               qtbase5-dev (>= 5.2),
-               qttools5-dev (>= 5.2),
-               qttools5-dev-tools (>= 5.2),
-               libqt5x11extras5-dev,
-               libquazip5-dev,
-               zlib1g-dev,
+Build-Depends: cmake,
+               debhelper (>= 9),
                libargon2-0-dev,
-               libsodium-dev (>= 1.0.13),
-               libxi-dev,
+               libcurl4-gnutls-dev,
+               libgcrypt20-dev,
+               libqt5x11extras5-dev,
+               libsodium-dev,
                libxtst-dev,
-               libyubikey-dev (>= 1.13),
-               libykpers-1-dev (>= 1.18.0)
+               libykpers-1-dev,
+               libyubikey-dev,
+               libzxcvbn-dev,
+               qtbase5-dev,
+               qttools5-dev,
+               qttools5-dev-tools,
+               libqt5svg5-dev,
+               libqt5x11extras5-dev,
+               libqrencode-dev,
+               libquazip5-dev,
+               libquazip5-headers,
+               xauth,
+               xvfb,
+               zlib1g-dev
 Standards-Version: 3.9.8
 Homepage: https://keepassxc.org/
 Vcs-Git: https://github.com/keepassxreboot/keepassxc.git

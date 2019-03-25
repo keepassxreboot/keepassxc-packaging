@@ -1,4 +1,4 @@
-keepassxc (2.4.0-0ppa1~trusty1) trusty; urgency=medium
+keepassxc (2.4.0-0ppa1~trusty3) trusty; urgency=medium
 
   * New Database Wizard [#1952]
   * Advanced Search [#1797]
@@ -29,7 +29,7 @@ keepassxc (2.4.0-0ppa1~trusty1) trusty; urgency=medium
   * Browser Integration Enhancements [#1497, #2253, #1904, #2232, #1850, #2218, #2391, #2396, #2542, #2622, #2637, #2790]
   * Overall Code Improvements [#2316, #2284, #2351, #2402, #2410, #2419, #2422, #2443, #2491, #2506, #2610, #2667, #2709, #2731]
 
- -- KeePassXC Team <team@keepassxc.org>  Mon, 25 Mar 2019 14:07:52 +0100
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 25 Mar 2019 14:33:45 +0100
 
 keepassxc (2.3.4-0ppa1~trusty1) trusty; urgency=medium
 
