@@ -5,7 +5,7 @@ Maintainer: KeePassXC Team <team@keepassxc.org>
 Build-Depends: debhelper (>= 9),
                cmake3 (>= 3.1),
                libgcrypt20-18-dev (>= 1.8),
-               qtbase5-dev (>= 5.5),
+               qtbase5-dev (>= 5.2),
                libqt5svg5-dev,
                libqt5x11extras5-dev,
                qttools5-dev,
