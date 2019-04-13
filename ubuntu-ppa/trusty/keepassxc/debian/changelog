@@ -26,7 +26,7 @@ keepassxc (2.4.1-1ppa1~trusty2) trusty; urgency=0
   * Add .gitrev output to tarball for third-party builds [#2970]↲
   * Add WITH_XC_UPDATECHECK compile flag to toggle the update checker [#2968]
 
- -- KeePassXC Team <team@keepassxc.org>  Sat, 13 Apr 2019 01:43:18 +0200
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 13 Apr 2019 02:04:55 +0200
 
 keepassxc (2.4.0-0ppa1~trusty3) trusty; urgency=medium
 
