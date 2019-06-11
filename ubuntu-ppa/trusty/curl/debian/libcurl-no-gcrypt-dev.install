@@ -1,0 +1,6 @@
+opt/keepassxc-libs/bin/curl-config
+opt/keepassxc-libs/lib/*/libcurl.a
+opt/keepassxc-libs/lib/*/libcurl.la
+opt/keepassxc-libs/lib/*/libcurl.so
+opt/keepassxc-libs/lib/*/pkgconfig/libcurl.pc
+opt/keepassxc-libs/include
