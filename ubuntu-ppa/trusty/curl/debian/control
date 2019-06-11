@@ -8,11 +8,15 @@ Uploaders: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>,
 Build-Depends: debhelper (>= 9),
  autoconf,
  automake,
+ groff-base,
  ca-certificates,
  libidn11-dev,
  libkrb5-dev,
  libssl-dev,
  libtool,
+ python,
+ groff-base,
+ openssh-server,
  zlib1g-dev
 Build-Conflicts: autoconf2.13, automake1.4
 Standards-Version: 3.9.6

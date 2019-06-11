@@ -47,7 +47,3 @@ CVE-2018-16890.patch
 CVE-2019-3822.patch
 CVE-2019-3823.patch
 CVE-2019-5436.patch
-
-# do not add patches below
-90_gnutls.patch
-99_nss.patch
