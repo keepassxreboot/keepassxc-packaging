@@ -3,3 +3,5 @@
 25_norevisionfromgit.diff
 30_Fix-secmem-test-for-machine-with-larger-page.patch
 31_tests-Add-HAVE_MMAP-check-for-MinGW.patch
+disable_fips_enabled_read.patch
+CVE-2018-0495.patch

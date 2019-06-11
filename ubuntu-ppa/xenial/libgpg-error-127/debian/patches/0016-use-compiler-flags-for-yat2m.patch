@@ -1,0 +1,28 @@
+From: Daniel Kahn Gillmor <dkg@fifthhorseman.net>
+Date: Mon, 5 Feb 2018 18:11:34 -0500
+Subject: use compiler flags for yat2m
+
+Note that we leave the flags alone when cross-compiling, since yat2m
+isn't intended to be installed in that case.
+---
+ doc/Makefile.am | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/doc/Makefile.am b/doc/Makefile.am
+index d052283..b82d7bf 100644
+--- a/doc/Makefile.am
++++ b/doc/Makefile.am
+@@ -35,8 +35,13 @@ myman_pages   = gpg-error-config.1
+ man_MANS = $(myman_pages)
+ 
+ yat2m: yat2m.c
++if CROSS_COMPILING
+ 	$(CC_FOR_BUILD) -DPACKAGE_VERSION="\"$(PACKAGE_VERSION)\"" \
+                 -o $@ $(srcdir)/yat2m.c
++else
++	$(CC_FOR_BUILD) $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) -DPACKAGE_VERSION="\"$(PACKAGE_VERSION)\"" \
++                -o $@ $(srcdir)/yat2m.c
++endif
+ 
+ 
+ yat2m-stamp: $(myman_sources)

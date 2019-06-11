@@ -1,3 +1,9 @@
+libgpg-error-127 (1.27-1ppa3~xenial1) xenial; urgency=medium
+
+  * Apply latest Ubuntu patches
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 11 Jun 2019 21:26:57 +0200
+
 libgpg-error-127 (1.27-0ppa2~xenial1) xenial; urgency=medium
 
   * Move to /opt/keepassxc-libs

@@ -10,3 +10,7 @@
 0010-doc-Typo-fix.patch
 0011-yat2m-Take-care-of-SOURCE_DATE_EPOCH.patch
 0012-syscfg-Add-lock-obj-pub-file-for-ia64-unknown-linux-.patch
+0013-yat2m-Use-version-from-libgpg-error.patch
+0014-yat2m-Change-bug-report-address.patch
+0015-build-Install-yat2m.patch
+0016-use-compiler-flags-for-yat2m.patch

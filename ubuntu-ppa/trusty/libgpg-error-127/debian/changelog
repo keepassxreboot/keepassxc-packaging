@@ -1,3 +1,9 @@
+libgpg-error-127 (1.27-13~trusty1) trusty; urgency=medium
+
+  * Apply latest Ubuntu patches
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 11 Jun 2019 21:15:54 +0200
+
 libgpg-error-127 (1.27-1ppa2~trusty1) trusty; urgency=medium
 
   * Move to /opt/keepassxc-libs

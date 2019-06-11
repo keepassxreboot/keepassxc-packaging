@@ -1,0 +1,31 @@
+From: Werner Koch <wk@gnupg.org>
+Date: Wed, 5 Jul 2017 10:18:53 +0200
+Subject: yat2m: Change bug report address.
+
+--
+
+(cherry picked from commit 9de27cbabed8062bfb4eafffba9ff38108f5377e)
+---
+ doc/yat2m.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/doc/yat2m.c b/doc/yat2m.c
+index 27db491..8c6319c 100644
+--- a/doc/yat2m.c
++++ b/doc/yat2m.c
+@@ -1521,13 +1521,13 @@ main (int argc, char **argv)
+                 "  -I DIR           also search in include DIR\n"
+                 "  -D gpgone        the only usable define\n\n"
+                 "With no FILE, or when FILE is -, read standard input.\n\n"
+-                "Report bugs to <bugs@g10code.com>.");
++                "Report bugs to <https://bugs.gnupg.org>.");
+           exit (0);
+         }
+       else if (!strcmp (*argv, "--version"))
+         {
+           puts (PGM " " VERSION "\n"
+-               "Copyright (C) 2005 g10 Code GmbH\n"
++               "Copyright (C) 2005, 2017 g10 Code GmbH\n"
+                "This program comes with ABSOLUTELY NO WARRANTY.\n"
+                "This is free software, and you are welcome to redistribute it\n"
+                 "under certain conditions. See the file COPYING for details.");
