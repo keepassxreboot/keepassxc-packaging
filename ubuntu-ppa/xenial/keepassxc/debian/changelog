@@ -1,3 +1,12 @@
+keepassxc (2.4.3-0ppa1~xenial1) xenial; urgency=medium
+
+  * Fix library loading issues in the Snap and macOS releases [#3247]
+  * Fix various keyboard navigation issues [#3248]
+  * Fix main window toggling regression when clicking the tray icon on KDE [#3258]
+  * Add documentation for keyboard shortcuts to source code distribution [#3215]
+
+ -- KeePassXC Team <team@keepassxc.org>  Wed, 12 Jun 2019 02:17:41 +0200
+
 keepassxc (2.4.2-0ppa1~xenial1) xenial; urgency=medium
 
   * Improve resilience against memory attacks - overwrite memory before free [#3020]
