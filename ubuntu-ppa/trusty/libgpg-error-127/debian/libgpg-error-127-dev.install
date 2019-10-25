@@ -1,5 +1,0 @@
-opt/keepassxc-libs/bin/*
-opt/keepassxc-libs/include/*
-opt/keepassxc-libs/lib/*/libgpg-error.a
-opt/keepassxc-libs/lib/*/libgpg-error.so
-opt/keepassxc-libs/lib/*/libgpg-error.la

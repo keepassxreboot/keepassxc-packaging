@@ -1,1 +1,0 @@
-diff-ignore=build-and-test.sh|.travis.yml|.gitignore|.gitmodules|contrib/draft-josefsson-yubikey-config.xml|ykpers4mac.mk|tests/ykpers-args.h|tests/ykpers-args.c

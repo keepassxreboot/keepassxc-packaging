@@ -1,8 +1,0 @@
-#!/usr/bin/make -f
-# -*- makefile -*-
-
-%:
-	dh $@ --parallel --builddirectory=build --with autoreconf
-
-override_dh_auto_configure:
-	dh_auto_configure -- --disable-silent-rules
