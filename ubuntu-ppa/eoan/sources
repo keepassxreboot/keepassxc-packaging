@@ -1,0 +1,2 @@
+keepassxc https://github.com/keepassxreboot/keepassxc/releases/download/${VERSION}/keepassxc-${VERSION}-src.tar.xz
+keepassxc-beta https://github.com/keepassxreboot/keepassxc/releases/download/${VERSION}/keepassxc-${VERSION}-src.tar.xz
