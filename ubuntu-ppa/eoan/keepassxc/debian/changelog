@@ -1,0 +1,14 @@
+keepassxc (2.5.0-1ppa1~eoan1) eoan; urgency=medium
+
+  * New release 2.5.0
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 26 Oct 2019 22:05:22 +0200
+
+keepassxc (2.4.3-1ppa2~eoan1) eoan; urgency=medium
+
+  * Fix library loading issues in the Snap and macOS releases [#3247]
+  * Fix various keyboard navigation issues [#3248]
+  * Fix main window toggling regression when clicking the tray icon on KDE [#3258]
+  * Add documentation for keyboard shortcuts to source code distribution [#3215]
+
+ -- KeePassXC Team <team@keepassxc.org>  Fri, 25 Oct 2019 19:34:20 +0200

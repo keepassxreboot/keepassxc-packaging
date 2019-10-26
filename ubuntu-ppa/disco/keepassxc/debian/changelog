@@ -1,3 +1,9 @@
+keepassxc (2.5.0-1ppa1~disco1) disco; urgency=medium
+
+  * New release 2.5.0
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 26 Oct 2019 22:04:59 +0200
+
 keepassxc (2.4.3-1ppa1~disco1) disco; urgency=medium
 
   * Fix library loading issues in the Snap and macOS releases [#3247]

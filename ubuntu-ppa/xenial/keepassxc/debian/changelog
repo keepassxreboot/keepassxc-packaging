@@ -1,3 +1,9 @@
+keepassxc (2.5.0-0ppa1~xenial1) xenial; urgency=medium
+
+  * New release 2.5.0
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 26 Oct 2019 22:03:50 +0200
+
 keepassxc (2.4.3-0ppa1~xenial1) xenial; urgency=medium
 
   * Fix library loading issues in the Snap and macOS releases [#3247]
