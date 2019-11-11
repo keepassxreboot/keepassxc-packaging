@@ -1,3 +1,9 @@
+keepassxc (2.5.1-1ppa1~disco1) disco; urgency=medium
+
+  * Upstream update to 2.5.1.
+
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 11 Nov 2019 21:23:16 +0100
+
 keepassxc (2.5.0-1ppa1~disco1) disco; urgency=medium
 
   * New release 2.5.0

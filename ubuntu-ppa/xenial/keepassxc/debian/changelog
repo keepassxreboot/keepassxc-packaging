@@ -1,3 +1,9 @@
+keepassxc (2.5.1-0ppa1~xenial1) xenial; urgency=medium
+
+  * Upstream update to 2.5.1.
+
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 11 Nov 2019 21:22:14 +0100
+
 keepassxc (2.5.0-0ppa1~xenial1) xenial; urgency=medium
 
   * New release 2.5.0
