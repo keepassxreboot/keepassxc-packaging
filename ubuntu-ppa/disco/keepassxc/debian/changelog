@@ -1,3 +1,9 @@
+keepassxc (2.5.2-1ppa1~disco1) disco; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 04 Jan 2020 15:43:57 +0100
+
 keepassxc (2.5.1-1ppa1~disco1) disco; urgency=medium
 
   * Upstream update to 2.5.1.
