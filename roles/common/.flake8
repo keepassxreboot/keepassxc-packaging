@@ -1,0 +1,6 @@
+[flake8]
+# E501 (max-line-length) I don't think this should be completely disabled but setting it to something more reasonable is fine IMHO
+exclude =
+    .git,
+    __pycache__
+max-line-length = 100

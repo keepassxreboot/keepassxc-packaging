@@ -2,3 +2,12 @@
 
 .idea
 .vagrant
+.molecule
+.cache
+__pycache__
+.ansible-retry
+
+
+ansible.cfg
+.DS_Store
+*.retry

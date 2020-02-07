@@ -1,0 +1,32 @@
+---
+# Tasks needed for all of Debian
+
+- name: Install common editors
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ common_editor_pkgs }}"
+  become: true
+
+- name: Install common languages
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ common_lang_pkgs }}"
+  become: true
+
+- name: Install common shells
+  apt:
+    allow_unauthenticated: no
+    install_recommends: no
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ common_shell_pkgs }}"
+  become: true

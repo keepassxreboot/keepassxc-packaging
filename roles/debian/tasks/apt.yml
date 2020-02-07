@@ -1,0 +1,10 @@
+---
+# Common apt tasks
+# - updating
+# - setting the sources
+
+- name: Update all packages to the latest version
+  apt:
+    update_cache: yes
+    upgrade: dist
+  become: true

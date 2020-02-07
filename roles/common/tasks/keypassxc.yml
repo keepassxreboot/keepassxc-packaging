@@ -1,0 +1,21 @@
+---
+
+- name: download keypassxc
+  get_url:
+    url: https://github.com/keepassxreboot/keepassxc/archive/{{ item.value.package }}
+    dest: /home/{{ build_user }}/{{ project_root }}/keepassxc_{{ item.key }}.tar.gz
+    checksum: sha256:{{ item.value.sha256 }}
+    group: "{{ build_group }}"
+    owner: "{{ build_user }}"
+  become: true
+  become_user: "{{ build_user }}"
+  with_dict: "{{ versions }}"
+
+- name: unpack the archive
+  unarchive:
+    src: /home/{{ build_user }}/{{ project_root }}/keepassxc_{{ item.key }}.tar.gz
+    dest: /home/{{ build_user }}/{{ project_root }}
+    remote_src: yes
+  become: true
+  become_user: "{{ build_user }}"
+  with_dict: "{{ versions }}"
