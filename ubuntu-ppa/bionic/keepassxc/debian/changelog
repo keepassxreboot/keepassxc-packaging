@@ -1,3 +1,15 @@
+keepassxc (2.5.4-1ppa1~bionic1) bionic; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 09 Apr 2020 19:19:33 +0200
+
+keepassxc (2.5.3-1ppa1~bionic1) bionic; urgency=medium
+
+  * Upstream update.
+
+ -- KeePassXC Team <team@keepassxc.org>  Sun, 19 Jan 2020 22:24:26 +0100
+
 keepassxc (2.5.2-1ppa1~bionic1) bionic; urgency=medium
 
   * Upstream update

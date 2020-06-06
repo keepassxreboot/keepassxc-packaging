@@ -1,3 +1,15 @@
+keepassxc (2.5.4-0ppa1~xenial1) xenial; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 09 Apr 2020 19:18:37 +0200
+
+keepassxc (2.5.3-0ppa1~xenial1) xenial; urgency=medium
+
+  * Upstream update.
+
+ -- KeePassXC Team <team@keepassxc.org>  Sun, 19 Jan 2020 22:25:56 +0100
+
 keepassxc (2.5.2-0ppa1~xenial1) xenial; urgency=medium
 
   * Upstream update
