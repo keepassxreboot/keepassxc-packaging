@@ -1,5 +1,5 @@
-keepassxc (2.5.4-1ppa1~groovy1) groovy; urgency=medium
+keepassxc (2.5.4-12~groovy1) groovy; urgency=medium
 
   * Initial Groovy package.
 
- -- KeePassXC Team <team@keepassxc.org>  Sat, 06 Jun 2020 20:34:25 +0200
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 06 Jun 2020 21:06:07 +0200
