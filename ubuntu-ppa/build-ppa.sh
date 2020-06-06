@@ -96,9 +96,9 @@ EOF
 
 # Usage: runDockerCmd CMD TESTCMD DEPENDENCIES...
 runDockerCmd() {
-    if [ -n "$DOCKER_IMG" ]; then
+    if [ -z "$DOCKER_IMG" ]; then
 	command -v "$2" > /dev/null || (sudo apt-get -y update && sudo apt-get -y --no-install-recommends install "$3")
-	$1
+	bash -c "$1"
 	return
     fi
 
