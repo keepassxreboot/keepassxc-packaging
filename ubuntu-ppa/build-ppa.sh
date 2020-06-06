@@ -27,6 +27,9 @@ PACKAGE="keepassxc"
 URGENCY="medium"
 GPG_KEY="BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2"
 
+export DEBEMAIL=team@keepassxc.org
+export DEBFULLNAME=KeePassXC Team
+
 printStatus() {
     printf "\e[1m\e[34m${1}\e[0m\n"
 }
@@ -64,11 +67,11 @@ Build source packages which can be uploaded as PPA to Launchpad
 Options:
   -s, --series           Ubuntu release series to build (required)
   -p, --package          Package name to build (required, default: '${PACKAGE}')
-  -d, --docker-img       Ubuntu Docker image to use (required)
   -V, --upstream-version Upstream package version (required)
   -x, --ubuntu-version   Ubuntu package version (required, default: '${UBUNTU_VERSION}')
   -v, --ppa-version      PPA package version (default: '${PPA_VERSION}')
   -r, --series-version   PPA series package version (default: '${SERIES_VERSION}')
+  -d, --docker-img       Ubuntu Docker image to use
   -c, --changelog        CHANGELOG file
   -u, --urgency          Package urgency (default: '${URGENCY}')
   -k, --gpg-key          GPG key used to sign package (default: '${GPG_KEY}')
@@ -93,15 +96,22 @@ EOF
 
 # Usage: runDockerCmd CMD TESTCMD DEPENDENCIES...
 runDockerCmd() {
+    if [ -n "$DOCKER_IMG" ]; then
+	command -v "$2" > /dev/null || (sudo apt-get -y update && sudo apt-get -y --no-install-recommends install "$3")
+	$1
+	return
+    fi
+
     local tmpuser="tmpuser${RANDOM}"
     docker run --rm \
-            -e "DEBEMAIL=team@keepassxc.org" -e "DEBFULLNAME=KeePassXC Team" \
+            -e "DEBEMAIL=$DEBEMAIL" -e "DEBFULLNAME=$DEBFULLNAME" \
             -v "$(realpath ..):/debuild:rw" \
             "$DOCKER_IMG" \
             bash -c "command -v ${2} > /dev/null || \
-                     (apt-get --yes update && apt-get --yes --no-install-recommends install ${3}); \
+                     (apt-get -y update && apt-get -y --no-install-recommends install ${3}); \
                      useradd -u $(id -u) ${tmpuser} && cd /debuild/${PACKAGE} && \
                      su ${tmpuser} -c '${1}'"
+
 }
 
 # -----------------------------------------------------------------------
@@ -135,7 +145,7 @@ upload() {
         shift
     done
 
-    if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ] || [ "$DOCKER_IMG" == "" ]; then
+    if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ]; then
         printUsage upload >&2
         exit 1
     fi
@@ -213,7 +223,7 @@ build() {
         shift
     done
 
-    if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ] || [ "$DOCKER_IMG" == "" ] || \
+    if [ "$SERIES" == "" ] || [ "$PACKAGE" == "" ] || \
        [ "$UPSTREAM_VERSION" == "" ] || [ "$UBUNTU_VERSION" == "" ]; then
         printUsage build >&2
         exit 1
@@ -275,7 +285,7 @@ build() {
     if [ ! -f "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.xz" ]; then
         printStatus "Downloading sources for version ${PACKAGE}-${UPSTREAM_VERSION}..."
         wget "${SOURCE}" -O "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
-        if [ $? -ne 0 ]; then
+	if [ $? -ne 0 ]; then
             printError "Download failed! Process aborted."
             exit 1
         fi
