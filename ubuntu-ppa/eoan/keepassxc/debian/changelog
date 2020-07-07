@@ -1,3 +1,9 @@
+keepassxc (2.6.0-1ppa2~eoan1) eoan; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 07 Jul 2020 21:42:48 +0200
+
 keepassxc (2.5.4-1ppa1~eoan1) eoan; urgency=medium
 
   * Upstream update

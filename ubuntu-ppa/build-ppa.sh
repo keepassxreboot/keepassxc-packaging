@@ -106,6 +106,7 @@ runDockerCmd() {
     docker run --rm \
             -e "DEBEMAIL=$DEBEMAIL" -e "DEBFULLNAME=$DEBFULLNAME" \
             -v "$(realpath ..):/debuild:rw" \
+            --net=host \
             "$DOCKER_IMG" \
             bash -c "command -v ${2} > /dev/null || \
                      (apt-get -y update && apt-get -y --no-install-recommends install ${3}); \
