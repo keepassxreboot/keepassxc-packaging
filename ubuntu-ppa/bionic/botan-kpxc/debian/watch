@@ -1,0 +1,8 @@
+version=4
+# GitHub
+opts=pgpsigurlmangle=s/$/.asc/,uversionmangle=s/^(\d)_?(\d)_?(\d)$/$1.$2.$3/;s/^(\d)_?(\d)$/$1.$2/ \
+https://github.com/randombit/botan/tags .*/(\d[\d\.]+)\.(?:tar\.xz|txz|tar\.bz2|tbz2|tar\.gz|tgz|zip)
+
+# Upstream
+opts=pgpsigurlmangle=s/$/.asc/ \
+https://botan.randombit.net/releases/ Botan-(\d[\d\.]+)\.(?:tar\.xz|txz|tar\.bz2|tbz2|tar\.gz|tgz|zip)

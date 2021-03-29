@@ -1,0 +1,4 @@
+opt/keepassxc-libs/include/
+opt/keepassxc-libs/lib/*/libbotan-2.a
+opt/keepassxc-libs/lib/*/libbotan-2.so
+opt/keepassxc-libs/lib/*/pkgconfig/

@@ -1,0 +1,5 @@
+botan-kpxc (2.12.1-1ppa5~xenial1) xenial; urgency=medium
+
+  * Initial package.
+
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 29 Mar 2021 17:35:44 +0200

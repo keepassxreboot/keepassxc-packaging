@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/architecture.mk
+
+DEVPKG = $(CURDIR)/debian/libbotan-kpxc-2-dev
+
+override_dh_clean:
+	dh_clean
+	rm -f $(CURDIR)/Certificate\ Store*.db
+
+override_dh_auto_configure:
+	$(CURDIR)/configure.py \
+		--prefix=/opt/keepassxc-libs/ \
+		--libdir=/opt/keepassxc-libs/lib/$(DEB_HOST_MULTIARCH) \
+		$(if $(filter $(DEB_HOST_ARCH), armel armhf),--disable-neon) \
+		--with-tpm \
+		--with-zlib \
+		--with-python-versions=3 \
+		$(if $(filter $(DEB_HOST_ARCH), armhf),--cpu=armv7) \
+		$(if $(filter $(DEB_HOST_ARCH), hurd-i386),--cpu=x86_32) \
+		--distribution-info=$(shell dpkg-vendor --query Vendor)
+
+override_dh_auto_test:
+	LD_LIBRARY_PATH=. $(CURDIR)/botan-test
+
+override_dh_install-arch:
+	dh_install -a
+	sed -i -e 's/ -f\(debug\|file\)-prefix-map=[^ ]*=\. / /' $(DEVPKG)/opt/keepassxc-libs/include/botan-2/botan/build.h
+
+override_dh_install-indep:
+	dh_install -i
+
+override_dh_missing:
+	dh_missing --list-missing
+
+%:
+	dh $@
+
+.PHONY: override_dh_clean override_dh_auto_configure override_dh_auto_test \
+	override_dh_install-arch override_dh_install-indep \
+	override_dh_missing
