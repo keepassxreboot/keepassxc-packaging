@@ -1,3 +1,9 @@
+keepassxc (2.6.4-1ppa1~focal1) focal; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Sun, 31 Jan 2021 23:45:08 +0100
+
 keepassxc (2.6.3-1ppa2~focal1) focal; urgency=medium
 
   * Upstream update
