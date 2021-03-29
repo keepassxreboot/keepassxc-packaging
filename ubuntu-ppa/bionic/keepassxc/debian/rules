@@ -10,6 +10,8 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 export LC_ALL = C.UTF-8
 
+export LIB_PREFIX=/opt/keepassxc-libs
+
 %:
 	dh $@ --parallel
 
@@ -19,7 +21,13 @@ override_dh_auto_configure:
 		-DKEEPASSXC_BUILD_TYPE=Release \
 		-DWITH_TESTS=ON \
 		-DWITH_GUI_TESTS=OFF  \
-		-DWITH_XC_ALL=ON
+		-DWITH_XC_ALL=ON \
+		-DWITH_XC_KEESHARE_SECURE=ON \
+		-DCMAKE_CXX_FLAGS="-I$(LIB_PREFIX)/include" \
+		-DCMAKE_EXE_LINKER_FLAGS="-L$(LIB_PREFIX)/lib/$(DEB_HOST_MULTIARCH) \
+			-Wl,-rpath,$(LIB_PREFIX)/lib/$(DEB_HOST_MULTIARCH)" \
+		-DCMAKE_INCLUDE_PATH="$(LIB_PREFIX)/include" \
+		-DCMAKE_LIBRARY_PATH="$(LIB_PREFIX)/lib/$(DEB_HOST_MULTIARCH)"
 
 override_dh_auto_test:
 	dh_auto_test -- \
