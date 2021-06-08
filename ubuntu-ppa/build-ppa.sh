@@ -296,7 +296,7 @@ build() {
 
     if [ "${PACKAGE}" == "keepassxc" ]; then
         printStatus "Verifying sources..."
-        curl -L "https://github.com/keepassxreboot/keepassxc/releases/download/${STRIPPED_UPSTREAM_VERSION}/keepassxc-${STRIPPED_UPSTREAM_VERSION}-src.tar.xz.sig" | \
+        curl -fL "https://github.com/keepassxreboot/keepassxc/releases/download/${STRIPPED_UPSTREAM_VERSION}/keepassxc-${STRIPPED_UPSTREAM_VERSION}-src.tar.xz.sig" | \
             gpg --verify - "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
 
         if [ $? -ne 0 ]; then
