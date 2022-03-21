@@ -1,4 +1,0 @@
-debian/tmp/opt/keepassxc-libs/include/*
-debian/tmp/opt/keepassxc-libs/lib/*/lib*.a
-debian/tmp/opt/keepassxc-libs/lib/*/lib*.so
-debian/tmp/opt/keepassxc-libs/bin/*

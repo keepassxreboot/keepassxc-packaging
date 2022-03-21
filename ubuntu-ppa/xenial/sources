@@ -1,7 +1,0 @@
-keepassxc https://github.com/keepassxreboot/keepassxc/releases/download/${VERSION}/keepassxc-${VERSION}-src.tar.xz
-keepassxc-beta https://github.com/keepassxreboot/keepassxc/releases/download/${VERSION}/keepassxc-${VERSION}-src.tar.xz
-libgcrypt20-18 ftp://ftp.gnupg.org/gcrypt/libgcrypt/libgcrypt-${VERSION}.tar.bz2
-libgpg-error-127 ftp://ftp.gnupg.org/gcrypt/libgpg-error/libgpg-error-${VERSION}.tar.bz2
-libsodium https://launchpad.net/ubuntu/+archive/primary/+files/libsodium_${VERSION}.orig.tar.gz
-argon2 http://archive.ubuntu.com/ubuntu/pool/universe/a/argon2/argon2_0~${VERSION}.orig.tar.gz
-botan-kpxc https://botan.randombit.net/releases/Botan-${VERSION}.tar.xz

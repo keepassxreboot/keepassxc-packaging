@@ -1,3 +1,0 @@
-version=3
-opts="filenamemangle=s/^.*\/(.*)/libsodium-$1/" \
-	https://github.com/jedisct1/libsodium/tags .*/(\d[\d\.]*)\.tar\.gz
