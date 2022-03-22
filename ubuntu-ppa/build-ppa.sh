@@ -238,18 +238,11 @@ build() {
         echo "${FULL_VERSION} ($(date +%Y-%m-%d))
 =========================
 
-- " > "$CHANGELOG_FILE"
-        CHECKSUM=$(sha1sum "$CHANGELOG_FILE")
+- Upstream update" > "$CHANGELOG_FILE"
         if [ "$EDITOR" == "" ]; then
             EDITOR=vim
         fi
         $EDITOR "$CHANGELOG_FILE"
-
-        if [ "$(sha1sum "$CHANGELOG_FILE")" == "$CHECKSUM" ]; then
-            printError "No changes made to temporary changelog."
-            rm "$CHANGELOG_FILE"
-            exit 1
-        fi
     fi
 
     FULL_CL="$(grep -Pzo "^[\d\.~\-\+a-z]+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
@@ -291,7 +284,7 @@ build() {
             exit 1
         fi
     else
-        printStatus "Sources already download."
+        printStatus "Sources already downloaded."
     fi
 
     if [ "${PACKAGE}" == "keepassxc" ]; then

@@ -24,6 +24,6 @@ override_dh_auto_configure:
 
 override_dh_auto_test:
 	dh_auto_test -- \
-	ARGS+="-E testgui"
+	ARGS+="-E testgui\|testcli"
 #	xvfb-run -a --server-args="-screen 0 800x600x24" dh_auto_test -- \
 #	ARGS+="-R testgui"

@@ -1,251 +1,518 @@
-.TH KEEPASSXC-CLI 1 "June 15, 2019"
-
-.SH NAME
-keepassxc-cli \- command line interface for the \fBKeePassXC\fP password manager.
-
-.SH SYNOPSIS
-.B keepassxc-cli
-.I command
-.B [
--I options
-.B ]
-
-.SH DESCRIPTION
-\fBkeepassxc-cli\fP is the command line interface for the \fBKeePassXC\fP password manager. It provides the ability to query and modify the entries of a KeePass database, directly from the command line.
-
-.SH COMMANDS
-
-.IP "add [options] <database> <entry>"
-Adds a new entry to a database. A password can be generated (\fI-g\fP option), or a prompt can be displayed to input the password (\fI-p\fP option).
-The same password generation options as documented for the generate command can be used when the \fI-g\fP option is set.
-
-.IP "analyze [options] <database>"
-Analyzes passwords in a database for weaknesses.
-
-.IP "clip [options] <database> <entry> [timeout]"
-Copies the password or the current TOTP (\fI-t\fP option) of a database entry to the clipboard. If multiple entries with the same name exist in different groups, only the password for the first one is going to be copied. For copying the password of an entry in a specific group, the group path to the entry should be specified as well, instead of just the name. Optionally, a timeout in seconds can be specified to automatically clear the clipboard.
-
-.IP "close"
-In interactive mode, closes the currently opened database (see \fIopen\fP).
-
-.IP "create [options] <database>"
-Creates a new database with a key file and/or password. The key file will be created if the file that is referred to does not exist. If both the key file and password are empty, no database will be created.
-
-.IP "diceware [options]"
+'\" t
+.\"     Title: keepassxc-cli
+.\"    Author: KeePassXC Team
+.\" Generator: Asciidoctor 2.0.10
+.\"      Date: 2020-08-31
+.\"    Manual: General Commands Manual
+.\"    Source: KeePassXC {revnumber}
+.\"  Language: English
+.\"
+.TH "KEEPASSXC\-CLI" "1" "2020-08-31" "KeePassXC {revnumber}" "General Commands Manual"
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.ss \n[.ss] 0
+.nh
+.ad l
+.de URL
+\fI\\$2\fP <\\$1>\\$3
+..
+.als MTO URL
+.if \n[.g] \{\
+.  mso www.tmac
+.  am URL
+.    ad l
+.  .
+.  am MTO
+.    ad l
+.  .
+.  LINKSTYLE blue R < >
+.\}
+.SH "NAME"
+keepassxc\-cli \- command line interface for the KeePassXC password manager
+.SH "SYNOPSIS"
+.sp
+\fBkeepassxc\-cli\fP \fIcommand\fP [\fIoptions\fP]
+.SH "DESCRIPTION"
+.sp
+\fBkeepassxc\-cli\fP is the command line interface for the \fBKeePassXC\fP password manager.
+It provides the ability to query and modify the entries of a KeePass database, directly from the command line.
+.SH "COMMANDS"
+.sp
+\fBadd\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIentry\fP>
+.RS 4
+Adds a new entry to a database.
+A password can be generated (\fB\-g\fP option), or a prompt can be displayed to input the password (\fB\-p\fP option).
+The same password generation options as documented for the generate command can be used when the \fB\-g\fP option is set.
+.RE
+.sp
+\fBanalyze\fP [\fIoptions\fP] <\fIdatabase\fP>
+.RS 4
+Analyzes passwords in a database for weaknesses using offline HIBP SHA\-1 hash lookup.
+.RE
+.sp
+\fBattachment\-export\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIentry\fP> <\fIattachment_name\fP> <\fIexport_file\fP>
+.RS 4
+Exports the content of an attachment to a specified file.
+Use \fB\-\-stdout\fP option to instead output the contents of the attachment to stdout.
+.RE
+.sp
+\fBattachment\-import\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIentry\fP> <\fIattachment_name\fP> <\fIimport_file\fP>
+.RS 4
+Imports the attachment into an entry.
+An existing attachment with the same name may be overwritten if the \fB\-f\fP option is specified.
+.RE
+.sp
+\fBattachment\-rm\fP <\fIdatabase\fP> <\fIentry\fP> <\fIattachment_name\fP>
+.RS 4
+Removes the named attachment from an entry.
+.RE
+.sp
+\fBclip\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIentry\fP> [\fItimeout\fP]
+.RS 4
+Copies an attribute or the current TOTP (if the \fB\-t\fP option is specified) of a database entry to the clipboard.
+If no attribute name is specified using the \fB\-a\fP option, the password is copied.
+If multiple entries with the same name exist in different groups, only the attribute for the first one is copied.
+For copying the attribute of an entry in a specific group, the group path to the entry should be specified as well, instead of just the name.
+Optionally, a timeout in seconds can be specified to automatically clear the clipboard, the default timeout is 10 seconds, set to 0 to disable.
+.RE
+.sp
+\fBclose\fP
+.RS 4
+In interactive mode, closes the currently opened database (see \fBopen\fP).
+.RE
+.sp
+\fBdb\-create\fP [\fIoptions\fP] <\fIdatabase\fP>
+.RS 4
+Creates a new database with a password and/or a key file.
+The key file will be created if the file that is referred to does not exist.
+If both the key file and password are empty, no database will be created.
+.RE
+.sp
+\fBdb\-info\fP [\fIoptions\fP] <\fIdatabase\fP>
+.RS 4
+Show a database\(cqs information.
+.RE
+.sp
+\fBdiceware\fP [\fIoptions\fP]
+.RS 4
 Generates a random diceware passphrase.
-
-.IP "edit [options] <database> <entry>"
-Edits a database entry. A password can be generated (\fI-g\fP option), or a prompt can be displayed to input the password (\fI-p\fP option).
-The same password generation options as documented for the generate command can be used when the \fI-g\fP option is set.
-
-.IP "estimate [options] [password]"
-Estimates the entropy of a password. The password to estimate can be provided as a positional argument, or using the standard input.
-
-.IP "exit"
-Exits interactive mode. Synonymous with \fIquit\fP.
-
-.IP "export [options] <database>"
+.RE
+.sp
+\fBedit\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIentry\fP>
+.RS 4
+Edits a database entry.
+A password can be generated (\fB\-g\fP option), or a prompt can be displayed to input the password (\fB\-p\fP option).
+The same password generation options as documented for the generate command can be used when the \fB\-g\fP option is set.
+.RE
+.sp
+\fBestimate\fP [\fIoptions\fP] [\fIpassword\fP]
+.RS 4
+Estimates the entropy of a password.
+The password to estimate can be provided as a positional argument, or using the standard input.
+.RE
+.sp
+\fBexit\fP
+.RS 4
+Exits interactive mode.
+Synonymous with \fBquit\fP.
+.RE
+.sp
+\fBexport\fP [\fIoptions\fP] <\fIdatabase\fP>
+.RS 4
 Exports the content of a database to standard output in the specified format (defaults to XML).
-
-.IP "generate [options]"
+.RE
+.sp
+\fBgenerate\fP [\fIoptions\fP]
+.RS 4
 Generates a random password.
-
-.IP "help [command]"
+.RE
+.sp
+\fBhelp\fP [\fIcommand\fP]
+.RS 4
 Displays a list of available commands, or detailed information about the specified command.
-
-.IP "import [options] <xml> <database>"
-Imports the contents of an XML database to the target database.
-
-.IP "locate [options] <database> <term>"
-Locates all the entries that match a specific search term in a database.
-
-.IP "ls [options] <database> [group]"
-Lists the contents of a group in a database. If no group is specified, it will default to the root group.
-
-.IP "merge [options] <database1> <database2>"
-Merges two databases together. The first database file is going to be replaced by the result of the merge, for that reason it is advisable to keep a backup of the two database files before attempting a merge. In the case that both databases make use of the same credentials, the \fI--same-credentials\fP or \fI-s\fP option can be used.
-
-.IP "mkdir [options] <database> <group>"
+.RE
+.sp
+\fBimport\fP [\fIoptions\fP] <\fIxml\fP> <\fIdatabase\fP>
+.RS 4
+Imports the contents of an XML exported database to a new created database
+with a password and/or key file.
+The key file will be created if the file that is referred to does not exist.
+If both the key file and password are empty, no database will be created.
+The new database will be in kdbx 4 format.
+.RE
+.sp
+\fBls\fP [\fIoptions\fP] <\fIdatabase\fP> [\fIgroup\fP]
+.RS 4
+Lists the contents of a group in a database.
+If no group is specified, it will default to the root group.
+.RE
+.sp
+\fBmerge\fP [\fIoptions\fP] <\fIdatabase1\fP> <\fIdatabase2\fP>
+.RS 4
+Merges two databases together.
+The first database file is going to be replaced by the result of the merge, for that reason it is advisable to keep a backup of the two database files before attempting a merge.
+In the case that both databases make use of the same credentials, the \fB\-\-same\-credentials\fP or \fB\-s\fP option can be used.
+.RE
+.sp
+\fBmkdir\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIgroup\fP>
+.RS 4
 Adds a new group to a database.
-
-.IP "mv [options] <database> <entry> <group>"
+.RE
+.sp
+\fBmv\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIentry\fP> <\fIgroup\fP>
+.RS 4
 Moves an entry to a new group.
-
-.IP "open [options] <database>"
-Opens the given database in a shell-style interactive mode. This is useful for performing multiple operations on a single database (e.g. \fIls\fP followed by \fIshow\fP).
-
-.IP "quit"
-Exits interactive mode. Synonymous with \fIexit\fP.
-
-.IP "rm [options] <database> <entry>"
-Removes an entry from a database. If the database has a recycle bin, the entry will be moved there. If the entry is already in the recycle bin, it will be removed permanently.
-
-.IP "rmdir [options] <database> <group>"
-Removes a group from a database. If the database has a recycle bin, the group will be moved there. If the group is already in the recycle bin, it will be removed permanently.
-
-.IP "show [options] <database> <entry>"
-Shows the title, username, password, URL and notes of a database entry. Can also show the current TOTP. Regarding the occurrence of multiple entries with the same name in different groups, everything stated in the \fIclip\fP command section also applies here.
-
-.SH OPTIONS
-
+.RE
+.sp
+\fBopen\fP [\fIoptions\fP] <\fIdatabase\fP>
+.RS 4
+Opens the given database in a shell\-style interactive mode.
+This is useful for performing multiple operations on a single database (e.g. \fBls\fP followed by \fBshow\fP).
+.RE
+.sp
+\fBquit\fP
+.RS 4
+Exits interactive mode.
+Synonymous with \fBexit\fP.
+.RE
+.sp
+\fBrm\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIentry\fP>
+.RS 4
+Removes an entry from a database.
+If the database has a recycle bin, the entry will be moved there.
+If the entry is already in the recycle bin, it will be removed permanently.
+.RE
+.sp
+\fBrmdir\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIgroup\fP>
+.RS 4
+Removes a group from a database.
+If the database has a recycle bin, the group will be moved there.
+If the group is already in the recycle bin, it will be removed permanently.
+.RE
+.sp
+\fBsearch\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIterm\fP>
+.RS 4
+Searches all entries that match a specific search term in a database.
+.RE
+.sp
+\fBshow\fP [\fIoptions\fP] <\fIdatabase\fP> <\fIentry\fP>
+.RS 4
+Shows the title, username, password, URL and notes of a database entry.
+Can also show the current TOTP.
+Regarding the occurrence of multiple entries with the same name in different groups, everything stated in the \fBclip\fP command section also applies here.
+.RE
+.SH "OPTIONS"
 .SS "General options"
-
-.IP "--debug-info"
+.sp
+\fB\-\-debug\-info\fP
+.RS 4
 Displays debugging information.
-
-.IP "-k, --key-file <path>"
-Specifies a path to a key file for unlocking the database. In a merge operation this option, is used to specify the key file path for the first database.
-
-.IP "--no-password"
+.RE
+.sp
+\fB\-k\fP, \fB\-\-key\-file\fP <\fIpath\fP>
+.RS 4
+Specifies a path to a key file for unlocking the database.
+In a merge operation this option, is used to specify the key file path for the first database.
+.RE
+.sp
+\fB\-\-no\-password\fP
+.RS 4
 Deactivates the password key for the database.
-
-.IP "-y, --yubikey <slot>"
-Specifies a yubikey slot for unlocking the database. In a merge operation this option is used to specify the yubikey slot for the first database.
-
-.IP "-q, --quiet <path>"
+.RE
+.sp
+\fB\-y\fP, \fB\-\-yubikey\fP <\fIslot\fP>
+.RS 4
+Specifies a yubikey slot for unlocking the database.
+In a merge operation this option is used to specify the YubiKey slot for the first database.
+.RE
+.sp
+\fB\-q\fP, \fB\-\-quiet\fP <\fIpath\fP>
+.RS 4
 Silences password prompt and other secondary outputs.
-
-.IP "-h, --help"
+.RE
+.sp
+\fB\-h\fP, \fB\-\-help\fP
+.RS 4
 Displays help information.
-
-.IP "-v, --version"
+.RE
+.sp
+\fB\-v\fP, \fB\-\-version\fP
+.RS 4
 Displays the program version.
-
-
+.RE
 .SS "Merge options"
-
-.IP "-d, --dry-run <path>"
+.sp
+\fB\-d\fP, \fB\-\-dry\-run\fP <\fIpath\fP>
+.RS 4
 Prints the changes detected by the merge operation without making any changes to the database.
-
-.IP "-f, --key-file-from <path>"
+.RE
+.sp
+\fB\-\-key\-file\-from\fP <\fIpath\fP>
+.RS 4
 Sets the path of the key file for the second database.
-
-.IP "--no-password-from"
+.RE
+.sp
+\fB\-\-no\-password\-from\fP
+.RS 4
 Deactivates password key for the database to merge from.
-
-.IP "--yubikey-from <slot>"
-Yubikey slot for the second database.
-
-.IP "-s, --same-credentials"
+.RE
+.sp
+\fB\-\-yubikey\-from\fP <\fIslot\fP>
+.RS 4
+YubiKey slot for the second database.
+.RE
+.sp
+\fB\-s\fP, \fB\-\-same\-credentials\fP
+.RS 4
 Uses the same credentials for unlocking both databases.
-
-
+.RE
 .SS "Add and edit options"
-The same password generation options as documented for the generate command can be used
-with those 2 commands when the -g option is set.
-
-.IP "-u, --username <username>"
+.sp
+The same password generation options as documented for the generate command can be used with those 2 commands when the \fB\-g\fP option is set.
+.sp
+\fB\-u\fP, \fB\-\-username\fP <\fIusername\fP>
+.RS 4
 Specifies the username of the entry.
-
-.IP "--url <url>"
+.RE
+.sp
+\fB\-\-url\fP <\fIurl\fP>
+.RS 4
 Specifies the URL of the entry.
-
-.IP "-p, --password-prompt"
-Uses a password prompt for the entry's password.
-
-.IP "-g, --generate"
+.RE
+.sp
+\fB\-\-notes\fP <\fInotes\fP>
+.RS 4
+Specifies the notes of the entry.
+.RE
+.sp
+\fB\-p\fP, \fB\-\-password\-prompt\fP
+.RS 4
+Uses a password prompt for the entry\(cqs password.
+.RE
+.sp
+\fB\-g\fP, \fB\-\-generate\fP
+.RS 4
 Generates a new password for the entry.
-
-
+.RE
 .SS "Edit options"
-
-.IP "-t, --title <title>"
+.sp
+\fB\-t\fP, \fB\-\-title\fP <\fItitle\fP>
+.RS 4
 Specifies the title of the entry.
-
-
+.RE
 .SS "Estimate options"
-
-.IP "-a, --advanced"
+.sp
+\fB\-a\fP, \fB\-\-advanced\fP
+.RS 4
 Performs advanced analysis on the password.
-
-
+.RE
 .SS "Analyze options"
-
-.IP "-H, --hibp <filename>"
-Checks if any passwords have been publicly leaked, by comparing against the given
-list of password SHA-1 hashes, which must be in "Have I Been Pwned" format. Such
-files are available from https://haveibeenpwned.com/Passwords; note that they
-are large, and so this operation typically takes some time (minutes up to an
-hour or so).
-
-
+.sp
+\fB\-H\fP, \fB\-\-hibp\fP <\fIfilename\fP>
+.RS 4
+Checks if any passwords have been publicly leaked, by comparing against the given list of password SHA\-1 hashes, which must be in "Have I Been Pwned" format.
+Such files are available from \c
+.URL "https://haveibeenpwned.com/Passwords" "" ";"
+note that they are large, and so this operation typically takes some time (minutes up to an hour or so).
+.RE
+.sp
+\fB\-\-okon\fP <\fIokon\-cli path\fP>
+.RS 4
+Use the specified okon\-cli program to perform offline breach checks. You can obtain okon\-cli from \c
+.URL "https://github.com/stryku/okon" "" "."
+When using this option, \fB\-H, \-\-hibp\fP must point to a post\-processed okon file (e.g. file.okon).
+.RE
 .SS "Clip options"
-
-.IP "-t, --totp"
-Copies the current TOTP instead of current password to clipboard. Will report
-an error if no TOTP is configured for the entry.
-
-
+.sp
+\fB\-a\fP, \fB\-\-attribute\fP
+.RS 4
+Copies the specified attribute to the clipboard.
+If no attribute is specified, the password attribute is the default.
+For example, "\fB\-a\fP \fBusername\fP" would copy the username to the clipboard.
+[Default: password]
+.RE
+.sp
+\fB\-t\fP, \fB\-\-totp\fP
+.RS 4
+Copies the current TOTP instead of the specified attribute to the clipboard.
+Will report an error if no TOTP is configured for the entry.
+.RE
+.sp
+\fB\-b\fP, \fB\-\-best\fP
+.RS 4
+Try to find and copy to clipboard a unique entry matching the input
+If a unique matching entry is found it will be copied to the clipboard.
+If multiple entries are found they will be listed to refine the search. (no clip performed)
+.RE
+.SS "Create and Import options"
+.sp
+\fB\-k\fP, \fB\-\-set\-key\-file\fP <\fIpath\fP>
+.RS 4
+Set the key file for the database.
+.RE
+.sp
+\fB\-p\fP, \fB\-\-set\-password\fP
+.RS 4
+Set a password for the database.
+.RE
+.sp
+\fB\-t\fP, \fB\-\-decryption\-time\fP <\fItime\fP>
+.RS 4
+Target decryption time in MS for the database.
+.RE
 .SS "Show options"
-
-.IP "-a, --attributes <attribute>..."
-Shows the named attributes. This option can be specified more than once,
-with each attribute shown one-per-line in the given order. If no attributes are
-specified and \fI-t\fP is not specified, a summary of the default attributes is given.
-
-.IP "-t, --totp"
-Also shows the current TOTP, reporting an error if no TOTP is configured for
-the entry.
-
-
+.sp
+\fB\-a\fP, \fB\-\-attributes\fP <\fIattribute\fP>...
+.RS 4
+Shows the named attributes.
+This option can be specified more than once, with each attribute shown one\-per\-line in the given order.
+If no attributes are specified and \fB\-t\fP is not specified, a summary of the default attributes is given.
+Protected attributes will be displayed in clear text if specified explicitly by this option.
+.RE
+.sp
+\fB\-s\fP, \fB\-\-show\-protected\fP
+.RS 4
+Shows the protected attributes in clear text.
+.RE
+.sp
+\fB\-\-show\-attachments\fP
+.RS 4
+Shows the attachment names along with the size of the attachments.
+.RE
+.sp
+\fB\-t\fP, \fB\-\-totp\fP
+.RS 4
+Also shows the current TOTP, reporting an error if no TOTP is configured for the entry.
+.RE
 .SS "Diceware options"
-
-.IP "-W, --words <count>"
-Sets the desired number of words for the generated passphrase. [Default: 7]
-
-.IP "-w, --word-list <path>"
-Sets the Path of the wordlist for the diceware generator. The wordlist must
-have > 1000 words, otherwise the program will fail. If the wordlist has < 4000
-words a warning will be printed to STDERR.
-
-
+.sp
+\fB\-W\fP, \fB\-\-words\fP <\fIcount\fP>
+.RS 4
+Sets the desired number of words for the generated passphrase.
+[Default: 7]
+.RE
+.sp
+\fB\-w\fP, \fB\-\-word\-list\fP <\fIpath\fP>
+.RS 4
+Sets the Path of the wordlist for the diceware generator.
+The wordlist must have > 1000 words, otherwise the program will fail.
+If the wordlist has < 4000 words a warning will be printed to STDERR.
+Any \fBdiceware\fP\-compatible wordlist can used. Note however that \fBKeePassXC\fP will NOT verify the PGP signature of signed wordlists.
+.RE
 .SS "Export options"
-
-.IP "-f, --format"
-Format to use when exporting. Available choices are xml or csv. Defaults to xml.
-
-
+.sp
+\fB\-f\fP, \fB\-\-format\fP
+.RS 4
+Format to use when exporting.
+Available choices are xml or csv.
+Defaults to xml.
+.RE
 .SS "List options"
-
-.IP "-R, --recursive"
+.sp
+\fB\-R\fP, \fB\-\-recursive\fP
+.RS 4
 Recursively lists the elements of the group.
-
-.IP "-f, --flatten"
-Flattens the output to single lines. When this option is enabled, subgroups and subentries will be displayed with a relative group path instead of indentation.
-
+.RE
+.sp
+\fB\-f\fP, \fB\-\-flatten\fP
+.RS 4
+Flattens the output to single lines.
+When this option is enabled, subgroups and subentries will be displayed with a relative group path instead of indentation.
+.RE
 .SS "Generate options"
-
-.IP "-L, --length <length>"
-Sets the desired length for the generated password. [Default: 16]
-
-.IP "-l --lower"
-Uses lowercase characters for the generated password. [Default: Enabled]
-
-.IP "-U --upper"
-Uses uppercase characters for the generated password. [Default: Enabled]
-
-.IP "-n --numeric"
-Uses numbers characters for the generated password. [Default: Enabled]
-
-.IP "-s --special"
-Uses special characters for the generated password. [Default: Disabled]
-
-.IP "-e --extended"
-Uses extended ASCII characters for the generated password. [Default: Disabled]
-
-.IP "-x --exclude <chars>"
-Comma-separated list of characters to exclude from the generated password. None is excluded by default.
-
-.IP "--exclude-similar"
-Exclude similar looking characters. [Default: Disabled]
-
-.IP "--every-group"
-Include characters from every selected group. [Default: Disabled]
-
-
-.SH REPORTING BUGS
-Bugs and feature requests can be reported on GitHub at https://github.com/keepassxreboot/keepassxc/issues.
-
-.SH AUTHOR
-This manual page was originally written by Manolis Agkopian <m.agkopian@gmail.com>,
-and is maintained by the KeePassXC Team <team@keepassxc.org>.
+.sp
+\fB\-L\fP, \fB\-\-length\fP <\fIlength\fP>
+.RS 4
+Sets the desired length for the generated password.
+[Default: 16]
+.RE
+.sp
+\fB\-l\fP, \fB\-\-lower\fP
+.RS 4
+Uses lowercase characters for the generated password.
+[Default: Enabled]
+.RE
+.sp
+\fB\-U\fP, \fB\-\-upper\fP
+.RS 4
+Uses uppercase characters for the generated password.
+[Default: Enabled]
+.RE
+.sp
+\fB\-n\fP, \fB\-\-numeric\fP
+.RS 4
+Uses numbers characters for the generated password.
+[Default: Enabled]
+.RE
+.sp
+\fB\-s\fP, \fB\-\-special\fP
+.RS 4
+Uses special characters for the generated password.
+[Default: Disabled]
+.RE
+.sp
+\fB\-e\fP, \fB\-\-extended\fP
+.RS 4
+Uses extended ASCII characters for the generated password.
+[Default: Disabled]
+.RE
+.sp
+\fB\-x\fP, \fB\-\-exclude\fP <\fIchars\fP>
+.RS 4
+Comma\-separated list of characters to exclude from the generated password.
+None is excluded by default.
+.RE
+.sp
+\fB\-\-exclude\-similar\fP
+.RS 4
+Exclude similar looking characters.
+[Default: Disabled]
+.RE
+.sp
+\fB\-\-every\-group\fP
+.RS 4
+Include characters from every selected group.
+[Default: Disabled]
+.RE
+.SH "NOTES"
+.sp
+\fBProject homepage\fP
+.RS 4
+.URL "https://keepassxc.org" "" ""
+.RE
+.sp
+\fBQuickStart Guide\fP
+.RS 4
+.URL "https://keepassxc.org/docs/KeePassXC_GettingStarted.html" "" ""
+.RE
+.sp
+\fBUser Guide\fP
+.RS 4
+.URL "https://keepassxc.org/docs/KeePassXC_UserGuide.html" "" ""
+.RE
+.sp
+\fBGit repository\fP
+.RS 4
+.URL "https://github.com/keepassxreboot/keepassxc.git" "" ""
+.RE
+.SH "AUTHOR"
+.sp
+This manual page was originally written by Manolis Agkopian <\c
+.MTO "m.agkopian\(atgmail.com" "" ">."
+.SH "REPORTING BUGS"
+.sp
+Bugs and feature requests can be reported on GitHub at \c
+.URL "https://github.com/keepassxreboot/keepassxc/issues" "" "."
+.SH "COPYRIGHT"
+.sp
+Copyright (C) 2016\-2020 KeePassXC Team <\c
+.MTO "team\(atkeepassxc.org" "" ">"
+.sp
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License, either version 2 or version 3.
+There is NO WARRANTY, to the extent permitted by law.
+.SH "SEE ALSO"
+.sp
+\fBkeepassxc\fP(1)
+.SH "AUTHOR"
+.sp
+KeePassXC Team
