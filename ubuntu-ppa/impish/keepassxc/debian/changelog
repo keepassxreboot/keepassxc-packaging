@@ -1,3 +1,9 @@
+keepassxc (2.7.1-1ppa1~impish1) impish; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Wed, 06 Apr 2022 19:28:21 +0200
+
 keepassxc (2.7.0-1ppa1~impish1) impish; urgency=medium
 
   * Upstream update
