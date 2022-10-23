@@ -1,3 +1,9 @@
+keepassxc (2.7.3-1ppa1~bionic1) bionic; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Sun, 23 Oct 2022 18:29:24 +0200
+
 keepassxc (2.7.1-1ppa1~bionic1) bionic; urgency=medium
 
   * Upstream update
