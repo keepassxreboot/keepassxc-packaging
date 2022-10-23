@@ -1,0 +1,23 @@
+keepassxc (2.7.3-1ppa1~kinetic1) kinetic; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Sun, 23 Oct 2022 18:33:19 +0200
+
+keepassxc (2.7.3-1ppa1~jammy1) jammy; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Sun, 23 Oct 2022 18:30:18 +0200
+
+keepassxc (2.7.1-1ppa1~jammy1) jammy; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Wed, 06 Apr 2022 19:28:05 +0200
+
+keepassxc (2.7.0-1ppa1~jammy1) jammy; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 22 Mar 2022 02:59:21 +0100
