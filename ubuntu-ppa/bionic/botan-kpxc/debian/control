@@ -11,10 +11,11 @@ Build-Depends:
 Standards-Version: 4.4.1
 Homepage: https://botan.randombit.net/
 
-Package: libbotan-kpxc-2-12
+Package: libbotan-kpxc-2
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
+Replaces: libbotan-kpxc-2-12
 Description: multiplatform crypto library (2.x version)
  Botan is a C++ library which provides support for many common cryptographic
  operations, including encryption, authentication, and X.509v3 certificates and
@@ -26,7 +27,7 @@ Description: multiplatform crypto library (2.x version)
 Package: libbotan-kpxc-2-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libbotan-kpxc-2-12 (= ${binary:Version})
+Depends: ${misc:Depends}, libbotan-kpxc-2 (= ${binary:Version})
 Description: multiplatform crypto library (2.x version)
  Botan is a C++ library which provides support for many common cryptographic
  operations, including encryption, authentication, and X.509v3 certificates and

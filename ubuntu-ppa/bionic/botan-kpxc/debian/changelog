@@ -1,3 +1,9 @@
+botan-kpxc (2.19.1-1ppa3~bionic1) bionic; urgency=medium
+
+  * Fix deployment
+
+ -- KeePassXC Team <team@keepassxc.org>  Sun, 23 Oct 2022 14:15:54 +0200
+
 botan-kpxc (2.12.1-1ppa5~bionic1) bionic; urgency=medium
 
   * Initial package.
