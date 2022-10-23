@@ -1,0 +1,185 @@
+Description: use Python 3 everywhere
+ Execute python3 binary instead of simple python which is the 2.x version.
+Author: Laszlo Boszormenyi (GCS) <gcs@debian.org>
+Bug-Debian: https://bugs.debian.org/936230
+Forwarded: no
+Last-Update: 2020-01-26
+
+---
+
+--- botan-2.13.0.orig/configure.py
++++ botan-2.13.0/configure.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+ Configuration program for botan
+--- botan-2.13.0.orig/src/python/botan2.py
++++ botan-2.13.0/src/python/botan2.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ """
+ Python wrapper of the botan crypto library
+--- botan-2.13.0.orig/src/scripts/bench.py
++++ botan-2.13.0/src/scripts/bench.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ """
+ Compare Botan with OpenSSL using their respective benchmark utils
+--- botan-2.13.0.orig/src/scripts/build_docs.py
++++ botan-2.13.0/src/scripts/build_docs.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+ Botan doc generation script
+--- botan-2.13.0.orig/src/scripts/ci_build.py
++++ botan-2.13.0/src/scripts/ci_build.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+ CI build script
+--- botan-2.13.0.orig/src/scripts/cleanup.py
++++ botan-2.13.0/src/scripts/cleanup.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+ Implements the "make clean" target
+--- botan-2.13.0.orig/src/scripts/create_corpus_zip.py
++++ botan-2.13.0/src/scripts/create_corpus_zip.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ # These is used to create fuzzer corpus zip files
+ 
+--- botan-2.13.0.orig/src/scripts/dist.py
++++ botan-2.13.0/src/scripts/dist.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+ Release script for botan (https://botan.randombit.net/)
+--- botan-2.13.0.orig/src/scripts/ffi_decls.py
++++ botan-2.13.0/src/scripts/ffi_decls.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ """
+ Automatically generate declarations for the FFI layer
+--- botan-2.13.0.orig/src/scripts/install.py
++++ botan-2.13.0/src/scripts/install.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+ Botan install script
+--- botan-2.13.0.orig/src/scripts/macro_checks.py
++++ botan-2.13.0/src/scripts/macro_checks.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ # (C) 2018 Jack Lloyd
+ # Botan is released under the Simplified BSD License (see license.txt)
+--- botan-2.13.0.orig/src/scripts/oids.py
++++ botan-2.13.0/src/scripts/oids.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ """
+ (C) 2016 Jack Lloyd
+--- botan-2.13.0.orig/src/scripts/run_tls_attacker.py
++++ botan-2.13.0/src/scripts/run_tls_attacker.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ import os
+ import sys
+--- botan-2.13.0.orig/src/scripts/run_tls_fuzzer.py
++++ botan-2.13.0/src/scripts/run_tls_fuzzer.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ import argparse
+ import subprocess
+--- botan-2.13.0.orig/src/scripts/show_dependencies.py
++++ botan-2.13.0/src/scripts/show_dependencies.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+ Show Botan module dependencies as a list or graph.
+--- botan-2.13.0.orig/src/scripts/test_all_configs.py
++++ botan-2.13.0/src/scripts/test_all_configs.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ """
+ This configures and builds with many different sub-configurations
+--- botan-2.13.0.orig/src/scripts/test_cli_crypt.py
++++ botan-2.13.0/src/scripts/test_cli_crypt.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ import binascii
+ import argparse
+--- botan-2.13.0.orig/src/scripts/test_fuzzers.py
++++ botan-2.13.0/src/scripts/test_fuzzers.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ # (C) 2017,2018 Jack Lloyd
+ 
+--- botan-2.13.0.orig/src/scripts/test_python.py
++++ botan-2.13.0/src/scripts/test_python.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ 
+ """
+ (C) 2015,2017,2018,2019 Jack Lloyd
+--- botan-2.13.0.orig/src/scripts/tls_scanner/tls_scanner.py
++++ botan-2.13.0/src/scripts/tls_scanner/tls_scanner.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python2
++#!/usr/bin/python3
+ 
+ import sys
+ import time
+--- botan-2.13.0.orig/src/scripts/tls_suite_info.py
++++ botan-2.13.0/src/scripts/tls_suite_info.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python2
++#!/usr/bin/env python3
+ 
+ """
+ Used to generate lib/tls/tls_suite_info.cpp from IANA params
+--- botan-2.13.0.orig/src/scripts/website.py
++++ botan-2.13.0/src/scripts/website.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ """
+ Generate the Botan website

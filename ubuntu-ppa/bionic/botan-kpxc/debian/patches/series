@@ -1,1 +1,2 @@
 readdir_hurd.patch
+use_python3.patch
