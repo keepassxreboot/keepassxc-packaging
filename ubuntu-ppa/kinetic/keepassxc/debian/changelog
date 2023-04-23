@@ -1,3 +1,15 @@
+keepassxc (2.7.4-1ppa2~kinetic1) kinetic; urgency=medium
+
+  * Force rebuild
+
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 05 Dec 2022 18:38:57 +0100
+
+keepassxc (2.7.4-1ppa1~kinetic1) kinetic; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Sat, 29 Oct 2022 21:40:38 +0200
+
 keepassxc (2.7.3-1ppa1~kinetic1) kinetic; urgency=medium
 
   * Upstream update
