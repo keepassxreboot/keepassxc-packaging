@@ -1,3 +1,9 @@
+keepassxc (2.7.6-1ppa2~mantic1) mantic; urgency=medium
+
+  * Fix dependency declaration.
+
+ -- KeePassXC Team <team@keepassxc.org>  Wed, 16 Aug 2023 19:23:23 +0200
+
 keepassxc (2.7.6-1ppa1~mantic1) mantic; urgency=medium
 
   * Initial Mantic build.
