@@ -5,7 +5,7 @@ Maintainer: KeePassXC Team <team@keepassxc.org>
 Build-Depends: asciidoctor,
                cmake,
                debhelper (>= 9),
-               libargon2-0-dev,
+               libargon2-dev,
                libbotan-2-dev (>=2.12.1),
                libusb-1.0-0-dev,
                libminizip-dev,
