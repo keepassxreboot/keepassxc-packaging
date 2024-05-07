@@ -1,3 +1,9 @@
+keepassxc (2.7.8-1ppa1~mantic1) mantic; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 07 May 2024 22:07:00 +0000
+
 keepassxc (2.7.7-1ppa1~mantic1) mantic; urgency=medium
 
   * Upstream update
