@@ -21,7 +21,7 @@ printf "Copyright (C) 2017 KeePassXC Team <https://keepassxc.org/>\n\n"
 
 # variable defaults
 UBUNTU_VERSION="1"
-PPA_VERSION="ppa1"
+PPA_VERSION="1"
 SERIES_VERSION="1"
 PACKAGE="keepassxc"
 URGENCY="medium"
@@ -231,7 +231,7 @@ build() {
     fi
 
     CL_FILE_IS_TMP=false
-    FULL_VERSION="${UPSTREAM_VERSION}-${UBUNTU_VERSION}${PPA_VERSION}~${SERIES}${SERIES_VERSION}"
+    FULL_VERSION="${UPSTREAM_VERSION}-${UBUNTU_VERSION}ppa${PPA_VERSION}~${SERIES}${SERIES_VERSION}"
     if [ "$CHANGELOG_FILE" == "" ]; then
         CHANGELOG_FILE="/tmp/builddebpkg_${PACKAGE}~${SERIES}_${RANDOM}"
         CL_FILE_IS_TMP=true
