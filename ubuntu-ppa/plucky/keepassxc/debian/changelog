@@ -1,0 +1,23 @@
+keepassxc (2.7.10-1ppa1~plucky1) plucky; urgency=medium
+
+  * Initial Plucky package.
+
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 05 May 2025 15:15:00 +0200
+
+keepassxc (2.7.10-1ppa2~oracular1) oracular; urgency=medium
+
+  * Fix version
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 04 Mar 2025 00:21:39 +0000
+
+keepassxc (2.7.10-1ppa1~oracular1) oracular; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Mon, 03 Mar 2025 23:10:28 +0000
+
+keepassxc (2.7.9-1ppa1~oracular1) oracular; urgency=medium
+
+  * Initial Oracular upload.
+
+ -- KeePassXC Team <team@keepassxc.org>  Tue, 29 Oct 2024 15:36:42 +0100
