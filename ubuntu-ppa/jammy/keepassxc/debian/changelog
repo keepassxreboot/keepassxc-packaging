@@ -1,3 +1,9 @@
+keepassxc (2.7.11-1ppa1~jammy1) jammy; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Sun, 23 Nov 2025 23:35:54 +0000
+
 keepassxc (2.7.10-1ppa2~jammy1) jammy; urgency=medium
 
   * Fix tests
