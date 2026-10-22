@@ -9,6 +9,7 @@ Build-Depends: asciidoctor,
                libminizip-dev,
                libpcsclite-dev,
                libqrencode-dev,
+               libqt6svg6-dev,
                libreadline-dev,
                libusb-1.0-0-dev,
                libx11-dev,
@@ -19,7 +20,6 @@ Build-Depends: asciidoctor,
                qt6-base-dev (>= 6.2.4),
                qt6-tools-dev,
                qt6-l10n-tools,
-               qt6-svg-dev,
                zlib1g-dev
 Standards-Version: 4.7.4
 Rules-Requires-Root: no
