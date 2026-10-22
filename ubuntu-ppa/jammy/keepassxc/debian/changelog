@@ -1,8 +1,8 @@
-keepassxc (2.8.0-1ppa1~jammy3) jammy; urgency=medium
+keepassxc (2.8.0-1ppa1~jammy4) jammy; urgency=medium
 
   * Upstream update
 
- -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Oct 2026 14:27:36 +0200
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Oct 2026 15:10:13 +0200
 
 keepassxc (2.7.12-1ppa1~jammy1) jammy; urgency=medium
 

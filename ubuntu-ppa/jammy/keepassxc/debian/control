@@ -23,6 +23,7 @@ Build-Depends: asciidoctor,
                qt6-tools-dev,
                qt6-tools-dev-tools,
                qt6-l10n-tools,
+               shared-mime-info,
                zlib1g-dev
 Standards-Version: 4.7.4
 Rules-Requires-Root: no
@@ -32,7 +33,7 @@ Vcs-Browser: https://github.com/keepassxreboot/keepassxc-packaging
 
 Package: keepassxc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, shared-mime-info
 Recommends: qt6-image-formats-plugins, qt6-wayland
 Replaces: keepassxc-beta
 Conflicts: keepassxc-beta
