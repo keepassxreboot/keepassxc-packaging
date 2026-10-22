@@ -9,3 +9,4 @@
 *.dsc
 *.deb
 *.udeb
+.keepassxc-test.*/

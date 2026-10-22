@@ -55,7 +55,7 @@ printUsage() {
         cat << EOF
 
 Commands:
-  build      Build source package
+  build      Build source package or local test binaries
   upload     Upload source package to Launchpad PPA
   clean      Clean up build files
 EOF
@@ -75,7 +75,9 @@ Options:
   -c, --changelog        CHANGELOG file
   -u, --urgency          Package urgency (default: '${URGENCY}')
   -k, --gpg-key          GPG key used to sign package (default: '${GPG_KEY}')
-      --upload           Immediately upload package
+      --test-build       Build unsigned binary packages in a separate directory
+      --source-dir DIR   Use a local source checkout (requires --test-build)
+      --upload           Immediately upload package (incompatible with --test-build)
 EOF
     elif [ "upload" == "$cmd" ]; then
         cat << EOF
@@ -168,6 +170,8 @@ upload() {
 # -----------------------------------------------------------------------
 build() {
     local IMMEDIATE_UPLOAD=false
+    local TEST_BUILD=false
+    local SOURCE_DIR=""
 
     while [ $# -ge 1 ]; do
         ARG="$1"
@@ -213,6 +217,17 @@ build() {
                 GPG_KEY="$2"
                 shift ;;
 
+            --test-build)
+                TEST_BUILD=true ;;
+
+            --source-dir)
+                if [ $# -lt 2 ] || [ -z "$2" ]; then
+                    printError "ERROR: --source-dir requires a directory.\n"
+                    exit 1
+                fi
+                SOURCE_DIR="$2"
+                shift ;;
+
             --upload)
                 IMMEDIATE_UPLOAD=true ;;
 
@@ -230,74 +245,127 @@ build() {
         exit 1
     fi
 
-    CL_FILE_IS_TMP=false
-    FULL_VERSION="${UPSTREAM_VERSION}-${UBUNTU_VERSION}ppa${PPA_VERSION}~${SERIES}${SERIES_VERSION}"
-    if [ "$CHANGELOG_FILE" == "" ]; then
-        CHANGELOG_FILE="/tmp/builddebpkg_${PACKAGE}~${SERIES}_${RANDOM}"
-        CL_FILE_IS_TMP=true
-        echo "${FULL_VERSION} ($(date +%Y-%m-%d))
-=========================
-
-- Upstream update" > "$CHANGELOG_FILE"
-        if [ "$EDITOR" == "" ]; then
-            EDITOR=vim
+    if $TEST_BUILD && $IMMEDIATE_UPLOAD; then
+        printError "ERROR: --test-build cannot be combined with --upload.\n"
+        exit 1
+    fi
+    if [ -n "$SOURCE_DIR" ]; then
+        if ! $TEST_BUILD; then
+            printError "ERROR: --source-dir requires --test-build.\n"
+            exit 1
         fi
-        $EDITOR "$CHANGELOG_FILE"
+        SOURCE_DIR=$(realpath -- "$SOURCE_DIR") || exit 1
+        if [ ! -d "$SOURCE_DIR" ]; then
+            printError "ERROR: Source directory does not exist.\n"
+            exit 1
+        fi
     fi
-
-    FULL_CL="$(grep -Pzo "^[\d\.~\-\+a-z]+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
-    CHANGELOG="$(echo "$FULL_CL" | grep -Pzo "(?s)(?<====\n\n).+" | tr -d '\0' | sed 's/^\s*- \?/  * /')"
-    FULL_VERSION="$(echo "$FULL_CL" | grep -Pzo "^[\d\.~\-\+a-z]+" | tr -d '\0')"
-
-    DATE="$(date -R)"
-
-    if $CL_FILE_IS_TMP; then
-        rm "$CHANGELOG_FILE"
-    fi
-
     if [ ! -d "./${SERIES}/${PACKAGE}/debian" ]; then
         printError "No source folder for package '${PACKAGE}~${SERIES}'!"
         exit 1
     fi
 
-    cd "./${SERIES}/${PACKAGE}"
+    if ! $TEST_BUILD; then
+        CL_FILE_IS_TMP=false
+        FULL_VERSION="${UPSTREAM_VERSION}-${UBUNTU_VERSION}ppa${PPA_VERSION}~${SERIES}${SERIES_VERSION}"
+        if [ "$CHANGELOG_FILE" == "" ]; then
+            CHANGELOG_FILE="/tmp/builddebpkg_${PACKAGE}~${SERIES}_${RANDOM}"
+            CL_FILE_IS_TMP=true
+            echo "${FULL_VERSION} ($(date +%Y-%m-%d))
+=========================
 
-    STRIPPED_UPSTREAM_VERSION=$(echo -n "$UPSTREAM_VERSION" | cut -d"+" -f1)
-    STRIPPED_UPSTREAM_VERSION2=$(echo -n "$UPSTREAM_VERSION" | cut -d"+" -f2)
-    if [ "" != "$STRIPPED_UPSTREAM_VERSION2" ]; then
-        DOWNLOAD_VERSION="$(echo -n "$STRIPPED_UPSTREAM_VERSION2" | sed 's/^really//')"
-    else
-        DOWNLOAD_VERSION="$STRIPPED_UPSTREAM_VERSION"
-    fi
-    SOURCE=$(grep -oP "(?<=^${PACKAGE} )(https?|ftps?)://.*" ../sources | sed "s/\${VERSION}/${DOWNLOAD_VERSION}/g")
-    SOURCE_EXT=$(basename "$SOURCE" | grep -oP "(xz|bz2|gz)\$")
-    if [ "" == "${SOURCE}" ]; then
-        printError "No source URL given for package ${PACKAGE}!"
-        cd ../..
-        exit 1
-    fi
-    if [ ! -f "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.xz" ]; then
-        printStatus "Downloading sources for version ${PACKAGE}-${UPSTREAM_VERSION}..."
-        wget "${SOURCE}" -O "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
-	if [ $? -ne 0 ]; then
-            printError "Download failed! Process aborted."
-            exit 1
+- Upstream update" > "$CHANGELOG_FILE"
+            if [ "$EDITOR" == "" ]; then
+                EDITOR=vim
+            fi
+            $EDITOR "$CHANGELOG_FILE"
         fi
-    else
-        printStatus "Sources already downloaded."
-    fi
 
-    if [ "${PACKAGE}" == "keepassxc" ]; then
-        printStatus "Verifying sources..."
-        curl -fL "https://github.com/keepassxreboot/keepassxc/releases/download/${STRIPPED_UPSTREAM_VERSION}/keepassxc-${STRIPPED_UPSTREAM_VERSION}-src.tar.xz.sig" | \
-            gpg --verify - "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
+        FULL_CL="$(grep -Pzo "^[\d\.~\-\+a-z]+ \(\d+-\d+-\d+\)\n=+(?:(?:\n\s*-[^\n]+)+)" "$CHANGELOG_FILE" | tr -d '\0')"
+        CHANGELOG="$(echo "$FULL_CL" | grep -Pzo "(?s)(?<====\n\n).+" | tr -d '\0' | sed 's/^\s*- \?/  * /')"
+        FULL_VERSION="$(echo "$FULL_CL" | grep -Pzo "^[\d\.~\-\+a-z]+" | tr -d '\0')"
 
-        if [ $? -ne 0 ]; then
-            printError "Signature verification failed! Process aborted."
-            exit 1
+        DATE="$(date -R)"
+
+        if $CL_FILE_IS_TMP; then
+            rm "$CHANGELOG_FILE"
         fi
     fi
 
+    cd "./${SERIES}/${PACKAGE}" || exit 1
+
+    if [ -z "$SOURCE_DIR" ]; then
+        STRIPPED_UPSTREAM_VERSION=$(echo -n "$UPSTREAM_VERSION" | cut -d"+" -f1)
+        STRIPPED_UPSTREAM_VERSION2=$(echo -n "$UPSTREAM_VERSION" | cut -d"+" -f2)
+        if [ "" != "$STRIPPED_UPSTREAM_VERSION2" ]; then
+            DOWNLOAD_VERSION="$(echo -n "$STRIPPED_UPSTREAM_VERSION2" | sed 's/^really//')"
+        else
+            DOWNLOAD_VERSION="$STRIPPED_UPSTREAM_VERSION"
+        fi
+        SOURCE=$(grep -oP "(?<=^${PACKAGE} )(https?|ftps?)://.*" ../sources | sed "s/\${VERSION}/${DOWNLOAD_VERSION}/g")
+        SOURCE_EXT=$(basename "$SOURCE" | grep -oP "(xz|bz2|gz)\$")
+        if [ "" == "${SOURCE}" ]; then
+            printError "No source URL given for package ${PACKAGE}!"
+            cd ../..
+            exit 1
+        fi
+        if [ ! -f "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}" ]; then
+            printStatus "Downloading sources for version ${PACKAGE}-${UPSTREAM_VERSION}..."
+            wget "${SOURCE}" -O "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
+            if [ $? -ne 0 ]; then
+                printError "Download failed! Process aborted."
+                exit 1
+            fi
+        else
+            printStatus "Sources already downloaded."
+        fi
+
+        if [ "${PACKAGE}" == "keepassxc" ]; then
+            printStatus "Verifying sources..."
+            curl -fL "https://github.com/keepassxreboot/keepassxc/releases/download/${STRIPPED_UPSTREAM_VERSION}/keepassxc-${STRIPPED_UPSTREAM_VERSION}-src.tar.xz.sig" | \
+                gpg --verify - "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}"
+
+            if [ $? -ne 0 ]; then
+                printError "Signature verification failed! Process aborted."
+                exit 1
+            fi
+        fi
+    fi
+
+    if $TEST_BUILD; then
+        local TEST_ROOT
+        TEST_ROOT=$(mktemp -d "$(realpath ..)/.${PACKAGE}-test.XXXXXX") || exit 1
+        printStatus "Test build directory: $TEST_ROOT"
+        mkdir "$TEST_ROOT/$PACKAGE" || exit 1
+        if [ -n "$SOURCE_DIR" ]; then
+            printStatus "Copying local sources from '$SOURCE_DIR'..."
+            # Preserve working-tree changes, excluding VCS metadata and build output.
+            (set -o pipefail
+             tar --exclude='./.git' --exclude='./debian' --exclude='./build*' \
+                 --exclude='./cmake-build-*' -C "$SOURCE_DIR" -cf - . | \
+                 tar -C "$TEST_ROOT/$PACKAGE" -xf -) || exit 1
+        else
+            tar -xf "../${PACKAGE}_${UPSTREAM_VERSION}.orig.tar.${SOURCE_EXT}" \
+                --strip-components=1 -C "$TEST_ROOT/$PACKAGE" || exit 1
+            rm -rf "$TEST_ROOT/$PACKAGE/debian"
+        fi
+        cp -a debian "$TEST_ROOT/$PACKAGE/" || exit 1
+        (
+            cd "$TEST_ROOT/$PACKAGE" || exit 1
+            local TEST_VERSION="${UPSTREAM_VERSION}-${UBUNTU_VERSION}ppa${PPA_VERSION}~${SERIES}${SERIES_VERSION}+test1"
+            local TEST_CHANGELOG
+            TEST_CHANGELOG=$(cat debian/changelog) || exit 1
+            {
+                printf '%s (%s) %s; urgency=%s\n\n' "$PACKAGE" "$TEST_VERSION" "$SERIES" "$URGENCY"
+                printf '  * Local test build.\n\n -- %s <%s>  %s\n\n' "$DEBFULLNAME" "$DEBEMAIL" "$(date -R)"
+                printf '%s\n' "$TEST_CHANGELOG"
+            } > debian/changelog
+            printStatus "Building unsigned binary packages for '${SERIES}'..."
+            runDockerCmd "debuild -us -uc -b" "debuild" "devscripts build-essential dh-autoreconf fakeroot dh-make" || exit 1
+        ) || exit 1
+        printStatus "Test packages and build files: $TEST_ROOT"
+        return
+    fi
 
     printStatus "Creating source package for '${SERIES}'..."
 
