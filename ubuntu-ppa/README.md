@@ -1,1 +1,0 @@
-# Ubuntu PPA Package Specs

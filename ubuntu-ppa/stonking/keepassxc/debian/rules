@@ -8,19 +8,20 @@ include /usr/share/dpkg/default.mk
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
-export LC_ALL = en_US.UTF-8
+export LC_ALL = C.UTF-8
 
 %:
-	dh $@ --parallel
+	dh $@
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DKEEPASSXC_BUILD_TYPE=Release \
 		-DWITH_TESTS=ON \
-		-DWITH_GUI_TESTS=OFF  \
-		-DWITH_XC_ALL=ON \
-		-DWITH_XC_UPDATECHECK=OFF
+		-DWITH_GUI_TESTS=OFF \
+		-DWITH_X11=ON \
+		-DKPXC_FEATURE_DOCS=ON \
+		-DKPXC_FEATURE_UPDATES=OFF
 
 override_dh_auto_test:
 	dh_auto_test -- \
