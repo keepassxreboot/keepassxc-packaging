@@ -33,7 +33,7 @@ Vcs-Browser: https://github.com/keepassxreboot/keepassxc-packaging
 
 Package: keepassxc
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, shared-mime-info
+Depends: ${shlibs:Depends}, ${misc:Depends}, shared-mime-info, qt6-qpa-plugins
 Recommends: qt6-image-formats-plugins, qt6-wayland
 Replaces: keepassxc-beta
 Conflicts: keepassxc-beta
