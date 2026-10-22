@@ -1,3 +1,9 @@
+keepassxc (2.8.0-1ppa1~stonking1) stonking; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Oct 2026 14:15:38 +0200
+
 keepassxc (2.7.12-1ppa1~resolute1) resolute; urgency=medium
 
   * Initial Resolute Raccoon release.

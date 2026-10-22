@@ -1,3 +1,9 @@
+keepassxc (2.8.0-1ppa1~noble1) noble; urgency=medium
+
+  * Upstream update
+
+ -- KeePassXC Team <team@keepassxc.org>  Thu, 22 Oct 2026 14:15:05 +0200
+
 keepassxc (2.7.12-1ppa1~noble1) noble; urgency=medium
 
   * Upstream update
